@@ -1,6 +1,6 @@
 # Public Projects Repository
 ```
-Welcome to my collection of side projects. Each branch in this repository represents a distinct project. Once a project is complete, it will be merged into the main branch.
+  Welcome to my collection of side projects. Each branch in this repository represents a distinct project. Once a project is complete, it will be merged into the main branch.
 ```
 # Table of Contents
 - [Public-Projects: Advanced C/C++ Projects Showcase](#public-projects-advanced-cc-projects-showcase)
@@ -1055,8 +1055,20 @@ Explore a variety of cryptographic projects implemented with different algorithm
 
 ### Projects that have been started
 
-| Project                         | Technologies | Start Date     | End Date |
-|---------------------------------|--------------|----------------|----------|
-| [Compiler](#compiler)           | C/C++        | July 4th, 2024 |          |
-| Multithreaded Server            | C/C++        | July 4th, 2024 |          |
-| Blockchain Implementation       | C/C++        | July 4th, 2024 |          |
+Here's the organized list of projects from highest to lowest priority:
+
+| Project                                                    | Technologies | Start Date     | End Date |
+|------------------------------------------------------------|--------------|----------------|----------|
+| [Custom Operating System Kernel](#custom-os-kernel)        | TBD          | TBD            | TBD      |
+| [Processor Design](#processor-design)                      | TBD          | TBD            | TBD      |
+| [Lock-Free Concurrent Data Structures](#lock-free-data-structures) | TBD | TBD | TBD |
+| [Elliptic Curve Cryptography](#ecc)                        | C/C++        | July 4th, 2024 | TBD      |
+| [Chaos-based Cryptography](#chaos-based-cryptography)      | TBD          | TBD            | TBD      |
+| [Compiler](#compiler)                                      | C/C++        | July 4th, 2024 |          |
+| [Blockchain Implementation](#blockchain-implementation)    | C/C++        | July 4th, 2024 | TBD      |
+| [Multithreaded Server](#multithreaded-server)              | C/C++        | July 4th, 2024 | TBD      |
+| [Game AI](#game-ai)                                        | C/C++        | July 4th, 2024 | TBD      |
+| [Image Processing](#image-processing)                      | TBD          | July 4th, 2024 | TBD      |
+| [Game Physics Engine](#game-physics-engine)                | TBD          | July 4th, 2024 | TBD      |
+
+

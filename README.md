@@ -1055,9 +1055,8 @@ Explore a variety of cryptographic projects implemented with different algorithm
 
 ### Projects that have been started
 
-| Project                         | Technologies | Start Date       | End Date |
-|---------------------------------|--------------|------------------|	       |
-| Compiler                        | C/C++        | July 4th, 2024   |	       |
-| Multithreaded Server            | C/C++        | July 4th, 2024   |          |
-| Blockchain Implementation       | C/C++        | July 4th, 2024   |          |
-
+| Project                         | Technologies | Start Date     | End Date |
+|---------------------------------|--------------|----------------|----------|
+| Compiler                        | C/C++        | July 4th, 2024 |          |
+| Multithreaded Server            | C/C++        | July 4th, 2024 |          |
+| Blockchain Implementation       | C/C++        | July 4th, 2024 |          |

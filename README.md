@@ -54,7 +54,7 @@ Welcome to my collection of side projects. Each branch in this repository repres
   - [Wavelet Trees](#wavelet-trees)
   - [Compact Sparse Matrix Data Structures](#compact-sparse-matrix-data-structures)
 
-- [Public-Projects: Cryptography](#Public-Projects: Cryptography)
+- [Public-Projects: Cryptography](#public-projects-cryptography)
   - [AES (Advanced Encryption Standard)](#aes)
   - [Rivest-Shamir-Adleman](#rsa)
   - [Elliptic Curve Cryptography](#ecc)
@@ -1057,6 +1057,6 @@ Explore a variety of cryptographic projects implemented with different algorithm
 
 | Project                         | Technologies | Start Date     | End Date |
 |---------------------------------|--------------|----------------|----------|
-| Compiler                        | C/C++        | July 4th, 2024 |          |
+| [Compiler](#compiler)           | C/C++        | July 4th, 2024 |          |
 | Multithreaded Server            | C/C++        | July 4th, 2024 |          |
 | Blockchain Implementation       | C/C++        | July 4th, 2024 |          |

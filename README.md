@@ -1,4 +1,3 @@
-
 # Public Projects Repository
 ```
 Welcome to my collection of side projects. Each branch in this repository represents a distinct project. Once a project is complete, it will be merged into the main branch.
@@ -31,7 +30,8 @@ Welcome to my collection of side projects. Each branch in this repository repres
   - [Game Physics Engine](#game-physics-engine)
   - [Compiler](#compiler)
   - [Real-Time Operating System (RTOS)](#real-time-operating-system-rtos)
-- [Public-Projects: Advanced Data Structure Implementations for Performance and Scalability](#Public-Projects: Advanced Data Structure Implementations for Performance and Scalability)
+
+- [Public-Projects: Advanced Data Structure Implementations for Performance and Scalability](#public-project-advanced-data-structure-implementations-for-performance-and-scalability)
   - [Lock-Free Concurrent Data Structures](#lock-free-concurrent-data-structures)
   - [Persistent Data Structures](#persistent-data-structures)
   - [Cache-Oblivious Data Structures](#cache-oblivious-data-structures)
@@ -53,6 +53,7 @@ Welcome to my collection of side projects. Each branch in this repository repres
   - [External Memory Data Structures](#external-memory-data-structures)
   - [Wavelet Trees](#wavelet-trees)
   - [Compact Sparse Matrix Data Structures](#compact-sparse-matrix-data-structures)
+
 - [Public-Projects: Cryptography](#Public-Projects: Cryptography)
   - [AES (Advanced Encryption Standard)](#aes)
   - [Rivest-Shamir-Adleman](#rsa)
@@ -94,7 +95,51 @@ Welcome to my collection of side projects. Each branch in this repository repres
   - [ADFGFX Cipher](#adfgx)
   - [Zigzag Cipher](#zigzag)
 
+- [Public-Projects: HDL/VHDL](#public-projects-hdlvhdl)
+  - [Sequential Circuit Design](#sequential-circuit-design)
+  - [Memory Controller Implementation](#memory-controller-implementation)
+  - [UART Communication Module](#uart-communication-module)
+  - [Floating Point Arithmetic Unit](#floating-point-arithmetic-unit)
+  - [Digital Filter Design](#digital-filter-design)
+  - [SPI Interface Controller](#spi-interface-controller)
+  - [Processor Design](#processor-design)
+  - [FPGA-Based Accelerator](#fpga-based-accelerator)
+  - [Real-Time Clock Module](#real-time-clock-module)
+  - [Ethernet MAC Layer](#ethernet-mac-layer)
+  - [Signal Processing Module](#signal-processing-module)
+  - [Video Codec Implementation](#video-codec-implementation)
+  - [UART-to-USB Converter](#uart-to-usb-converter)
+  - [Digital PLL Design](#digital-pll-design)
+  - [High-Speed SerDes Interface](#high-speed-serdes-interface)
+  - [FIFO Buffer Implementation](#fifo-buffer-implementation)
+  - [Audio Processing Unit](#audio-processing-unit)
+  - [PCIe Controller Core](#pcie-controller-core)
+  - [Wireless Communication Module](#wireless-communication-module)
+  - [ASIC Verification Testbench](#asic-verification-testbench)
 
+- [Public-Project: Assembly Language Projects](#public-project-assembly-language-projects)
+  - [Implementing a Virtual Machine](#implementing-a-virtual-machine)
+  - [Custom Operating System Kernel](#custom-operating-system-kernel)
+  - [Optimized Matrix Multiplication](#optimized-matrix-multiplication)
+  - [Implementing a Compiler](#implementing-a-compiler)
+  - [Cryptography Algorithms in Assembly](#cryptography-algorithms-in-assembly)
+  - [Low-Level Device Driver](#low-level-device-driver)
+  - [Memory Allocator](#memory-allocator)
+  - [Signal Processing Algorithms](#signal-processing-algorithms)
+  - [Custom File System](#custom-file-system)
+  - [Game Engine Components](#game-engine-components)
+  - [Implementing an Interpreter](#implementing-an-interpreter)
+  - [Real-Time Operating System (RTOS)](#real-time-operating-system-rtos)
+  - [Data Compression Algorithms](#data-compression-algorithms)
+  - [Custom CPU Emulator](#custom-cpu-emulator)
+  - [Graphics Rendering Pipeline](#graphics-rendering-pipeline)
+  - [Audio Processing Algorithms](#audio-processing-algorithms)
+  - [Digital Signal Processing (DSP)](#digital-signal-processing-dsp)
+  - [Optimizing Compiler Optimizations](#optimizing-compiler-optimizations)
+  - [Binary Analysis and Reverse Engineering Tools](#binary-analysis-and-reverse-engineering-tools)
+  - [Custom Networking Protocol Stack](#custom-networking-protocol-stack)
+
+- [Projects that have been started](#projects-that-have-been-started)
 ## Public-Projects: Advanced C/C++ Projects Showcase
 ```
 This repository contains a collection of diverse programming projects showcasing various aspects of software development, algorithm design, system programming, and more. Each project focuses on different technologies and highlights specific skills and concepts.

@@ -96,19 +96,19 @@ enum TokenType {
     QUERY, MUTATION, SUBSCRIPTION, UNION, 
     SCALAR, FRAGMENT,
     ON, BOOLEAN, LIST, NON_NULL,
-    SPREAD, AT, EXCLAMATION, BRACES, PARENS
+    SPREAD, AT, EXCLAMATION, BRACES, PARENS, END_OF_FILE
 };
 
 class Token {
     public:
-        Token(TokenType type, std::string lexeme, const char* literal, int line);
+        Token(TokenType type, std::string lexeme, const std::string literal, int line);
         std::string toString();
     protected:
         //
     private:
         TokenType type;
         std::string lexeme;
-        const char* literal; 
+        std::string literal; 
         int line;
 };
 

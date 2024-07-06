@@ -16,7 +16,7 @@ class Scanner: private Interface {
         int line = 1;
         void scanToken();
         void addToken(TokenType type);
-        void addToken(TokenType type, const char* literal);
+        void addToken(TokenType type, const std::string literal);
         void identifier();
         // Below are the virtual specifier functions 
         bool match(char expected) override {

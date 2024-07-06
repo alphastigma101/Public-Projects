@@ -3,6 +3,27 @@
 #include <system_error>
 #include <fstream>
 static bool hadError = false;
+
+// Overload the << operator for Token
+std::ostream& operator<<(std::ostream& os, const Token& token) {
+    return os << "Token(" << static_cast<int>(token.type) << ", " << token.lexeme << ")";
+}
+
+/*
+ * This function calls in scanner class 
+ */
+static void run(const std::string source) {
+    Scanner scanner(source); // Create a new scanner instance
+    std::vector<Token> tokens = scanner.ScanTokens();
+
+    // For now, just print the tokens.
+    for (auto &token : tokens) {
+        std::cout << token << std::endl;
+    }
+  }
+}
+
+
 /* 
  * This function will implement > at runtime 
  */
@@ -11,8 +32,8 @@ static void runPrompt() {
          for (;;) { 
              std::cout << "> ";
              std::string line;
-             std::getline(cin, line); // get user input
-             if (line == (void*)0) break; // value is '\0' break
+             std::getline(std::cin, line); // get user input
+             if (line[0] == '\0' || line.empty()) break;
              run(line);
          }
     }
@@ -21,27 +42,13 @@ static void runPrompt() {
     }
 }
 
-/*
- * This function calls in scanner class 
- */
-static void run(const std::string source) {
-    Scanner scanner = new Scanner(source); // Create a new scanner instance
-    std::vector<Token> tokens = scanner.scanTokens();
-
-    // For now, just print the tokens.
-    for (Token token : tokens) {
-      System.out.println(token);
-    }
-  }
+static void report(int line, const std::string where, const std::string message) {
+    std::cout << "[line " <<  line << "] Error" << where << ": " + message;
+    hadError = true;
 }
 
 static void error(int line, std::string message) {
     report(line, "", message);
-}
-
-static void report(int line, const std::string where, const std::string message) {
-    std::cout << "[line " <<  line << "] Error" << where << ": " + message;
-    hadError = true;
 }
 
 static void runFile(const std::string filePath) {
@@ -72,7 +79,7 @@ int main(int argc, char argv[]) {
         exit(1); 
     }
     else if (argc == 1) {
-        runFile(argv[1]);
+        runFile((std::string)argv[1]);
     } 
     else { runPrompt(); }
     return 0;

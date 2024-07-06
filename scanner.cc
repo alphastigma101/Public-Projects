@@ -30,7 +30,7 @@ std::vector<Token> Scanner::ScanTokens() {
         start = current;
         scanToken();
     }
-    tokens.push_back(new Token(EOF, "", nullptr, line));
+    tokens.push_back(Token(TokenType::END_OF_FILE, "", nullptr, line));
     return tokens;
 
 }
@@ -47,7 +47,7 @@ void Scanner::scanToken() {
         case '(': addToken(TokenType::LEFT_PAREN); break;
         case ')': addToken(TokenType::RIGHT_PAREN); break;
         case '{': addToken(TokenType::LEFT_BRACE); break;
-        case '}': addToken(Token::RIGHT_BRACE); break;
+        case '}': addToken(TokenType::RIGHT_BRACE); break;
         case ',': addToken(TokenType::COMMA); break;
         case '.': addToken(TokenType::DOT); break;
         case '-': addToken(TokenType::MINUS); break;
@@ -85,18 +85,23 @@ void Scanner::scanToken() {
     }
 }
 
-void Scanner::addToken(TokenType type) { addToken(type, (void*)0); }
+void Scanner::addToken(TokenType type) { addToken(type, ""); }
 
-void Scanner::addToken(TokenType type, const char* literal) {
+void Scanner::addToken(TokenType type, const std::string literal) {
     std::string text = Source.substr(start, current);
-    tokens.push_back(new Token(type, text, literal, line));
+    tokens.push_back(Token(type, text, literal, line));
 }
 
 void Scanner::identifier() {
     while (isAlphaNumeric(peek())) advance();
     std::string text = Source.substr(start, current);
-    TokenType type = keywords.get(text);
-    if (type == (void*)0) type = TokenType::IDENTIFIER;
+    auto it = keywords.find(text);
+    TokenType type;
+    if (it != keywords.end()) {
+        type = it->second;
+    } else {
+        type = TokenType::IDENTIFIER; // Default type if not found in keywords
+    }
     addToken(type);
 }
 

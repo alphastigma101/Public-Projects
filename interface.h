@@ -14,6 +14,8 @@ class interface {
         virtual void string() = 0;
         virtual void number() = 0;
         virtual char peekNext() = 0;
+        virtual bool isAlpha(char c) = 0;
+        virtual  bool isAlphaNumeric(char c) = 0;
 };
 
 #endif 

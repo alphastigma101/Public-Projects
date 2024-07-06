@@ -2,6 +2,7 @@
 #define SCANNER_H
 #include "token.h"
 #include <vector>
+#include <map>
 
 class Scanner : private Interface {
     public:
@@ -16,6 +17,8 @@ class Scanner : private Interface {
         void scanToken();
         void addToken(TokenType type);
         void addToken(TokenType type, const char* literal);
+        void identifier();
+        static std::map<std::string, TokenType> keywords;
 };
 
 #endif

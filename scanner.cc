@@ -6,6 +6,25 @@ Scanner::Scanner(std::string Source): Source(this->Source) {
     if (tokens == (void*)0) { tokens = new std::vector<>(); }
 }
 
+const std::map<std::string, TokenType> Scanner::keywords = {
+    {"and",    TokenType::AND},
+    {"class",  TokenType::CLASS},
+    {"else",   TokenType::ELSE},
+    {"false",  TokenType::FALSE},
+    {"for",    TokenType::FOR},
+    {"fun",    TokenType::FUN},
+    {"if",     TokenType::IF},
+    {"nil",    TokenType::NIL},
+    {"or",     TokenType::OR},
+    {"print",  TokenType::PRINT},
+    {"return", TokenType::RETURN},
+    {"super",  TokenType::SUPER},
+    {"this",   TokenType::THIS},
+    {"true",   TokenType::TRUE},
+    {"var",    TokenType::VAR},
+    {"while",  TokenType::WHILE}
+};
+
 std::vector<Token> Scanner::ScanTokens() {
     while (!isAtEnd()) {
         // We are at the beginning of the next lexeme.
@@ -226,4 +245,17 @@ char Scanner::peekNext() {
     return source.charAt(current + 1);
 }
 
+void Scanner::identifier() {
+    while (isAlphaNumeric(peek())) advance();
+    addToken(IDENTIFIER);
+}
 
+bool Scanner::isAlpha(char c) {
+    return (c >= 'a' && c <= 'z') ||
+           (c >= 'A' && c <= 'Z') ||
+            c == '_';
+}
+
+bool Scanner::isAlphaNumeric(char c) {
+    return isAlpha(c) || isDigit(c);
+}

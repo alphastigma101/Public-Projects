@@ -1,5 +1,6 @@
 #ifndef TOKEN_H
 #define TOKEN_H
+#include "interface.h"
 #include <iostream>
 #include <string>
 /*
@@ -19,12 +20,12 @@ enum TokenType {
     LESS, LESS_EQUAL,
     // Literals.
     IDENTIFIER, STRING, NUMBER, INT, FLOAT, CHAR, VOID, 
-    AUTO,
+    AUTO, BOOL,
     // General Keywords.
     AND, CLASS, ELSE, FALSE, FUN, FOR, IF, NIL, OR,
     PRINT, RETURN, SUPER, THIS, TRUE, VAR, WHILE, PUBLIC, 
     PRIVATE, PROTECTED, IMPORT, PACKAGE, STATIC, FINAL, STD, 
-    CATCH,
+    CATCH, FN,
     // Python Tokens
     DEF, ELIF, TRY, EXCEPT, FINALLY, WITH, AS,
     // JavaScript Tokens
@@ -32,9 +33,9 @@ enum TokenType {
     // Ruby Tokens
     END, ELSIF, UNLESS, MODULE, REQUIRE,
     // Swift Tokens & Go Tokens
-    FUNC, PACKAGE, STRUCT, INTERFACE,
+    FUNC, STRUCT, INTERFACE,
     // Kotlin Tokens
-    VAL
+    VAL,
     // PHP Tokens
     INCLUDE,
     // R Tokens
@@ -46,14 +47,14 @@ enum TokenType {
     // HTML Tokens
     TAG_OPEN, TAG_CLOSE, ATTR_NAME, ATTR_VALUE,
     // CSS Tokens
-    SELECTOR, PROPERTY, VALUE,  ID,
+    SELECTOR, PROPERTY, VALUE, ID,
     // SQL Tokens
     SELECT, INSERT, UPDATE, DELETE, CREATE,
     DROP, WHERE, FROM, INTO, VALUES, SET,
     // MATLAB Tokens
     CLASSDEF,
     // Verilog Tokens
-    MODULE, ENDMODULE, INPUT, OUTPUT,
+    ENDMODULE, INPUT, OUTPUT,
     ALWAYS, ASSIGN,
     // VHDL Tokens
     ENTITY, ARCHITECTURE, SIGNAL, PROCESS,
@@ -72,7 +73,7 @@ enum TokenType {
     // LISP Tokens
     DEFUN, SETQ, LAMBDA, PROGN, LOOP,
     // Scheme Tokens
-    DEFINE, SET, COND,
+    DEFINE, COND,
     // Erlang Tokens
     CASE, RECEIVE, SWITCH,
     // Clojure Tokens
@@ -85,19 +86,18 @@ enum TokenType {
     TYPE,
     // Elm Tokens
     EXPOSING, ALIAS,
-    PORT, ELM_IF, THEN, OF,
+    PORT, THEN, OF,
     IN, ARROW, EQUALS,
     // Racket Tokens
-    DEFINE, COND,
     QUOTE, UNQUOTE, QUASIQUOTE,
     SYNTAX, SYNTAX_RULES,
 
     // GraphQL Tokens
     QUERY, MUTATION, SUBSCRIPTION, UNION, 
-    ENUM, SCALAR, GRAPHQL_INPUT, FRAGMENT,
-    ON, NULL, TRUE, BOOLEAN, LIST, NON_NULL,
-    SPREAD, AT, EXCLAMATION, BRACES, PARENS,
-}
+    SCALAR, FRAGMENT,
+    ON, BOOLEAN, LIST, NON_NULL,
+    SPREAD, AT, EXCLAMATION, BRACES, PARENS
+};
 
 class Token {
     public:

@@ -4,7 +4,7 @@
 #include <vector>
 #include <map>
 
-class Scanner : private Interface {
+class Scanner: private Interface {
     public:
         Scanner(std::string Source);
         std::vector<Token> scanTokens();
@@ -18,7 +18,6 @@ class Scanner : private Interface {
         void addToken(TokenType type);
         void addToken(TokenType type, const char* literal);
         void identifier();
-        static std::map<std::string, TokenType> keywords;
+        static const std::map<std::string, TokenType> keywords;
 };
-
 #endif

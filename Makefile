@@ -12,6 +12,6 @@ exec_compiler:
 
 
 clean:
-	rm -rf {*.o,exec_compiler}
+	rm -rf *.o
 
 

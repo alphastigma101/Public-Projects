@@ -11,12 +11,13 @@ class Interface {
         virtual char peek() = 0;
         virtual bool isAtEnd() = 0;
         virtual char advance() = 0;
-        virtual void string() = 0;
+        virtual void String() = 0;
         virtual void number() = 0;
         virtual char peekNext() = 0;
         virtual bool isAlpha(char c) = 0;
         virtual bool isAlphaNumeric(char c) = 0;
         virtual bool match(char expected) = 0;
+        virtual bool isDigit(char c) = 0;
 };
 
 #endif 

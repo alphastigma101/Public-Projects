@@ -3,7 +3,7 @@
 #include "token.h"
 #include <vector>
 
-class Scanner : public Interface {
+class Scanner : private Interface {
     public:
         Scanner(std::string Source);
         std::vector<Token> scanTokens();
@@ -13,9 +13,7 @@ class Scanner : public Interface {
         int start = 0;
         int current = 0;
         int line = 1;
-        bool isAtEnd();
         void scanToken();
-        char advance();
         void addToken(TokenType type);
         void addToken(TokenType type, const char* literal);
 };

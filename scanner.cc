@@ -1,9 +1,7 @@
 #include "scanner.h"
 
-Scanner::Scanner(std::string Source): Source(this->Source) {
-    //if (tokens == nullptr) { tokens = new std::vector<Token>(); }
-}
-
+Scanner::Scanner(std::string Source): Source(this->Source) {}
+Scanner::~Scanner() {} ;
 const std::map<std::string, TokenType> Scanner::keywords = {
     // Add all the Keywrods here
     {"and",    TokenType::AND},

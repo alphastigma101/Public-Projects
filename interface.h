@@ -7,7 +7,7 @@ class Interface {
     public:
          virtual ~Interface() = default; // Virtual destructor for proper cleanup
     protected:
-        virtual bool consume(const char* literal) = 0; // Must be defined outside the class
+        //virtual bool consume(const char* literal) = 0; // Must be defined outside the class
         virtual char peek() = 0;
         virtual bool isAtEnd() = 0;
         virtual char advance() = 0;

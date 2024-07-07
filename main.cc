@@ -5,8 +5,10 @@
 static bool hadError = false;
 
 // Overload the << operator for Token
-std::ostream& operator<<(std::ostream& os, const Token& token) {
-    return os << "Token(" << static_cast<int>(token.type) << ", " << token.lexeme << ")";
+std::ostream& operator<<(std::ostream& os, Token& token) {
+    TokenType type = token.getType();
+    std::string lexeme = token.getLexeme();
+    return os << "Token(" << static_cast<int>(type) << ", " << lexeme << ")";
 }
 
 /*
@@ -21,7 +23,6 @@ static void run(const std::string source) {
         std::cout << token << std::endl;
     }
   }
-}
 
 
 /* 
@@ -53,7 +54,7 @@ static void error(int line, std::string message) {
 
 static void runFile(const std::string filePath) {
     std::string source,line;
-    if (std::filesystem::path(filePath)) {
+    if (std::filesystem::exists(filePath)) {
         std::ifstream file (std::filesystem::path(filePath).stem());
         if (file.is_open()) { 
             while (std::getline(file, line)) {
@@ -73,7 +74,7 @@ static void runFile(const std::string filePath) {
 
 
 // This is the driver code
-int main(int argc, char argv[]) {
+int main(int argc, char **argv) {
     if (argc > 1) {
         std::cerr << "Usage: [script]";
         exit(1); 

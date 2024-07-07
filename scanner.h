@@ -7,6 +7,7 @@
 class Scanner: private Interface {
     public:
         Scanner(std::string Source);
+        ~Scanner();
         std::vector<Token> ScanTokens();
     private:
         std::string Source;
@@ -25,7 +26,7 @@ class Scanner: private Interface {
             current++;
             return true;
         };
-        bool consume(const char* literal) override;
+        //bool consume(const char* literal) override;
         bool isAtEnd() override { return current >= Source.length();}; 
         char advance() override { return Source.at(current++); };    
         bool isAlpha(char c) override { return (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || c == '_'; };

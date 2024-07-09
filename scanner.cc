@@ -1,7 +1,20 @@
 #include "scanner.h"
 
+/*
+ * This is the default constructor which can be used to create an instance of the Scanner Class
+ * Params:
+    *  std::string Source: the source line of code from a file or from the runprompt function
+ */
 Scanner::Scanner(std::string Source): Source(this->Source) {}
-Scanner::~Scanner() {} ;
+
+/*
+ * The deconstructor for the scanner class 
+*/
+Scanner::~Scanner() {};
+
+/*
+ * (keywords) is a dictionary that holds in various keywords of programming languages 
+*/
 const std::map<std::string, TokenType> Scanner::keywords = {
     // Add all the Keywrods here
     {"and",    TokenType::AND},
@@ -19,9 +32,25 @@ const std::map<std::string, TokenType> Scanner::keywords = {
     {"this",   TokenType::THIS},
     {"true",   TokenType::TRUE},
     {"var",    TokenType::VAR},
-    {"while",  TokenType::WHILE}
+    {"while",  TokenType::WHILE},
+    {"finally", TokenType::FINALLY},
+    {"protected", TokenType::PROTECTED},
+    {"import", TokenType::IMPORT},
+    {"private", TokenType::PRIVATE},
+    {"package", TokenType::PACKAGE},
+    {"fn", TokenType::FN},
+    {"catch", TokenType::CATCH},
+    {"def", TokenType::DEF},
+    {"final", TokenType::FINAL}.
+    {"std", TokenType::STD},
+    {"var", TokenType::VAR}
 };
 
+/*
+ * (ScanTokens) is a method that is apart of the scanner class 
+ * Instead of (scanToken) method, this method scans the whole file until it reaches the EOF, (End Of File)
+ * Takes no paramaters and returns void 
+ */
 std::vector<Token> Scanner::ScanTokens() {
     while (!isAtEnd()) {
         // We are at the beginning of the next lexeme.
@@ -32,14 +61,19 @@ std::vector<Token> Scanner::ScanTokens() {
     return tokens;
 
 }
+/*
+ * (scanToken) is a method that is apart of the (Scanner) class 
+ * The purpose of (scanToken) is to perform a lexical analysis by gathering up lexemes 
+ * lexemes are only the raw substrings of the source code.
+    * Couple examples of lexemes would be 'v' 'a' 'r' group them together to make something useful out of them 
+    * Lexeme is known as a string and so is a token
+    * Note: grouping these bits of characters into lexemes are called its (lexical grammar). 
+ * ------------------------------------------------------------------------------------------
+ *  This method has no parameters and it returns nothing 
+*/
 
 void Scanner::scanToken() {
     char c = advance();
-    // continue to add more lexemes for lexical analysis
-    // lexical analysis is when you turn something not meaningful into something meaningful
-    // Ex: language
-    // pull out gua which is the process of lexical analysis
-
     switch (c) {
         // Single-character tokens
         case '(': addToken(TokenType::LEFT_PAREN); break;
@@ -85,11 +119,26 @@ void Scanner::scanToken() {
 
 void Scanner::addToken(TokenType type) { addToken(type, ""); }
 
+/*
+ * (addToken) is a method that is apart of the Scanner class 
+ * Params:
+    * Tokentype type: Is a Lexical grammar
+    * const std::string literal: A representation of a primitive instance type 
+ * This method only pushes to a vector 
+*/
 void Scanner::addToken(TokenType type, const std::string literal) {
     std::string text = Source.substr(start, current);
     tokens.push_back(Token(type, text, literal, line));
 }
 
+/*
+ * (identifier) is a method apart of the scanner class that searches for the keyword 
+ * Params:
+    *  None
+ *  This method uses a dictionary to see if the object type is inside the dictionary 
+ *  If it is not in the dictionary, it will be converted into TokenType::IDENTIFIER
+ *  It will always call in addToken
+*/
 void Scanner::identifier() {
     while (isAlphaNumeric(peek())) advance();
     std::string text = Source.substr(start, current);

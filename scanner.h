@@ -1,8 +1,6 @@
 #ifndef SCANNER_H
 #define SCANNER_H
 #include "token.h"
-#include <vector>
-#include <map>
 
 class Scanner: private Interface {
     public:
@@ -66,6 +64,6 @@ class Scanner: private Interface {
             if (current + 1 >= Source.length()) return '\0';
             return Source.at(current + 1);
         };
-        static const std::map<std::string, TokenType> keywords;
+        static const std::unordered_map<std::string, TokenType> keywords;
 };
 #endif

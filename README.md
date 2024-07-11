@@ -3,6 +3,10 @@
     This is a open source project that uses c++ to compile and run custom programming languages or modern programming languages
 ```
 
+# Table Of Contents
+
+1. [Supported Programming languages](#supported-programming-languages)
+2. [Project Construction](#product-construction)
 
 ### Supported Programming languages:
 
@@ -54,3 +58,24 @@
 * [LabVIEW](https://www.ni.com/en-us/support/documentation.html)
 * [Smalltalk](https://wiki.c2.com/?SmalltalkDocumentation)
 * [Standard ML (SML)](https://smlfamily.github.io/)
+
+### Product Construction
+* The goal is split the product's code so that the *exec_compiler* which is located in the Makefile shows which files are being used to built it are either going to be connected to something that looks like a terminal embeded in the navbar.html file or it will be seperated from the *generate_code* which will be either built with the Dockerfile or the Makefile.
+
+* Things that need to be implemented:
+* A database that holds all the supported programming languages which each entities attributes is examples of optimization code for a specific langauge
+* A optimization class that uses regex library that will take tokens and match the patterns to see if it can be optimized 
+* A file callled generate_code.html that uses crow web frame works apis and inja template engine which it should contain a drop down menu of all the supported languages which the user should be able to click on and wait for it to generate the code
+* Implement the funcions in languages.h which are inlined. Their job is to create stub function for each supported programming language
+* Implement the routing using crow inside generate_code.cc 
+* Implement .css code that will create a nice navbar 
+
+
+
+* *generate_code* will use **crow** as its web-framework and inja for the template engine. I have included notes in *generate_code.cc* that will need to be implemented 
+* **Sources:**
+    * **Crow user manual/releases**:
+        - *https://github.com/CrowCpp/Crow/releases*
+        - *https://crowcpp.org/master/*
+    * **inja user manual**:
+        - *https://github.com/pantor/inja*

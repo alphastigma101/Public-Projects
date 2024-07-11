@@ -1,10 +1,25 @@
 #ifndef CONTEXT_FREE_GRAMMAR
 #define CONTEXT_FREE_GRAMMAR
 #include "token.h"
+#include <filesystem>
 
-static class Binary: public Expr {
+class Expr {
+    // A representation of an abstraction classs
     public:
-        Binary(Expr left, Token op, Expr right): left(this->left), right(this->right), op(this->op){};
+        virtual Expr();
+        virtual ~Expr();
+        final Expr left;
+        final Token op;
+        final Expr right;
+
+};
+
+
+class Binary: public Expr {
+    public:
+        inline Binary(Expr left, Token op, Expr right): left(this->left), right(this->right), op(this->op) {
+                // Inject some code in here
+        };
     protected:
         //
     private:
@@ -13,14 +28,5 @@ static class Binary: public Expr {
         Token op;
 };
 
-virtual class Expr {
-
-    final Expr left;
-    final Token operator;
-    final Expr right;
-
-  // Other expressions...
-
-};
 
 #endif 

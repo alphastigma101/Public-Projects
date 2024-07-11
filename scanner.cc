@@ -14,8 +14,9 @@ Scanner::~Scanner() {};
 
 /*
  * (keywords) is a dictionary that holds in various keywords of programming languages 
+ * Using unordered_map type because I want O(n) at run time
 */
-const std::map<std::string, TokenType> Scanner::keywords = {
+const std::unordered_map<std::string, TokenType> Scanner::keywords = {
     // Add all the Keywrods here
     {"and",    TokenType::AND},
     {"class",  TokenType::CLASS},

@@ -7,6 +7,10 @@
 
 1. [Supported Programming languages](#supported-programming-languages)
 2. [Project Construction](#product-construction)
+3. [Macros](#macros)
+    - [Sources](#sources)
+4. [Pragmas](#pragmas)
+    - [Sources](#sources)
 
 ### Supported Programming languages:
 
@@ -65,9 +69,9 @@
 * Things that need to be implemented:
 * A database that holds all the supported programming languages which each entities attributes is examples of optimization code for a specific langauge
 * A optimization class that uses regex library that will take tokens and match the patterns to see if it can be optimized 
-* A file callled generate_code.html that uses crow web frame works apis and inja template engine which it should contain a drop down menu of all the supported languages which the user should be able to click on and wait for it to generate the code
+* A file callled `generate_code.html` that uses crow web frame works apis and inja template engine which it should contain a drop down menu of all the supported languages which the user should be able to click on and wait for it to generate the code
 * Implement the funcions in languages.h which are inlined. Their job is to create stub function for each supported programming language
-* Implement the routing using crow inside generate_code.cc 
+* Implement the routing using crow inside `generate_code.cc` 
 * Implement .css code that will create a nice navbar 
 
 
@@ -79,3 +83,17 @@
         - *https://crowcpp.org/master/*
     * **inja user manual**:
         - *https://github.com/pantor/inja*
+### Macros
+* They function like functions but they are `directives` meaning they are `pre-proccessed` before `compilation`
+* Need to add `\` whenever you want a new line 
+# Sources
+* **macros**:
+    * *https://cplusplus.com/doc/tutorial/preprocessor/*
+### Pragmas
+* They can be embedded with macros and can parse a directive if needed
+
+# Sources
+* **Pragmas**:
+* *https://en.cppreference.com/w/cpp/preprocessor/impl*
+* **Translation Phase**:
+    * *https://en.cppreference.com/w/cpp/language/translation_phases#Phase_3*

@@ -1,140 +1,143 @@
 #ifndef LANGUAGES_H
 #define LANGUAGES_H
-#include "context_free_grammar.h"
+#include <cfg/context_free_grammar.h>
+#include "lookup_languages.h"
+#include "macros.h" // has pargma once inside the file so the macros inside it cannot be called in other files
 
-inline void C() {
-    std::cout << "Function for C\n";
+inline *char C() {
+    static const *char func = C_CODE;
+    return func;
 }
 
-inline void CPP() {
+inline *char CPP() {
     std::cout << "Function for C++ (CPP)\n";
 }
 
-inline void Java() {
+inline *char Java() {
     std::cout << "Function for Java\n";
 }
 
-inline void Python() {
+inline *char Python() {
     std::cout << "Function for Python\n";
 }
 
-inline void JavaScript() {
+inline *char JavaScript() {
     std::cout << "Function for JavaScript\n";
 }
 
-inline void Ruby() {
+inline *char Ruby() {
     std::cout << "Function for Ruby\n";
 }
 
-inline void Swift() {
+inline *char Swift() {
     std::cout << "Function for Swift\n";
 }
 
-inline void Go() {
+inline *char Go() {
     std::cout << "Function for Go\n";
 }
 
-inline void Kotlin() {
+inline *char Kotlin() {
     std::cout << "Function for Kotlin\n";
 }
 
-inline void Scala() {
+inline *char Scala() {
     std::cout << "Function for Scala\n";
 }
 
-inline void TypeScript() {
+inline *char TypeScript() {
     std::cout << "Function for TypeScript\n";
 }
 
-inline void PHP() {
+inline *char PHP() {
     std::cout << "Function for PHP\n";
 }
 
-inline void Perl() {
+inline *char Perl() {
     std::cout << "Function for Perl\n";
 }
 
-inline void R() {
+inline *char R() {
     std::cout << "Function for R\n";
 }
 
-inline void ObjectiveC() {
+inline *char ObjectiveC() {
     std::cout << "Function for Objective-C\n";
 }
 
-inline void Haskell() {
+inline *char Haskell() {
     std::cout << "Function for Haskell\n";
 }
 
-inline void Rust() {
+inline *char Rust() {
     std::cout << "Function for Rust\n";
 }
 
-inline void Dart() {
+inline *char Dart() {
     std::cout << "Function for Dart\n";
 }
 
-inline void Lua() {
+inline *char Lua() {
     std::cout << "Function for Lua\n";
 }
 
-inline void Shell() {
+inline *char Shell() {
     std::cout << "Function for Shell (Bash)\n";
 }
 
-inline void HTMLCSS() {
+inline *char HTMLCSS() {
     std::cout << "Function for HTML/CSS\n";
 }
 
-inline void SQL() {
+inline *char SQL() {
     std::cout << "Function for SQL\n";
 }
 
-inline void MATLAB() {
+inline *char MATLAB() {
     std::cout << "Function for MATLAB\n";
 }
 
-inline void VHDLVerilog() {
+inline *char VHDLVerilog() {
     std::cout << "Function for VHDL/Verilog\n";
 }
 
-inline void FSharp() {
+inline *char FSharp() {
     std::cout << "Function for F# (FSharp)\n";
 }
 
-inline void CSharp() {
+inline *char CSharp() {
     std::cout << "Function for C# (CSHARP)\n";
 }
 
-inline void VBA() {
+inline *char VBA() {
     std::cout << "Function for VBA\n";
 }
 
-inline void Fortran() {
+inline *char Fortran() {
     std::cout << "Function for Fortran\n";
 }
 
-inline void COBOL() {
+inline *char COBOL() {
     std::cout << "Function for COBOL\n";
 }
 
-inline void Pascal() {
+inline *char Pascal() {
     std::cout << "Function for Pascal\n";
 }
 
-inline void LISPScheme() {
+inline *char LISPScheme() {
     std::cout << "Function for LISP/Scheme\n";
 }
 
-inline void Groovy() {
+inline *char Groovy() {
     std::cout << "Function for Groovy\n";
 }
 
-inline void Erlang() {
+inline *char Erlang() {
     std::cout << "Function for Erlang\n";
 }
 
-inline void Clojure() {
+inline *char Clojure() {
     std::cout << "Function for Clojure\n";
 }
 

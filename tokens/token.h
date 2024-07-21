@@ -1,7 +1,7 @@
 #ifndef TOKEN_H
 #define TOKEN_H
-#include "interface.h"
-#include "lookup_table.h"
+#include <interface/interface.h>
+#include "../languages/lookup_language.h"
 #include <iostream>
 /*
  * This enum class object supports multiple languages

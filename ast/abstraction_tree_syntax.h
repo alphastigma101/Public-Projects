@@ -1,6 +1,6 @@
 #ifndef ABSTRACTION_TREE_SYNTAX
 #define ABSTRACTION_TREE_SYNTAX
-#include "languages.h"
+#include <languages/languages.h>
 
 class ast {
     // This class ....

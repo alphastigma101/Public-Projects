@@ -1,6 +1,6 @@
 #ifndef SCANNER_H
 #define SCANNER_H
-#include "token.h"
+#include <tokens/token.h>
 
 class Scanner: private Interface {
     public:

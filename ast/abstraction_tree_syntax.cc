@@ -1,0 +1,24 @@
+#include <ast/abstraction_tree_syntax.h>
+
+ast::ast(std::string outputDir, std::string baseName): outputDir(this->outputDir) {
+    // Constructor should define the imports for whcih ever programming language that is getting generated
+    // It should only generate functions for any modern programming langauage
+}
+
+
+void ast::defineAst() {
+    for (std::string type : types) {
+        // Print through the types and start processing the strings
+    }
+
+}
+
+void ast::defineType(std::string baseName, std::vector<std::string> fields) {
+    // This method will define if there is a type of not
+}
+
+void ast::defineVisitor(std::string baseName, std::vector<std::string> types) {
+
+
+}
+

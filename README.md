@@ -89,6 +89,11 @@
 # Sources
 * **macros**:
     * *https://cplusplus.com/doc/tutorial/preprocessor/*
+    * *https://learn.microsoft.com/en-us/cpp/preprocessor/macros-and-cpp?view=msvc-170*
+    * *https://learn.microsoft.com/en-us/cpp/cpp/alignment-cpp-declarations?view=msvc-170*
+    * *https://learn.microsoft.com/en-us/cpp/standard-library/aligned-storage-class?view=msvc-170*
+    * *https://stackoverflow.com/questions/45477355/difference-between-pragma-and-pragma-in-c*
+    * *https://learn.microsoft.com/en-us/cpp/preprocessor/macros-c-cpp?view=msvc-170*
 ### Pragmas
 * They can be embedded with macros and can parse a directive if needed
 

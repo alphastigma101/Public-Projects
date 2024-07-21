@@ -21,6 +21,10 @@
     "}\n" \
     "int main(int argc, char** argv) {\n" \
     "\tprintf(\"Hello World!\");\n" \
+    "\tfmi();\n" \
+    "\tfmi_1();\n" \
+    "\tfmi_2();\n" \
+    "\treturn 0;\n" \
     "}\n"
 
 #define C_CODE _Pragma(#C_CODE_STR)
@@ -38,5 +42,30 @@
 
 #define PYTHON_CODE _Pragma(#PYTHON_CODE_STR)
 
+#define JAVA_CODE_STR \
+  "class Main {\n" \
+  "\tpublic static void main(String[] args) {\n" \
+  "\t\tSystem.out.println(\"Hello world!\");\n" \
+  "\t}\n" \
+  "}\n" 
+
+#define JAVA_CODE _Pragma(#JAVA_CODE_STR)
+
+
+#define CPP_CODE_STR \ 
+  "#include <iostream>\n" \
+  "void fmi() {\n" \
+  "\tstd::cout << \"Hello embedded c++ code!\";\n" \
+  "}\n" \ 
+  "void fmi_1() {\n" \
+  "\tstd::cout << \"Hello embedded c++ code!\";\n" \
+  "}\n" \ 
+  "int main(int argc, char **argv) {\n" \ 
+  "\tfmi();\n" \
+  "\tfmi_1();\n" \
+  "\treturn 0;\n" \ 
+  "}\n" 
+
+#define CPP_CODE _Pragma(#CPP_CODE_STR)
 
 #endif

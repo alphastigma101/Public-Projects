@@ -102,3 +102,5 @@
 * *https://en.cppreference.com/w/cpp/preprocessor/impl*
 * **Translation Phase**:
     * *https://en.cppreference.com/w/cpp/language/translation_phases#Phase_3*
+* **preproccessor replace**:
+    * *https://en.cppreference.com/w/cpp/preprocessor/replace*

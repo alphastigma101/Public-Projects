@@ -1,198 +1,316 @@
+#pragma once
 #ifndef LANGUAGES_H
 #define LANGUAGES_H
 #include <cfg/context_free_grammar.h>
 #include "lookup_languages.h"
 #include "macros.h" // has pargma once inside the file so the macros inside it cannot be called in other files
 
-inline *char C() {
-    static const *char func = C_CODE;
-    return func;
+inline const *char C() {
+    const *char for_loop = "for (int i = 0; i < 10; i++) { // Fill in your code here!}";
+    const *char while_loop = "while (true) {\n\t// Fill in your code here and replace true with something else!\n}";
+    const *char if_blocks = "if (true){\n fill in your code here!\n}\nelse if (true) {\n\t//Fill in your code here!\n}";
+    const *char function = "// You can call in function by providing their signatures inside certain fields";
+    static *char code = &C_CODE; // make a copy and modify the copy and not the origional
+    // Iterate through code and inject additional code into it 
+    // where FOR, WHILE, FUNCTION, and IF show up inject the corresponding objects into the code object
+    // Use the parser class to parse the token even farther for each inline function
+    return code;
 }
 
-inline *char CPP() {
-    std::cout << "Function for C++ (CPP)\n";
+inline const *char CPP() {
+    const *char for_loop = "for (int i = 0; i < 10; i++) { // Fill in your code here!}"; 
+    const *char while_loop = "while (true) {\n\t// Fill in your code here and replace true with something else!\n}";
+    const *char if_blocks = "if (true){\n fill in your code here!\n}\nelse if (true) {\n\t//Fill in your code here!\n}";
+    const *char function = "// You can call in function by providing their signatures inside certain fields";
+    static *char code = &CPP_CODE;
+    // Iterate through code and inject additional code into it 
+    // where FOR, WHILE, FUNCTION, and IF show up inject the corresponding objects into the code object
+    // Use the parser class to parse the token even farther 
+
 }
 
-inline *char Java() {
-    std::cout << "Function for Java\n";
+inline const *char Java() {
+    const *char for_loop = "for (int i = 0; i < 10; i++) { // Fill in your code here!}";
+    const *char while_loop = "while (true) {\n\t// Fill in your code here and replace true with something else!\n}";
+    const *char if_blocks = "if (true){\n fill in your code here!\n}\nelse if (true) {\n\t//Fill in your code here!\n}";
+    const *char function = "// You can call in function by providing their signatures inside certain fields";
+    static *char code = &JAVA_CODE;
+    // Iterate through code and inject additional code into it 
+    // where FOR, WHILE, FUNCTION, and IF show up inject the corresponding objects into the code object
+    // Use the parser class to parse the token even farther 
 }
 
-inline *char Python() {
-    std::cout << "Function for Python\n";
+inline const *char Python() {
+    const *char for_loop = "for i in range(0, 10):\n\t # Fill in your code here!"; 
+    const *char while_loop = "while (True):\n\t# Fill in your code here and replace true with something else!\n";
+    const *char if_blocks = "if (true):\n\t#fill in your code here!\nelif (True): \n\t#Fill in your code here!\n";
+    const *char function = "# You can call in function by providing their signatures inside certain fields";
+    static *char code = &PYTHON_CODE;
+    // Iterate through code and inject additional code into it 
+    // where FOR, WHILE, FUNCTION, and IF show up inject the corresponding objects into the code object
+    // Use the parser class to parse the token even farther 
+
 }
 
-inline *char JavaScript() {
-    std::cout << "Function for JavaScript\n";
+inline const *char JavaScript() {
+    const *char for_loop = "for (var i in arr) { // Fill in your code here!}"; 
+    const *char while_loop = "while (true) {\n\t// Fill in your code here and replace true with something else!\n}";
+    const *char if_blocks = "if (true){\n fill in your code here!\n}\nelse if (true) {\n\t//Fill in your code here!\n}";
+    const *char function = "// You can call in function by providing their signatures inside certain fields";
+    static *char code = &JAVASCRIPT_CODE;
+    // Iterate through code and inject additional code into it 
+    // where FOR, WHILE, FUNCTION, and IF show up inject the corresponding objects into the code object
 }
 
-inline *char Ruby() {
-    std::cout << "Function for Ruby\n";
+inline const *char Ruby() {
+    const *char for_loop = "class Array\ndef find\nfor i in 0...size\nvalue = self[i]\nreturn value if yield(value)\nend\nreturn nil\nend\nend\n"; // Each end needs to align 
+    const *char while_loop = "while i1 <= max\nyield i1\ni1, i2 = i2, i1+i2\nend"; // end needs to be aligned with while
+    const *char if_blocks = "if block_given?\nresult = yield <object>\nend"; // yield outputs the value to the terminal
+    const *char function = "// You can call in function by providing their signatures inside this field or any other field\n[1, 3, 5, 7, 9].find {|v| v*v > 30 }";
+    static *char code = &RUBY_CODE;
+    // prepend for_loop inside code
+    // Iterate through code and inject additional code into it 
+    // where FOR, WHILE, FUNCTION, and IF show up inject the corresponding objects into the code object
+
 }
 
-inline *char Swift() {
-    std::cout << "Function for Swift\n";
+inline const *char Swift() {
+    const *char for_loops = "for val in sequence{\n// statements\n}";
+    const *char while_loops = "while (condition){\n// body of loop\n}";
+    const *char if_blocks = "if (true){\n fill in your code here!\n}\nelse if (true) {\n\t//Fill in your code here!\n}";
+    const *char function = "// You can call in function by providing their signatures inside certain this field or any other field";
+    static *char code = &SWIFT_CODE;
+    // Iterate through code and inject additional code into it 
+    // where FOR, WHILE, FUNCTION, and IF show up inject the corresponding objects into the code object
 }
 
-inline *char Go() {
-    std::cout << "Function for Go\n";
+inline const *char Go() {
+    const *char for_loop = "for i:=0; i < 3; i++ { // Fill in your code here!}"; 
+    const *char while_loop = "while true {\n\t// Fill in your code here and replace true with something else!\n}";
+    const *char if_blocks = "if true {\n fill in your code here!\n}\nelse if true {\n\t//Fill in your code here!\n}";
+    static *char code = &GO_CODE;
+    // Iterate through code and inject additional code into it 
+    // where FOR, WHILE, FUNCTION, and IF show up inject the corresponding objects into the code object
+
 }
 
-inline *char Kotlin() {
-    std::cout << "Function for Kotlin\n";
+inline const *char Kotlin() {
+    const *char for_loops = "val items = listOf(\"apple\", \"banana\", \"kiwifruit\")\nfor (item in items) {\nprintln(item)\n}";
+    const *char if_blocks = "if (true) {\n// FMI\n}\nelse {\n// FMI\n}";
+    const *char while_loops = "val items = listOf(\"apple\", \"banana\", \"kiwifruit\")\nvar index = 0\nwhile (index < items.size) {\nprintln(\"item at $index is ${items[index]}\")\nindex++";
+    static *char code = &KOTLIN_CODE; // returns a string literal 
+    // Modify it and add the string literals above into it by iterating through it by finding words: FOR, WHILE, IF, and FUNCTION
+    // Code goes here ...
+    // Code goes here ....
+    // tokenize it once more 
+    #define FINAL(CODE)  _Pragma(#CODE) // pass in the arguments into the pragma 
+    static const *char result = FINAL(code);
+    // Call in the parser and parse the string literal even further. Hopefully it removes the \n \t
+    return result; // return the final string literal 
 }
 
-inline *char Scala() {
-    std::cout << "Function for Scala\n";
+inline const *char Scala() {
+    const *char for_loop = "val buffer = new ListBuffer[Int]()\n for i <- ints do\nbuffer += i * 2\sbuffer.toList"; // buffer.toList needs to be outside of the for loop and not inside of it 
+    const *char if_blocks = "if (test1) {\n\t // FMI }\n else if (test2) {\n // FMI\n}\n else {\n//FMI\n}\n";
+    static *char code = &SCALA_CODE;
+    // Iterate through code and inject additional code into it 
+    // where FOR and IF show up inject the corresponding objects into the code object
+
 }
 
-inline *char TypeScript() {
-    std::cout << "Function for TypeScript\n";
+inline const *char TypeScript() {
+    const *char for_loop = "for (var i in arr) { // Fill in your code here!}"; 
+    const *char while_loop = "while (true) {\n\t// Fill in your code here and replace true with something else!\n}";
+    const *char if_blocks = "if (true){\n fill in your code here!\n}\nelse if (true) {\n\t//Fill in your code here!\n}";
+    const *char function = "// You can call in function by providing their signatures inside certain fields";
+    static *char code = &TYPESCRIPT_CODE; // Make a copy of the macro 
+    // Iterate through code and inject additional code into it 
+    // where FOR, WHILE, FUNCTION, and IF show up inject the corresponding objects into the code object
 }
 
 inline *char PHP() {
-    std::cout << "Function for PHP\n";
+    const *char for_loop = "echo 'Single digit odd numbers from range():  ';\nforeach (range(1, 9, 2) as $number) {\n echo \"$number \";\n}\necho \"\n\";
+    // Iterate through code and inject additional code into it 
+    // where FOR, WHILE, FUNCTION, and IF show up inject the corresponding objects into the code object
+    static const *char result = FINAL(code);
 }
 
 inline *char Perl() {
-    std::cout << "Function for Perl\n";
+    // Iterate through code and inject additional code into it 
+    // where FOR, WHILE, FUNCTION, and IF show up inject the corresponding objects into the code object
 }
 
 inline *char R() {
-    std::cout << "Function for R\n";
+    // Iterate through code and inject additional code into it 
+    // where FOR, WHILE, FUNCTION, and IF show up inject the corresponding objects into the code object
 }
 
 inline *char ObjectiveC() {
-    std::cout << "Function for Objective-C\n";
+    // Iterate through code and inject additional code into it 
+    // where FOR, WHILE, FUNCTION, and IF show up inject the corresponding objects into the code object
 }
 
 inline *char Haskell() {
-    std::cout << "Function for Haskell\n";
+    // Iterate through code and inject additional code into it 
+    // where FOR, WHILE, FUNCTION, and IF show up inject the corresponding objects into the code object
 }
 
 inline *char Rust() {
-    std::cout << "Function for Rust\n";
+    // Iterate through code and inject additional code into it 
+    // where FOR, WHILE, FUNCTION, and IF show up inject the corresponding objects into the code object
 }
 
 inline *char Dart() {
-    std::cout << "Function for Dart\n";
+    // Iterate through code and inject additional code into it 
+    // where FOR, WHILE, FUNCTION, and IF show up inject the corresponding objects into the code object
 }
 
 inline *char Lua() {
-    std::cout << "Function for Lua\n";
+    // Iterate through code and inject additional code into it 
+    // where FOR, WHILE, FUNCTION, and IF show up inject the corresponding objects into the code object
 }
 
 inline *char Shell() {
-    std::cout << "Function for Shell (Bash)\n";
+   // Iterate through code and inject additional code into it 
+   // where FOR, WHILE, FUNCTION, and IF show up inject the corresponding objects into the code object
 }
 
 inline *char HTMLCSS() {
-    std::cout << "Function for HTML/CSS\n";
+    // Iterate through code and inject additional code into it 
+    // where FOR, WHILE, FUNCTION, and IF show up inject the corresponding objects into the code object
 }
 
 inline *char SQL() {
-    std::cout << "Function for SQL\n";
+    // Iterate through code and inject additional code into it 
+    // This is going to need a different approach 
 }
 
 inline *char MATLAB() {
-    std::cout << "Function for MATLAB\n";
+    // Iterate through code and inject additional code into it 
+    // where FOR, WHILE, FUNCTION, and IF show up inject the corresponding objects into the code object
 }
 
 inline *char VHDLVerilog() {
-    std::cout << "Function for VHDL/Verilog\n";
+    // Iterate through code and inject additional code into it 
+    // where FOR, WHILE, FUNCTION, and IF show up inject the corresponding objects into the code object
 }
 
 inline *char FSharp() {
-    std::cout << "Function for F# (FSharp)\n";
+    // Iterate through code and inject additional code into it 
+    // where FOR, WHILE, FUNCTION, and IF show up inject the corresponding objects into the code object
 }
 
 inline *char CSharp() {
-    std::cout << "Function for C# (CSHARP)\n";
+    // Iterate through code and inject additional code into it 
+    // where FOR, WHILE, FUNCTION, and IF show up inject the corresponding objects into the code object
 }
 
 inline *char VBA() {
-    std::cout << "Function for VBA\n";
+    // Iterate through code and inject additional code into it 
+    // where FOR, WHILE, FUNCTION, and IF show up inject the corresponding objects into the code object
 }
 
 inline *char Fortran() {
-    std::cout << "Function for Fortran\n";
+    // Iterate through code and inject additional code into it 
+    // where FOR, WHILE, FUNCTION, and IF show up inject the corresponding objects into the code object
 }
 
 inline *char COBOL() {
-    std::cout << "Function for COBOL\n";
+    // Iterate through code and inject additional code into it 
+    // where FOR, WHILE, FUNCTION, and IF show up inject the corresponding objects into the code object
 }
 
 inline *char Pascal() {
-    std::cout << "Function for Pascal\n";
+    // Iterate through code and inject additional code into it 
+    // where FOR, WHILE, FUNCTION, and IF show up inject the corresponding objects into the code object
 }
 
 inline *char LISPScheme() {
-    std::cout << "Function for LISP/Scheme\n";
+    // Iterate through code and inject additional code into it 
+    // where FOR, WHILE, FUNCTION, and IF show up inject the corresponding objects into the code object
 }
 
 inline *char Groovy() {
-    std::cout << "Function for Groovy\n";
+    // Iterate through code and inject additional code into it 
+    // where FOR, WHILE, FUNCTION, and IF show up inject the corresponding objects into the code object
 }
 
 inline *char Erlang() {
-    std::cout << "Function for Erlang\n";
+    // Iterate through code and inject additional code into it 
+    // where FOR, WHILE, FUNCTION, and IF show up inject the corresponding objects into the code object
 }
 
 inline *char Clojure() {
-    std::cout << "Function for Clojure\n";
+   // Iterate through code and inject additional code into it 
+    // where FOR, WHILE, FUNCTION, and IF show up inject the corresponding objects into the code object
 }
 
 inline void Prolog() {
-    std::cout << "Function for Prolog\n";
+    // Iterate through code and inject additional code into it 
+    // where FOR, WHILE, FUNCTION, and IF show up inject the corresponding objects into the code object
 }
 
 inline void Ada() {
-    std::cout << "Function for Ada\n";
+    // Iterate through code and inject additional code into it 
+    // where FOR, WHILE, FUNCTION, and IF show up inject the corresponding objects into the code object
 }
 
 inline void AWK() {
-    std::cout << "Function for AWK\n";
+    // Iterate through code and inject additional code into it 
+    // where FOR, WHILE, FUNCTION, and IF show up inject the corresponding objects into the code object
 }
 
 inline void TCL() {
-    std::cout << "Function for TCL\n";
+    // Iterate through code and inject additional code into it 
+    // where FOR, WHILE, FUNCTION, and IF show up inject the corresponding objects into the code object
 }
 
 inline void Dlang() {
-    std::cout << "Function for D\n";
+    // Iterate through code and inject additional code into it 
+    // where FOR, WHILE, FUNCTION, and IF show up inject the corresponding objects into the code object
 }
 
 inline void Julia() {
-    std::cout << "Function for Julia\n";
+    // Iterate through code and inject additional code into it 
+    // where FOR, WHILE, FUNCTION, and IF show up inject the corresponding objects into the code object
 }
 
 inline void VisualBasic() {
-    std::cout << "Function for Visual Basic\n";
+    // Iterate through code and inject additional code into it 
+    // where FOR, WHILE, FUNCTION, and IF show up inject the corresponding objects into the code object
 }
 
 inline void PowerShell() {
-    std::cout << "Function for PowerShell\n";
+    // Iterate through code and inject additional code into it 
+    // where FOR, WHILE, FUNCTION, and IF show up inject the corresponding objects into the code object
 }
 
 inline void Racket() {
-    std::cout << "Function for Racket\n";
+    // Iterate through code and inject additional code into it 
+    // where FOR, WHILE, FUNCTION, and IF show up inject the corresponding objects into the code object
 }
 
 inline void Elm() {
-    std::cout << "Function for Elm\n";
+    // Iterate through code and inject additional code into it 
+    // where FOR, WHILE, FUNCTION, and IF show up inject the corresponding objects into the code object
 }
 
 inline void Eiffel() {
-    std::cout << "Function for Eiffel\n";
+    // Iterate through code and inject additional code into it 
+    // where FOR, WHILE, FUNCTION, and IF show up inject the corresponding objects into the code object
 }
 
 inline void LabVIEW() {
-    std::cout << "Function for LabVIEW\n";
+    // Iterate through code and inject additional code into it 
+    // where FOR, WHILE, FUNCTION, and IF show up inject the corresponding objects into the code object
 }
 
 inline void Smalltalk() {
-    std::cout << "Function for Smalltalk\n";
+   // Iterate through code and inject additional code into it 
+   // where FOR, WHILE, FUNCTION, and IF show up inject the corresponding objects into the code object
 }
 
 inline void StandardML() {
-    std::cout << "Function for Standard ML (SML)\n";
+   // Iterate through code and inject additional code into it 
+   // where FOR, WHILE, FUNCTION, and IF show up inject the corresponding objects into the code object
 }

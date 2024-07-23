@@ -162,7 +162,16 @@
   "\thelper(Function)\n" 
 
 #define TYPESCRIPT_CODE_STR \
-      ...FMI
+    "function fmi(arr) {\n" \
+    "\t\"FOR\"\n" \
+    "\t\"WHILE\"\n" \
+    "\tconsole.log(\"Hello, embedded javascript code fmi()\")\n" \
+    "}\n" \
+    "function fmi_1() {\n" \
+    "\t\"FUNCTION\"\n" \
+    "\t\"IF\"\n" \
+    "\tconsole.log(\"Hello embedded javascript code fmi()_1\")\n" \
+    "}\n"
 
 #define TYPESCRIPT_CODE _Pragma(#TYPESCRIPT_CODE_STR)
 

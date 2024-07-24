@@ -16,7 +16,6 @@ inline std::string replace(std::string &code, const std::string for_loops, const
     if (code.find("FOR")) {
         std::size_t pos = code.find("FOR");
         code.replace((int)pos, (int)pos, for_loops);
-
     }
     if (code.find("WHILE")) {
         std::size_t pos = code.find("WHILE");
@@ -57,6 +56,8 @@ inline const std::string Java() {
     const std::string function = "// You can call in function by providing their signatures inside certain fields";
     static std::string code = std::const_cast<static std::string>(JAVA_CODE);
     std::string const updated_code = replace(code, for_loops, while_loops, if_blocks, function);
+    return updated_code;
+
 }
 
 inline const std::string Python() {
@@ -66,6 +67,7 @@ inline const std::string Python() {
     const std::string function = "# You can call in function by providing their signatures inside certain fields";
     static std::string code = std::const_cast<static std::string>(PYTHON_CODE);
     std::string const updated_code = replace(code, for_loops, while_loops, if_blocks, function);
+    return updated_code;
 
 }
 
@@ -76,6 +78,8 @@ inline const std::string JavaScript() {
     const std::string function = "// You can call in function by providing their signatures inside certain fields";
     static std::string code= std::const_cast<static std::string>(JAVASCRIPT_CODE);
     std::string const updated_code = replace(code, for_loops, while_loops, if_blocks, function);
+    return updated_code;
+
 }
 
 inline const std::string Ruby() {
@@ -85,6 +89,7 @@ inline const std::string Ruby() {
     const function = "// You can call in function by providing their signatures inside this field or any other field\n[1, 3, 5, 7, 9].find {|v| v*v > 30 }";
     static std::string code = std::const_cast<static std::string>(RUBY_CODE);
     std::string const updated_code = replace(code, for_loops, while_loops, if_blocks, function);
+    return updated_code;
 
 }
 
@@ -95,6 +100,8 @@ inline const std::string Swift() {
     const std::string function = "// You can call in function by providing their signatures inside certain this field or any other field";
     static std::string code = std::const_cast<static std::string>(SWIFT_CODE);
     std::string const updated_code = replace(code, for_loops, while_loops, if_blocks, function);
+    return updated_code;
+
 }
 
 inline const std::string Go() {
@@ -103,6 +110,7 @@ inline const std::string Go() {
     const std::string if_blocks = "if true {\n fill in your code here!\n}\nelse if true {\n\t//Fill in your code here!\n}";
     static std::string code = std::const_cast<static std::string>(GO_CODE);
     std::string const updated_code = replace(code, for_loops, while_loops, if_blocks, function);
+    return updated_code;
 
 }
 
@@ -123,6 +131,7 @@ inline const std::string Scala() {
     const std::string if_blocks = "if (test1) {\n\t // FMI }\n else if (test2) {\n // FMI\n}\n else {\n//FMI\n}\n";
     static std::string code = std::const_cast<static std::string>(SCALA_CODE);
     std::string const updated_code = replace(code, for_loops, while_loops, if_blocks, function);
+    return updated_code;
 
 }
 
@@ -133,201 +142,484 @@ inline const std::string TypeScript() {
     const std::string function = "// You can call in function by providing their signatures inside certain fields";
     static std::string code = std::const_cast<static std::string>(TYPESCRIPT_CODE); // Make a copy of the macro and write it to a buffer 
     std::string const updated_code = replace(code, for_loops, while_loops, if_blocks, function);
+    return updated_code;
+
 }
 
 inline const std::string PHP() {
     const std::string front_tag = "<?php\n";
-    const std::string end_tag = "?>;
+    const std::string end_tag = "?>";
     const std::string for_loop = "echo 'Single digit odd numbers from range():  ';\nforeach (range(1, 9, 2) as $number) {\n echo \"$number \";\n}\necho \"\n\";
     const std::string while_loop = "";
     const std::string if_block = "if ($start <= $limit) {\nif ($step <= 0) {\n//Replace the objects with existing objects\nthrow new LogicException('Step must be positive');\n}\nfor ($i = $start; $i <= $limit; $i += $step) {\nyield $i;\n}\n} else {\nif ($step >= 0) {\n
             throw new LogicException(\"Step must be negative\");\n}\n";
     const std::string function "FMI";
     static std::string code = std::const_cast<static std::string>(PHP_CODE);
+    code.insert(0, front_tag);
+    code.push_back(end_tag);
     std::string const updated_code = replace(code, for_loops, while_loops, if_blocks, function);
     static const std::string result = FINAL(code);
     return result;
 }
 
 inline const std::string Perl() {
+    const std::string front_tag = "";
+    const std::string end_tag = "";
+    const std::string for_loop = "";
+    const std::string while_loop = "";
+    const std::string if_block = "";
+    const std::string function "FMI";
     static std::string code = std::const_cast<static std::string>(PERL_CODE);
     std::string const updated_code = replace(code, for_loops, while_loops, if_blocks, function);
+    return updated_code;
 
 }
 
 inline const std::string R() {
+    const std::string front_tag = "";
+    const std::string end_tag = "";
+    const std::string for_loop = "";
+    const std::string while_loop = "";
+    const std::string if_block = "";
+    const std::string function "FMI";
     static std::string code = std::const_cast<static std::string>(R_CODE);
     std::string const updated_code = replace(code, for_loops, while_loops, if_blocks, function);
+    return updated_code;
+
 }
 
 inline const std::string ObjectiveC() {
+    const std::string front_tag = "";
+    const std::string end_tag = "";
+    const std::string for_loop = "";
+    const std::string while_loop = "";
+    const std::string if_block = "";
+    const std::string function "FMI";
     static std::string code = std::const_cast<static std::string>(OBJECTIVEC_CODE);
     std::string const updated_code = replace(code, for_loops, while_loops, if_blocks, function);
+    return updated_code;
 
 }
 
 inline const std::string Haskell() {
+    const std::string front_tag = "";
+    const std::string end_tag = "";
+    const std::string for_loop = "";
+    const std::string while_loop = "";
+    const std::string if_block = "";
+    const std::string function "FMI";
     static std::string code = std::const_cast<static std::string>(HASKELL_CODE);
     std::string const updated_code = replace(code, for_loops, while_loops, if_blocks, function);
+    return updated_code;
+
 }
 
 inline const std::string Rust() {
+    const std::string front_tag = "";
+    const std::string end_tag = "";
+    const std::string for_loop = "";
+    const std::string while_loop = "";
+    const std::string if_block = "";
+    const std::string function "FMI";
     static std::string code = std::const_cast<static std::string>(RUST_CODE);
     std::string const updated_code = replace(code, for_loops, while_loops, if_blocks, function);
+    return updated_code;
+
 }
 
 inline const std::string Dart() {
+    const std::string front_tag = "";
+    const std::string end_tag = "";
+    const std::string for_loop = "";
+    const std::string while_loop = "";
+    const std::string if_block = "";
+    const std::string function "FMI";
     static std::string code = std::const_cast<static std::string>(DART_CODE);
     std::string const updated_code = replace(code, for_loops, while_loops, if_blocks, function);
+    return updated_code;
+
 }
 
 inline const std::string Lua() {
+    const std::string front_tag = "";
+    const std::string end_tag = "";
+    const std::string for_loop = "";
+    const std::string while_loop = "";
+    const std::string if_block = "";
+    const std::string function "FMI";
     static std::string code = std::const_cast<static std::string>(LUA_CODE);
     std::string const updated_code = replace(code, for_loops, while_loops, if_blocks, function);
+    return updated_code;
+
 }
 
 inline const std::string Shell() {
+    const std::string front_tag = "";
+    const std::string end_tag = "";
+    const std::string for_loop = "";
+    const std::string while_loop = "";
+    const std::string if_block = "";
+    const std::string function "FMI";
     static std::string code = std::const_cast<static std::string>(SHELL_CODE);
     std::string const updated_code = replace(code, for_loops, while_loops, if_blocks, function);
+    return updated_code;
+
 }
 
 inline const std::string HTMLCSS() {
+    const std::string front_tag = "";
+    const std::string end_tag = "";
+    const std::string for_loop = "";
+    const std::string while_loop = "";
+    const std::string if_block = "";
+    const std::string function "FMI";
     static std::string code = std::const_cast<static std::string>(HTMLCSS_CODE);
     std::string const updated_code = replace(code, for_loops, while_loops, if_blocks, function);
+    return updated_code;
+
 }
 
 inline const std::string SQL() {
+    const std::string front_tag = "";
+    const std::string end_tag = "";
+    const std::string for_loop = "";
+    const std::string while_loop = "";
+    const std::string if_block = "";
+    const std::string function "FMI";
     static std::string code = std::const_cast<static std::string>(SQL_CODE);
     std::string const updated_code = replace(code, for_loops, while_loops, if_blocks, function);
+    return updated_code;
+
 }
 
 inline const std::string MATLAB() {
+    const std::string front_tag = "";
+    const std::string end_tag = "";
+    const std::string for_loop = "";
+    const std::string while_loop = "";
+    const std::string if_block = "";
+    const std::string function "FMI";
     static std::string code = std::const_cast<static std::string>(MATLAB_CODE);
     std::string const updated_code = replace(code, for_loops, while_loops, if_blocks, function);
+    return updated_code;
+
 }
 
 inline const std::string VHDLVerilog() {
+    const std::string front_tag = "";
+    const std::string end_tag = "";
+    const std::string for_loop = "";
+    const std::string while_loop = "";
+    const std::string if_block = "";
+    const std::string function "FMI";
     static std::string code = std::const_cast<static std::string>(VHDL_CODE);
     std::string const updated_code = replace(code, for_loops, while_loops, if_blocks, function);
+    return updated_code;
+
 }
 
 inline const std::string FSharp() {
+    const std::string front_tag = "";
+    const std::string end_tag = "";
+    const std::string for_loop = "";
+    const std::string while_loop = "";
+    const std::string if_block = "";
+    const std::string function "FMI";
     static std::string code = std::const_cast<static std::string>(FSHARP_CODE);
     std::string const updated_code = replace(code, for_loops, while_loops, if_blocks, function);
+    return updated_code;
+
 }
 
 inline const std::string CSharp() {
+    const std::string front_tag = "";
+    const std::string end_tag = "";
+    const std::string for_loop = "";
+    const std::string while_loop = "";
+    const std::string if_block = "";
+    const std::string function "FMI";
     static std::string code = std::const_cast<static std::string>(CSHARP_CODE);
     std::string const updated_code = replace(code, for_loops, while_loops, if_blocks, function);
+    return updated_code;
+
 }
 
 inline const std::string VBA() {
+    const std::string front_tag = "";
+    const std::string end_tag = "";
+    const std::string for_loop = "";
+    const std::string while_loop = "";
+    const std::string if_block = "";
+    const std::string function "FMI";
     static std::string code = std::const_cast<static std::string>(VBA_CODE);
     std::string const updated_code = replace(code, for_loops, while_loops, if_blocks, function);
+    return updated_code;
+
 }
 
 inline const std::string Fortran() {
+    const std::string front_tag = "";
+    const std::string end_tag = "";
+    const std::string for_loop = "";
+    const std::string while_loop = "";
+    const std::string if_block = "";
+    const std::string function "FMI";
     static std::string code = std::const_cast<static std::string>(FORTAN_CODE);
     std::string const updated_code = replace(code, for_loops, while_loops, if_blocks, function);
+    return updated_code;
+
 }
 
 inline const std::string COBOL() {
+    const std::string front_tag = "";
+    const std::string end_tag = "";
+    const std::string for_loop = "";
+    const std::string while_loop = "";
+    const std::string if_block = "";
+    const std::string function "FMI";
     static std::string code = std::const_cast<static std::string>(COBOL_CODE);
     std::string const updated_code = replace(code, for_loops, while_loops, if_blocks, function);
+    return updated_code;
+
 }
 
 inline const std::string Pascal() {
+    const std::string front_tag = "";
+    const std::string end_tag = "";
+    const std::string for_loop = "";
+    const std::string while_loop = "";
+    const std::string if_block = "";
+    const std::string function "FMI";
     static std::string code = std::const_cast<static std::string>(PASCAL_CODE);
     std::string const updated_code = replace(code, for_loops, while_loops, if_blocks, function);
+    return updated_code;
+
 }
 
 inline const std::string LISPScheme() {
+    const std::string front_tag = "";
+    const std::string end_tag = "";
+    const std::string for_loop = "";
+    const std::string while_loop = "";
+    const std::string if_block = "";
+    const std::string function "FMI";
     static std::string code = std::const_cast<static std::string>(LISPSCHEME_CODE);
     std::string const updated_code = replace(code, for_loops, while_loops, if_blocks, function);
+    return updated_code;
+
 }
 
 inline const std::string Groovy() {
+    const std::string front_tag = "";
+    const std::string end_tag = "";
+    const std::string for_loop = "";
+    const std::string while_loop = "";
+    const std::string if_block = "";
+    const std::string function "FMI";
     static std::string code = std::const_cast<static std::string>(GROOVY_CODE);
     std::string const updated_code = replace(code, for_loops, while_loops, if_blocks, function);
+    return updated_code;
+
 }
 
 inline const std::string Erlang() {
+    const std::string front_tag = "";
+    const std::string end_tag = "";
+    const std::string for_loop = "";
+    const std::string while_loop = "";
+    const std::string if_block = "";
+    const std::string function "FMI";
     static std::string code = std::const_cast<static std::string>(ERLANG_CODE);
     std::string const updated_code = replace(code, for_loops, while_loops, if_blocks, function);
+    return updated_code;
+
 }
 
 inline const std::string Clojure() {
+    const std::string front_tag = "";
+    const std::string end_tag = "";
+    const std::string for_loop = "";
+    const std::string while_loop = "";
+    const std::string if_block = "";
+    const std::string function "FMI";
     static std::string code = std::const_cast<static std::string>(CLOJURE_CODE);
     std::string const updated_code = replace(code, for_loops, while_loops, if_blocks, function);
+    return updated_code;
+
 }
 
 inline const std::string Prolog() {
+    const std::string front_tag = "";
+    const std::string end_tag = "";
+    const std::string for_loop = "";
+    const std::string while_loop = "";
+    const std::string if_block = "";
+    const std::string function "FMI";
     static std::string code = std::const_cast<static std::string>(PROLOG_CODE);
     std::string const updated_code = replace(code, for_loops, while_loops, if_blocks, function);
+    return updated_code;
+
 }
 
 inline const std::string Ada() {
+    const std::string front_tag = "";
+    const std::string end_tag = "";
+    const std::string for_loop = "";
+    const std::string while_loop = "";
+    const std::string if_block = "";
+    const std::string function "FMI";
     static std::string code = std::const_cast<static std::string>(ADA_CODE);
     std::string const updated_code = replace(code, for_loops, while_loops, if_blocks, function);
+    return updated_code;
+
 }
 
 inline const std::string AWK() {
+    const std::string front_tag = "";
+    const std::string end_tag = "";
+    const std::string for_loop = "";
+    const std::string while_loop = "";
+    const std::string if_block = "";
+    const std::string function "FMI";
     static std::string code = std::const_cast<static std::string>(AWK_CODE);
     std::string const updated_code = replace(code, for_loops, while_loops, if_blocks, function);
+    return updated_code;
+
 }
 
 inline const std::string TCL() {
+    const std::string front_tag = "";
+    const std::string end_tag = "";
+    const std::string for_loop = "";
+    const std::string while_loop = "";
+    const std::string if_block = "";
+    const std::string function "FMI";
     static std::string code = std::const_cast<static std::string>(TCL_CODE);
     std::string const updated_code = replace(code, for_loops, while_loops, if_blocks, function);
+    return updated_code;
 }
 
 inline const std::string Dlang() {
+    const std::string front_tag = "";
+    const std::string end_tag = "";
+    const std::string for_loop = "";
+    const std::string while_loop = "";
+    const std::string if_block = "";
+    const std::string function "FMI";
     static std::string code = std::const_cast<static std::string>(DLANG_CODE);
     std::string const updated_code = replace(code, for_loops, while_loops, if_blocks, function);
+    return updated_code;
+
 }
 
 inline const std::string Julia() {
+    const std::string front_tag = "";
+    const std::string end_tag = "";
+    const std::string for_loop = "";
+    const std::string while_loop = "";
+    const std::string if_block = "";
+    const std::string function "FMI";
     static std::string code = std::const_cast<static std::string>(JULIA_CODE);
     std::string const updated_code = replace(code, for_loops, while_loops, if_blocks, function);
+    return updated_code;
+
 }
 
 inline const std::string VisualBasic() {
+    const std::string front_tag = "";
+    const std::string end_tag = "";
+    const std::string for_loop = "";
+    const std::string while_loop = "";
+    const std::string if_block = "";
+    const std::string function "FMI";
     static std::string code = std::const_cast<static std::string>(VISUALBASIC_CODE);
     std::string const updated_code = replace(code, for_loops, while_loops, if_blocks, function);
+    return updated_code;
+
 }
 
 inline const std::string PowerShell() {
+    const std::string front_tag = "";
+    const std::string end_tag = "";
+    const std::string for_loop = "";
+    const std::string while_loop = "";
+    const std::string if_block = "";
+    const std::string function "FMI";
     static std::string code = std::const_cast<static std::string>(POWERSHELL_CODE);
     std::string const updated_code = replace(code, for_loops, while_loops, if_blocks, function);
+    return updated_code;
+
 }
 
 inline const std::string Racket() {
+    const std::string front_tag = "";
+    const std::string end_tag = "";
+    const std::string for_loop = "";
+    const std::string while_loop = "";
+    const std::string if_block = "";
+    const std::string function "FMI";
     static std::string code = std::const_cast<static std::string>(RACKET_CODE);
     std::string const updated_code = replace(code, for_loops, while_loops, if_blocks, function);
+    return updated_code;
+
 }
 
 inline const std::string Elm() {
+    const std::string front_tag = "";
+    const std::string end_tag = "";
+    const std::string for_loop = "";
+    const std::string while_loop = "";
+    const std::string if_block = "";
+    const std::string function "FMI";
     static std::string code = std::const_cast<static std::string>(ELM_CODE);
     std::string const updated_code = replace(code, for_loops, while_loops, if_blocks, function);
+    return updated_code;
+
 }
 
 inline const std::string Eiffel() {
+    const std::string front_tag = "";
+    const std::string end_tag = "";
+    const std::string for_loop = "";
+    const std::string while_loop = "";
+    const std::string if_block = "";
+    const std::string function "FMI";
     static std::string code = std::const_cast<static std::string>(EIFFEL_CODE);
     std::string const updated_code = replace(code, for_loops, while_loops, if_blocks, function);
+    return updated_code;
+
 }
 
 inline const std::string LabVIEW() {
+    const std::string front_tag = "";
+    const std::string end_tag = "";
+    const std::string for_loop = "";
+    const std::string while_loop = "";
+    const std::string if_block = "";
+    const std::string function "FMI";
     static std::string code = std::const_cast<static std::string>(LABVIEW_CODE);
     std::string const updated_code = replace(code, for_loops, while_loops, if_blocks, function);
+    return updated_code;
+
 }
 
 inline const std::string Smalltalk() {
+
     static std::string code = std::const_cast<static std::string>(SMALLTALK_CODE);
     std::string const updated_code = replace(code, for_loops, while_loops, if_blocks, function);
+    return updated_code;
+
 }
 
 inline const std::string StandardML() {
+    const std::string front_tag = "";
+    const std::string end_tag = "";
+    const std::string for_loop = "";
+    const std::string while_loop = "";
+    const std::string if_block = "";
+    const std::string function "FMI";
     static std::string code = std::const_cast<static std::string>(STANDARDML_CODE);
     std::string const updated_code = replace(code, for_loops, while_loops, if_blocks, function);
+    return updated_code;
 
 }

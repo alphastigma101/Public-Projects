@@ -178,22 +178,175 @@
 
 #define PERL_CODE _Pragma(#PERL_CODE_STR)
 
+#define R_CODE_STR \
+    "R code goes here..."
+
+#define R_CODE _Pragma(#R_CODE_STR)
+
+#define OBJECTIVEC_CODE_STR \
+    "Objective-C code goes here..."
+
+#define OBJECTIVEC_CODE _Pragma(#OBJECTIVEC_CODE_STR)
+
+#define HASKELL_CODE_STR \
+    "Haskell code goes here..."
+
+#define HASKELL_CODE _Pragma(#HASKELL_CODE_STR)
 
 #define RUST_CODE_STR \
-        ....FMI
+    "Rust code goes here..."
+
 #define RUST_CODE _Pragma(#RUST_CODE_STR)
 
-#define HASKEL_CODE_STR \
-        ...FMI
+#define DART_CODE_STR \
+    "Dart code goes here..."
 
-#define HASKEL_CODE _Pragma(#HASKELL_CODE_STR)
+#define DART_CODE _Pragma(#DART_CODE_STR)
 
-#define EML_CODE_STR \ 
-    ...FMI
-#define LAU_CODE_STR \ 
-    ...FMI
+#define LUA_CODE_STR \
+    "Lua code goes here..."
 
-#define DARTS_CODE_STR \ 
-    ...FMI
+#define LUA_CODE _Pragma(#LUA_CODE_STR)
+
+#define SHELL_CODE_STR \
+    "Shell script code goes here..."
+
+#define SHELL_CODE _Pragma(#SHELL_CODE_STR)
+
+#define HTMLCSS_CODE_STR \
+    "HTML/CSS code goes here..."
+
+#define HTMLCSS_CODE _Pragma(#HTMLCSS_CODE_STR)
+
+#define SQL_CODE_STR \
+    "SQL code goes here..."
+
+#define SQL_CODE _Pragma(#SQL_CODE_STR)
+
+#define VHDL_CODE_STR \
+    "VHDL code goes here..."
+
+#define VHDL_CODE _Pragma(#VHDL_CODE_STR)
+
+#define FSHARP_CODE_STR \
+    "F# code goes here..."
+
+#define FSHARP_CODE _Pragma(#FSHARP_CODE_STR)
+
+#define CSHARP_CODE_STR \
+    "C# code goes here..."
+
+#define CSHARP_CODE _Pragma(#CSHARP_CODE_STR)
+
+#define VBA_CODE_STR \
+    "VBA code goes here..."
+
+#define VBA_CODE _Pragma(#VBA_CODE_STR)
+
+#define FORTAN_CODE_STR \
+    "Fortran code goes here..."
+
+#define FORTAN_CODE _Pragma(#FORTAN_CODE_STR)
+
+#define COBOL_CODE_STR \
+    "COBOL code goes here..."
+
+#define COBOL_CODE _Pragma(#COBOL_CODE_STR)
+
+#define PASCAL_CODE_STR \
+    "Pascal code goes here..."
+
+#define PASCAL_CODE _Pragma(#PASCAL_CODE_STR)
+
+#define LISPSCHEME_CODE_STR \
+    "Lisp/Scheme code goes here..."
+
+#define LISPSCHEME_CODE _Pragma(#LISPSCHEME_CODE_STR)
+
+#define GROOVY_CODE_STR \
+    "Groovy code goes here..."
+
+#define GROOVY_CODE _Pragma(#GROOVY_CODE_STR)
+
+#define ERLANG_CODE_STR \
+    "Erlang code goes here..."
+
+#define ERLANG_CODE _Pragma(#ERLANG_CODE_STR)
+
+#define CLOJURE_CODE_STR \
+    "Clojure code goes here..."
+
+#define CLOJURE_CODE _Pragma(#CLOJURE_CODE_STR)
+
+#define PROLOG_CODE_STR \
+    "Prolog code goes here..."
+
+#define PROLOG_CODE _Pragma(#PROLOG_CODE_STR)
+
+#define ADA_CODE_STR \
+    "Ada code goes here..."
+
+#define ADA_CODE _Pragma(#ADA_CODE_STR)
+
+#define AWK_CODE_STR \
+    "AWK code goes here..."
+
+#define AWK_CODE _Pragma(#AWK_CODE_STR)
+
+#define TCL_CODE_STR \
+    "Tcl code goes here..."
+
+#define TCL_CODE _Pragma(#TCL_CODE_STR)
+
+#define DLANG_CODE_STR \
+    "D code goes here..."
+
+#define DLANG_CODE _Pragma(#DLANG_CODE_STR)
+
+#define JULIA_CODE_STR \
+    "Julia code goes here..."
+
+#define JULIA_CODE _Pragma(#JULIA_CODE_STR)
+
+#define VISUALBASIC_CODE_STR \
+    "Visual Basic code goes here..."
+
+#define VISUALBASIC_CODE _Pragma(#VISUALBASIC_CODE_STR)
+
+#define POWERSHELL_CODE_STR \
+    "PowerShell code goes here..."
+
+#define POWERSHELL_CODE _Pragma(#POWERSHELL_CODE_STR)
+
+#define RACKET_CODE_STR \
+    "Racket code goes here..."
+
+#define RACKET_CODE _Pragma(#RACKET_CODE_STR)
+
+#define ELM_CODE_STR \
+    "Elm code goes here..."
+
+#define ELM_CODE _Pragma(#ELM_CODE_STR)
+
+#define EIFFEL_CODE_STR \
+    "Eiffel code goes here..."
+    
+#define EIFFEL_CODE _Pragma(#EIFFEL_CODE_STR)
+
+#define LABVIEW_CODE_STR \
+    "LabVIEW code goes here..."
+
+#define LABVIEW_CODE _Pragma(#LABVIEW_CODE_STR)
+
+#define SMALLTALK_CODE_STR \
+    "Smalltalk code goes here..."
+
+#define SMALLTALK_CODE _Pragma(#SMALLTALK_CODE_STR)
+
+#define STANDARDML_CODE_STR \
+    "Standard ML code goes here..."
+
+#define STANDARDML_CODE _Pragma(#STANDARDML_CODE_STR)
+
 
 #endif

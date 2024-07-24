@@ -14,13 +14,7 @@
     "\t\"FOR\"\n" \
     "\t\"WHILE\"\n" \
     "\tprintf(\"Hello from embedded C code!\");\n" \
-    "}\n" \
-    "void fmi_1() {\n" \
     "\t\"FUNCTION\"\n" \
-    "\tprintf(\"Hello from embedded C code!\");\n" \
-    "}\n" \
-    "void fmi_2() {\n" \
-    "\tprintf(\"Hello from embedded C code!\");\n" \
     "}\n" \
     "int main(int argc, char** argv) {\n" \
     "\tprintf(\"Hello World!\");\n" \
@@ -36,12 +30,12 @@
     "\t\"WHILE\"\n" \
     "\tprint(\"Embedded python function\")\n" \
     "\n" \
-    "def fmi_1():\n" \
     "\t\"FUNCTION\"\n" \ 
-    "\tprint(\"Embedded python function two\")\n" \
     "\n" \
     "if __name__ == '__main__':\n" \
-    "\tIF"
+    "\t\"IF\"\n" \
+    "\tarr = []\n" \
+    "\tmy_dict = {}\n"
 
 #define PYTHON_CODE _Pragma(#PYTHON_CODE_STR)
 
@@ -52,7 +46,9 @@
   "\t\"WHILE\"\n" \
   "\t\"IF\"\n" \ 
   "\t\"FUNCTION\"\n" \
-  "\t\tSystem.out.println(\"Hello world!\");\n" \
+  "\tSystem.out.println(\"Hello world!\");\n" \
+  "\tarr[15];\n" \
+  "\tdict = {}\n" \
   "\t}\n" \
   "}\n" 
 
@@ -65,13 +61,11 @@
   "\t\"FOR\"\n" \
   "\t\"WHILE\"\n" \
   "\tstd::cout << \"Hello embedded c++ code!\";\n" \
-  "}\n" \ 
-  "void fmi_1() {\n" \
-  "\tstd::cout << \"Hello embedded c++ code!\";\n" \
   "\t\"FUNCTION\"\n" \
   "}\n" \ 
   "int main(int argc, char **argv) {\n" \ 
   "\t\"IF\"\n" \
+  "\tchar buffer[512];\n" \ 
   "\treturn 0;\n" \ 
   "}\n" 
 
@@ -80,17 +74,14 @@
 #define GO_CODE_STR \
     "package main\n" \
     "\timport \"fmt\"\n" \
-    "func fmi(arr) {\n" \
+    "func fmi() {\n" \
     "\t\"FOR\"\n" \
     "\t\"WHILE\"\n" \
     "\tfmt.Println(\"Hello, embedded Go Code\")\n" \
-    "}\n" \
-    "func fmi_1() {\n" \
     "\t\"FUNCTION\"\n" \
-    "\tfmt.Println(\"Hello, embedded Go Code fmi_1 \")\n" \ 
     "}\n" \
-     "func main() {\n" \
-     "\t\"IF\"\n" \
+    "func main() {\n" \
+    "\t\"IF\"\n" \
     "\tfmt.Println(\"Hello, World!\")\n" \
     "}\n" 
 
@@ -103,10 +94,8 @@
     "\t\"WHILE\"\n" \
     "\tconsole.log(\"Hello, embedded javascript code fmi()\")\n" \
     "}\n" \
-    "function fmi_1() {\n" \
     "\t\"FUNCTION\"\n" \
     "\t\"IF\"\n" \
-    "\tconsole.log(\"Hello embedded javascript code fmi()_1\")\n" \
     "}\n"
 #define JAVASCRIPT_CODE _Pragma(#JAVASCRIPT_CODE_STR)
 
@@ -126,7 +115,7 @@
 
 
 #define SWIFT_CODE_STR \ 
-    "func fmi(arr: Array) -> Array {\n" \
+    "func fmi() -> None {\n" \
     "\t\"FOR\"\n" \
     "\t\"WHILE\"\n" \
     "\t\"IF\"\n" \ 
@@ -138,7 +127,7 @@
 
 
 #define KOTLIN_CODE_STR \
-    "fun sum(arr: Array): None {\n" \
+    "fun fmi(): None {\n" \
     "\t\"FOR\"\n" \
     "\t\"WHILE\"\n" \
     "\t\"IF\"\n" \
@@ -155,8 +144,8 @@
   "\tprintln(\"This is function calling in scala\")\n" \
   "\tdef fmi(ints: List[Int]): Unit =\n" \
   "\t\"FOR\"\n" \
-  "def fmi_2(): Unit =\n" \
-  "\t\"IF\"\n" \ 
+  "\t\"IF\"\n" \
+  "\t\"FUNCTION\"\n" \
   "@main def Driver: Unit =\n" \
   "\tArr = List(1,2,3)\n" \  
   "\thelper(Function)\n" 
@@ -176,15 +165,12 @@
 #define TYPESCRIPT_CODE _Pragma(#TYPESCRIPT_CODE_STR)
 
 #define PHP_CODE_STR \
-    "function getLines($file) {\n" \
-    "$f = fopen($file, 'r');\n"\
-    "try {\n" \ 
-    "\twhile ($line = fgets($f)) {\n" \
-    "yield $line;\n" \
-    "}\n" \
-    "}""finally {\n" \
-        "fclose($f);\n"\
-    "}\n" \
+    "function fmi() {\n" \
+    "\techo \"Hello embedded php code!\"\n" \ 
+    "\t\"FUNCTION\"\n" \ 
+    "\t\"WHILE\"\n" \
+    "\tFOR\n" \
+    "\t\"IF\"\n" \
     "}" 
 
 #define PERL_CODE_STR \
@@ -201,5 +187,13 @@
         ...FMI
 
 #define HASKEL_CODE _Pragma(#HASKELL_CODE_STR)
-// elm, lau, darts 
+
+#define EML_CODE_STR \ 
+    ...FMI
+#define LAU_CODE_STR \ 
+    ...FMI
+
+#define DARTS_CODE_STR \ 
+    ...FMI
+
 #endif

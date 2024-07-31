@@ -17,6 +17,9 @@ static const Table table = initTable(); // Get the table so it will be easier to
 
 
 int main(int argc, char** argv) {
+    std::string outPutDir,baseName; // These objects are going to be retrieved from the .html file. They are not needed here but are just place holders until I implement crow and inja
+    ast Ast(outPutDir, baseName);
+    ast.setTable(table);
     std::vector<std::string> exprTypes = {
         "Binary   : Expr left, Token* operator, Expr* right",
         "Grouping : Expr* expression",

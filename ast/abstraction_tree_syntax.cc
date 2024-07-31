@@ -6,6 +6,15 @@ ast::ast(std::string outputDir, std::string baseName): outputDir(this->outputDir
 }
 
 
+void ast::setTable(const Table table) {
+    table = initTable(); // inline function defined in lookup_table.h
+    // Key will be the name of the programming language, the values are the extension and the tokens needed for the compiler
+}
+
+Table ast::getTable() {
+    return table;
+}
+
 void ast::defineAst() {
     for (std::string type : types) {
         // Print through the types and start processing the strings

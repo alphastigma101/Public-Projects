@@ -1,7 +1,8 @@
 #pragma once
 #ifndef LANGUAGES_H
 #define LANGUAGES_H
-#include <macros.h> // has pargma once inside the file so the macros inside it cannot be called in other files
+#include "macros.h" // has pargma once inside the file so the macros inside it cannot be called in other files
+#include <lookup_languages.h>
 
 //TODO: add argument support
 #define FINAL(CODE)  _Pragma(#CODE)
@@ -24,7 +25,7 @@ inline std::string replace(std::string &code, const std::string for_loops, const
         code.replace((int)pos, (int)pos, if_blocks);
     }
     return code;
-}
+};
 
 inline const std::string C() {
     const std::string for_loop = "for (int i = 0; i < 10; i++) { // Fill in your code here!}";
@@ -34,7 +35,7 @@ inline const std::string C() {
     static std::string code = std::const_cast<static std::string>(C_CODE); // make a copy and modify the copy and not the origional
     const std::string updated_code = replace(code, for_loops, while_loops, if_blocks, function);
     return updated_code;
-}
+};
 
 inline const std::string CPP() {
     const std::string for_loop = "for (int i = 0; i < 10; i++) { // Fill in your code here!}"; 
@@ -45,7 +46,7 @@ inline const std::string CPP() {
     const std::string updated_code = replace(code, for_loops, while_loops, if_blocks, function);
     return updated_code
 
-}
+};
 
 inline const std::string Java() {
     const std::string for_loop = "for (int i = 0; i < 10; i++) { // Fill in your code here!}";
@@ -56,7 +57,7 @@ inline const std::string Java() {
     const std::string updated_code = replace(code, for_loops, while_loops, if_blocks, function);
     return updated_code;
 
-}
+};
 
 inline const std::string Python() {
     const std::string for_loop = "for i in range(0, 10):\n\t # Fill in your code here!"; 
@@ -67,7 +68,7 @@ inline const std::string Python() {
     const std::string updated_code = replace(code, for_loops, while_loops, if_blocks, function);
     return updated_code;
 
-}
+};
 
 inline const std::string JavaScript() {
     const std::string for_loop = "for (var i in arr) { // Fill in your code here!}"; 
@@ -78,7 +79,7 @@ inline const std::string JavaScript() {
     const std::string updated_code = replace(code, for_loops, while_loops, if_blocks, function);
     return updated_code;
 
-}
+};
 
 inline const std::string Ruby() {
     const std::string notes = "// the yield keyword allows you to print things.\nAn example of a for loop is insde the Array class as you need to create your own instances"
@@ -93,7 +94,7 @@ inline const std::string Ruby() {
     const std::string updated_code = replace(code, for_loops, while_loops, if_blocks, function);
     return updated_code;
 
-}
+};
 
 inline const std::string Swift() {
     const std::string for_loops = "for val in sequence{\n// statements\n}";
@@ -104,7 +105,7 @@ inline const std::string Swift() {
     const std::string updated_code = replace(code, for_loops, while_loops, if_blocks, function);
     return updated_code;
 
-}
+};
 
 inline const std::string Go() {
     const std::string for_loop = "for i:=0; i < 3; i++ { // Fill in your code here!}"; 
@@ -115,7 +116,7 @@ inline const std::string Go() {
     const std::string updated_code = replace(code, for_loops, while_loops, if_blocks, function);
     return updated_code;
 
-}
+};
 
 inline const std::string Kotlin() {
     const std::string notes = "// There are three ways to create arrays in Kotlin: /*\n\t1) arrayOf() Which is an array of types you can specify\n2)\sarrayOfNulls() this is self explainatory\n3)\semptyArray()\swhich is also self explainatory\n*/";
@@ -130,7 +131,7 @@ inline const std::string Kotlin() {
     static const std::string result = FINAL(code);
     // Call in the parser and parse the string literal even further. Hopefully it removes the \n \t
     return result; // return the final string literal 
-}
+};
 
 inline const std::string Scala() {
     const std::string for_loop = "val buffer = new ListBuffer[Int]()\n for i <- ints do\nbuffer += i * 2\sbuffer.toList"; // buffer.toList needs to be outside of the for loop and not inside of it 
@@ -139,7 +140,7 @@ inline const std::string Scala() {
     static std::string code = std::const_cast<static std::string>(SCALA_CODE);
     const std::string updated_code = replace(code, for_loops, while_loops, if_blocks, function);
     return updated_code;
-}
+};
 
 inline const std::string TypeScript() {
     const std::string for_loop = "for (var i in arr) { // Fill in your code here!}"; 
@@ -150,7 +151,7 @@ inline const std::string TypeScript() {
     const std::string updated_code = replace(code, for_loops, while_loops, if_blocks, function);
     return updated_code;
 
-}
+};
 
 inline const std::string PHP() {
     const std::string notes = "// This is how you create variables in php: /* $var = 'Bob';\n $Var = 'Joe';*/\n//As you can see it is similar to bash in a way. You can also reference an object like so:\n/* $foo = 'Bob';\n$bar = &$foo;*/\n// Now replace the variables that do not exist with existing variables\n";
@@ -171,7 +172,7 @@ inline const std::string PHP() {
     const std::string updated_code = replace(code, for_loops, while_loops, if_blocks, function);
     static const std::string result = FINAL(updated_code);
     return result;
-}
+};
 
 inline const std::string Perl() {
     const std::string front_tag = "";
@@ -184,7 +185,7 @@ inline const std::string Perl() {
     const std::string updated_code = replace(code, for_loops, while_loops, if_blocks, function);
     return updated_code;
 
-}
+};
 
 inline const std::string R() {
     const std::string front_tag = "";
@@ -197,7 +198,7 @@ inline const std::string R() {
     const std::string updated_code = replace(code, for_loops, while_loops, if_blocks, function);
     return updated_code;
 
-}
+};
 
 inline const std::string ObjectiveC() {
     const std::string front_tag = "";
@@ -210,7 +211,7 @@ inline const std::string ObjectiveC() {
     const std::string updated_code = replace(code, for_loops, while_loops, if_blocks, function);
     return updated_code;
 
-}
+};
 
 inline const std::string Haskell() {
     const std::string front_tag = "";
@@ -223,7 +224,7 @@ inline const std::string Haskell() {
     const std::string updated_code = replace(code, for_loops, while_loops, if_blocks, function);
     return updated_code;
 
-}
+};
 
 inline const std::string Rust() {
     const std::string front_tag = "";
@@ -236,7 +237,7 @@ inline const std::string Rust() {
     const std::string updated_code = replace(code, for_loops, while_loops, if_blocks, function);
     return updated_code;
 
-}
+};
 
 inline const std::string Dart() {
     const std::string front_tag = "";
@@ -249,7 +250,7 @@ inline const std::string Dart() {
     const std::string updated_code = replace(code, for_loops, while_loops, if_blocks, function);
     return updated_code;
 
-}
+};
 
 inline const std::string Lua() {
     const std::string front_tag = "";
@@ -262,7 +263,7 @@ inline const std::string Lua() {
     const std::string updated_code = replace(code, for_loops, while_loops, if_blocks, function);
     return updated_code;
 
-}
+};
 
 inline const std::string Shell() {
     const std::string front_tag = "";
@@ -275,7 +276,7 @@ inline const std::string Shell() {
     const std::string updated_code = replace(code, for_loops, while_loops, if_blocks, function);
     return updated_code;
 
-}
+};
 
 inline const std::string HTMLCSS() {
     const std::string front_tag = "";
@@ -288,7 +289,7 @@ inline const std::string HTMLCSS() {
     const std::string updated_code = replace(code, for_loops, while_loops, if_blocks, function);
     return updated_code;
 
-}
+};
 
 inline const std::string SQL() {
     const std::string front_tag = "";
@@ -301,7 +302,7 @@ inline const std::string SQL() {
     const std::string updated_code = replace(code, for_loops, while_loops, if_blocks, function);
     return updated_code;
 
-}
+};
 
 inline const std::string MATLAB() {
     const std::string front_tag = "";
@@ -314,7 +315,7 @@ inline const std::string MATLAB() {
     const std::string updated_code = replace(code, for_loops, while_loops, if_blocks, function);
     return updated_code;
 
-}
+};
 
 inline const std::string VHDLVerilog() {
     const std::string front_tag = "";
@@ -327,7 +328,7 @@ inline const std::string VHDLVerilog() {
     const std::string updated_code = replace(code, for_loops, while_loops, if_blocks, function);
     return updated_code;
 
-}
+};
 
 inline const std::string FSharp() {
     const std::string front_tag = "";
@@ -340,7 +341,7 @@ inline const std::string FSharp() {
     const std::string updated_code = replace(code, for_loops, while_loops, if_blocks, function);
     return updated_code;
 
-}
+};
 
 inline const std::string CSharp() {
     const std::string front_tag = "";
@@ -353,7 +354,7 @@ inline const std::string CSharp() {
     const std::string updated_code = replace(code, for_loops, while_loops, if_blocks, function);
     return updated_code;
 
-}
+};
 
 inline const std::string VBA() {
     const std::string front_tag = "";
@@ -366,7 +367,7 @@ inline const std::string VBA() {
     const std::string updated_code = replace(code, for_loops, while_loops, if_blocks, function);
     return updated_code;
 
-}
+};
 
 inline const std::string Fortran() {
     const std::string front_tag = "";
@@ -379,7 +380,7 @@ inline const std::string Fortran() {
     const std::string updated_code = replace(code, for_loops, while_loops, if_blocks, function);
     return updated_code;
 
-}
+};
 
 inline const std::string COBOL() {
     const std::string front_tag = "";
@@ -392,7 +393,7 @@ inline const std::string COBOL() {
     const std::string updated_code = replace(code, for_loops, while_loops, if_blocks, function);
     return updated_code;
 
-}
+};
 
 inline const std::string Pascal() {
     const std::string front_tag = "";
@@ -405,7 +406,7 @@ inline const std::string Pascal() {
     const std::string updated_code = replace(code, for_loops, while_loops, if_blocks, function);
     return updated_code;
 
-}
+};
 
 inline const std::string LISPScheme() {
     const std::string front_tag = "";
@@ -418,7 +419,7 @@ inline const std::string LISPScheme() {
     const std::string updated_code = replace(code, for_loops, while_loops, if_blocks, function);
     return updated_code;
 
-}
+};
 
 inline const std::string Groovy() {
     const std::string front_tag = "";
@@ -431,7 +432,7 @@ inline const std::string Groovy() {
     const std::string updated_code = replace(code, for_loops, while_loops, if_blocks, function);
     return updated_code;
 
-}
+};
 
 inline const std::string Erlang() {
     const std::string front_tag = "";
@@ -444,7 +445,7 @@ inline const std::string Erlang() {
     const std::string updated_code = replace(code, for_loops, while_loops, if_blocks, function);
     return updated_code;
 
-}
+};
 
 inline const std::string Clojure() {
     const std::string front_tag = "";
@@ -457,7 +458,7 @@ inline const std::string Clojure() {
     const std::string updated_code = replace(code, for_loops, while_loops, if_blocks, function);
     return updated_code;
 
-}
+};
 
 inline const std::string Prolog() {
     const std::string front_tag = "";
@@ -470,7 +471,7 @@ inline const std::string Prolog() {
     const std::string updated_code = replace(code, for_loops, while_loops, if_blocks, function);
     return updated_code;
 
-}
+};
 
 inline const std::string Ada() {
     const std::string front_tag = "";
@@ -483,7 +484,7 @@ inline const std::string Ada() {
     const std::string updated_code = replace(code, for_loops, while_loops, if_blocks, function);
     return updated_code;
 
-}
+};
 
 inline const std::string AWK() {
     const std::string front_tag = "";
@@ -496,7 +497,7 @@ inline const std::string AWK() {
     const std::string updated_code = replace(code, for_loops, while_loops, if_blocks, function);
     return updated_code;
 
-}
+};
 
 inline const std::string TCL() {
     const std::string front_tag = "";
@@ -508,7 +509,7 @@ inline const std::string TCL() {
     static std::string code = std::const_cast<static std::string>(TCL_CODE);
     const std::string updated_code = replace(code, for_loops, while_loops, if_blocks, function);
     return updated_code;
-}
+};
 
 inline const std::string Dlang() {
     const std::string front_tag = "";
@@ -521,7 +522,7 @@ inline const std::string Dlang() {
     const std::string updated_code = replace(code, for_loops, while_loops, if_blocks, function);
     return updated_code;
 
-}
+};
 
 inline const std::string Julia() {
     const std::string front_tag = "";
@@ -534,7 +535,7 @@ inline const std::string Julia() {
     const std::string updated_code = replace(code, for_loops, while_loops, if_blocks, function);
     return updated_code;
 
-}
+};
 
 inline const std::string VisualBasic() {
     const std::string front_tag = "";
@@ -547,7 +548,7 @@ inline const std::string VisualBasic() {
     const std::string updated_code = replace(code, for_loops, while_loops, if_blocks, function);
     return updated_code;
 
-}
+};
 
 inline const std::string PowerShell() {
     const std::string front_tag = "";
@@ -573,7 +574,7 @@ inline const std::string Racket() {
     const std::string updated_code = replace(code, for_loops, while_loops, if_blocks, function);
     return updated_code;
 
-}
+};
 
 inline const std::string Elm() {
     const std::string front_tag = "";
@@ -586,7 +587,7 @@ inline const std::string Elm() {
     const std::string updated_code = replace(code, for_loops, while_loops, if_blocks, function);
     return updated_code;
 
-}
+};
 
 inline const std::string Eiffel() {
     const std::string front_tag = "";
@@ -599,7 +600,7 @@ inline const std::string Eiffel() {
     const std::string updated_code = replace(code, for_loops, while_loops, if_blocks, function);
     return updated_code;
 
-}
+};
 
 inline const std::string LabVIEW() {
     const std::string front_tag = "";
@@ -612,7 +613,7 @@ inline const std::string LabVIEW() {
     const std::string updated_code = replace(code, for_loops, while_loops, if_blocks, function);
     return updated_code;
 
-}
+};
 
 inline const std::string Smalltalk() {
     const std::string front_tag = "";
@@ -625,7 +626,7 @@ inline const std::string Smalltalk() {
     const std::string updated_code = replace(code, for_loops, while_loops, if_blocks, function);
     return updated_code;
 
-}
+};
 
 inline const std::string StandardML() {
     const std::string front_tag = "";
@@ -638,4 +639,58 @@ inline const std::string StandardML() {
     const std::string updated_code = replace(code, for_loops, while_loops, if_blocks, function);
     return updated_code;
 
-}
+};
+
+
+function_table = {
+    {"C", C()},
+    {"C++ (CPP)", CPP()},
+    {"Java", Java()},
+    {"Python", Python()},
+    {"JavaScript", JavaScript()},
+    {"Ruby", Ruby()},
+    {"Swift", Swift()},
+    {"Go", GO()},
+    {"Kotlin", Kotlin()},
+    {"Scala", Scala()},
+    {"TypeScript", TypeScript()},
+    {"PHP", PHP()},
+    {"Perl", Perl()},
+    // Fill in the rest below August 1st 2024
+{"R", {".r", ".R"}},
+{"Objective-C", {".m"}},
+{"Haskell", {".hs"}},
+{"Rust", {".rs"}},
+{"Dart", {".dart"}},
+{"Lua", {".lua"}},
+{"Shell (Bash)", {".sh"}},
+{"HTML/CSS", {".html", ".css"}},
+{"SQL", {".sql"}},
+{"MATLAB", {".m"}},
+{"VHDL/Verilog", {".vhd", ".vhdl", ".v", ".sv", ".svh"}},
+{"F# (FSharp)", {".fs", ".fsx", ".fsscript"}},
+{"C# (CSHARP)", {".cs"}},
+{"VBA", {".vba"}},
+{"Fortran", {".f", ".f90", ".f95", ".f03", ".f08"}},
+{"COBOL", {".cob", ".cbl"}},
+{"Pascal", {".pas"}},
+{"LISP/Scheme", {".lisp", ".scm"}},
+{"Groovy", {".groovy"}},
+{"Erlang", {".erl"}},
+{"Clojure", {".clj"}},
+{"Prolog", {".pl", ".pro"}},
+{"Ada", {".ada", ".adb"}},
+{"AWK", {".awk"}},
+{"TCL", {".tcl"}},
+{"D", {".d"}},
+{"Julia", {".jl"}},
+{"Visual Basic", {".vb"}},
+{"PowerShell", {".ps1", ".psm1", ".psd1"}},
+{"Racket", {".rkt"}},
+{"Elm", {".elm"}},
+{"Eiffel", {".e"}},
+{"LabVIEW", {".vi"}},
+{"Smalltalk", {".st"}}, // No specific extension, commonly ".st" or others
+{"Standard ML (SML)", {".sml", ".ml"}}
+
+};

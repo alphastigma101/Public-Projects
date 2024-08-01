@@ -1,7 +1,7 @@
 #ifndef _CONTEXT_FREE_GRAMMAR_H_
 #define _CONTEXT_FREE_GRAMMAR_H_
 #include <token.h>
-#include <lookup_language.h>
+#include <languages.h>
 #include <filesystem>
 
 /*

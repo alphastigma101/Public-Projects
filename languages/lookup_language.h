@@ -1,11 +1,14 @@
-#ifndef LOOKUP_TABLE_H
-#define LOOKUP_TABLE_H
+#ifndef _LOOKUP_TABLE_H_
+#define _LOOKUP_TABLE_H_
 #include <string>
 #include <unordered_map>
 #include <map>
 #include <vector>
 
-static const std::unordered_map<std::string, std::string> downloads = {
+template<class Func>
+static std::unordered_map<std::string, Func> function_table;
+
+const std::unordered_map<std::string, std::string> downloads = {
     {"C", "https://gcc.gnu.org/"},
     {"C++ (CPP)", "https://gcc.gnu.org/"},
     {"Java", "https://www.oracle.com/java/technologies/javase-downloads.html"},
@@ -56,7 +59,7 @@ static const std::unordered_map<std::string, std::string> downloads = {
     {"Standard ML (SML)", "https://www.standardml.org/"}
 };
 
-static const std::unordered_map<std::string, std::vector<std::string>> languageExtensions = {
+const std::unordered_map<std::string, std::vector<std::string>> languageExtensions = {
         {"C", {".c"}},
         {"C++ (CPP)", {".cpp", ".cc", ".cxx"}},
         {"Java", {".java"}},
@@ -107,7 +110,7 @@ static const std::unordered_map<std::string, std::vector<std::string>> languageE
         {"Standard ML (SML)", {".sml", ".ml"}}
     };
 
-static const std::unorded_map<std::string, std::vector<TokenType>> languageTokenCategories = {
+const std::unorded_map<std::string, std::vector<TokenType>> languageTokenCategories = {
     {"C", {TokenType::LEFT_PAREN, TokenType::RIGHT_PAREN, TokenType::LEFT_BRACE, TokenType::RIGHT_BRACE, TokenType::COMMA, TokenType::DOT,
            TokenType::MINUS, TokenType::PLUS, TokenType::SEMICOLON, TokenType::SLASH, TokenType::STAR}},
     {"C++ (CPP)", {TokenType::LEFT_PAREN, TokenType::RIGHT_PAREN, TokenType::LEFT_BRACE, TokenType::RIGHT_BRACE, TokenType::COMMA, TokenType::DOT,
@@ -170,6 +173,8 @@ static const std::unorded_map<std::string, std::vector<TokenType>> languageToken
     {"Standard ML (SML)", {TokenType::TOKEN}} // Placeholder, as SML has no specific token extensions
 };
 
+
+
 typedef std::string Key;
 typedef std::vector<std::string> Extension;
 typedef std::vector<TokenType> TokenValues;
@@ -188,3 +193,4 @@ const inline Table initTable() {
     return languageTable;
 }; 
 
+#endif 

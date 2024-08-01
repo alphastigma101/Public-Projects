@@ -28,7 +28,7 @@ namespace AbstractionTreeSyntax {
     class ast: public virtual generateAst {
         // This class defines the tree for a specific programming language 
         public:
-            ast(std::string baseName): baseName(this->baseName);
+            ast(std::string outputDir, std::string baseName);
             static void defineAst(const std::vector<std::string> types);
             static void defineType(const std::vector<std::string> fields);
             static void defineVisitor(const std::vector<std::string> types);
@@ -39,6 +39,12 @@ namespace AbstractionTreeSyntax {
             Table table;
             static std::string outputDir = getOutPutDir();
             std::string baseName;
+            std::vector<std::string> types = {
+                "Binary   : Expr left, Token* operator, Expr* right",
+                "Grouping : Expr* expression",
+                "Literal  : Object value",
+                "Unary    : Token* operator, Expr* right"
+            };
     };
     class printAst: public ast {
         // This class will print the ast

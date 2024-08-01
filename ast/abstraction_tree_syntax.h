@@ -12,8 +12,7 @@ namespace AbstractionTreeSyntax {
          * -----------------------------------------------------------------------------------------
          */
         public:
-            generateAst(char** argv) {
-                std::string str = static_cast<std::string>(argv[0]);
+            generateAst(const std::string str) {
                 try {
                     if (str.length() != 0) { outputDir = str; }
                     else { throw generateAst::catcher("Usage: generate_ast <output directory>");}
@@ -26,7 +25,7 @@ namespace AbstractionTreeSyntax {
         private:
             std::string outputDir;
     };
-    class ast: public generateAst {
+    class ast: public virtual generateAst {
         // This class defines the tree for a specific programming language 
         public:
             ast(std::string baseName): baseName(this->baseName);

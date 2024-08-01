@@ -1,8 +1,8 @@
 #include <abstraction_tree_syntax.h>
 
-ast::ast(std::string outputDir, std::string baseName): outputDir(this->outputDir) {
-    // Constructor should define the imports for whcih ever programming language that is getting generated
-    // It should only generate functions for any modern programming langauage
+ast::ast(std::string outputDir, std::string baseName): outputDir(this->outputDir) baseName(this->baseName) {
+    ast::generateAst(outputDir);
+    // OPTIONAL: include the file system based on the file extension the user chooses 
 }
 
 

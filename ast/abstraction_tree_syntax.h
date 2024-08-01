@@ -1,7 +1,7 @@
-#ifndef ABSTRACTION_TREE_SYNTAX
-#define ABSTRACTION_TREE_SYNTAX
-#include <cfg/context_free_grammar.h>
-#include <catcher>
+#ifndef _ABSTRACTION_TREE_SYNTAX_H_
+#define _ABSTRACTION_TREE_SYNTAX_H_
+#include <context_free_grammar.h>
+#include <catcher.h>
 
 namespace AbstractionTreeSyntax {
     class generateAst: public virtual catcher {

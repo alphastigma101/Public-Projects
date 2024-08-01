@@ -1,5 +1,5 @@
-#ifndef CATCH_H
-#define CATCH_H
+#ifndef _CATCH_H_
+#define _CATCH_H_
 #include <exception>
 
 class catcher: public std::exception {

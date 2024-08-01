@@ -1,4 +1,4 @@
-#include <ast/abstraction_tree_syntax.h>
+#include <abstraction_tree_syntax.h>
 
 ast::ast(std::string outputDir, std::string baseName): outputDir(this->outputDir) {
     // Constructor should define the imports for whcih ever programming language that is getting generated
@@ -16,6 +16,8 @@ Table ast::getTable() {
 }
 
 void ast::defineAst() {
+    setTable(table);
+
     for (std::string type : types) {
         // Print through the types and start processing the strings
     }

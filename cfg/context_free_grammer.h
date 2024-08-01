@@ -1,8 +1,9 @@
-#ifndef CONTEXT_FREE_GRAMMAR
-#define CONTEXT_FREE_GRAMMAR
-#include <tokens/token.h>
-#include <languages/lookup_language.h>
+#ifndef _CONTEXT_FREE_GRAMMAR_H_
+#define _CONTEXT_FREE_GRAMMAR_H_
+#include <token.h>
+#include <lookup_language.h>
 #include <filesystem>
+
 /*
  * A Context Free Grammar consists of a head and a body, which describes what it can generate.
  * The body's purest form will be a list of symbols and these symbols are:
@@ -47,5 +48,4 @@ namespace ContextFreeGrammar {
     };
 };
 using ContextFreeGrammar;
-
 #endif 

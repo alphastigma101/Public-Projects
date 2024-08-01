@@ -1,7 +1,7 @@
 #pragma once
 #ifndef LANGUAGES_H
 #define LANGUAGES_H
-#include <languages/macros.h> // has pargma once inside the file so the macros inside it cannot be called in other files
+#include <macros.h> // has pargma once inside the file so the macros inside it cannot be called in other files
 
 //TODO: add argument support
 #define FINAL(CODE)  _Pragma(#CODE)

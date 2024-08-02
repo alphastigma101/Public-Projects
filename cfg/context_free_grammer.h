@@ -17,7 +17,6 @@
 */
 
 
-
 namespace ContextFreeGrammar {
     class Expr: public std::filesystem::path  {
         /* 
@@ -27,24 +26,48 @@ namespace ContextFreeGrammar {
          * Which allows it to not be associated with any type of behavior which usually methods/functions etc are what defined the behavior of an object
          */
         public:
+            /*
+             * The 'visiting design pattern' is crucial for the abstraction syntax tree to work as it will visit the nodes 
+            */
             Expr() {};
             virtual ~Expr() = default;
+            virtual void visit(Expr expr) = 0;
+            virtual void accept(Expr expr) = 0;
             final Expr left;
             final Token op;
             final Expr right;
-
     };
-
     class Binary: public virtual Expr {
         public:
             Binary(Expr left, Token op, Expr right): left(this->left), right(this->right), op(this->op) {};
-
-        protected:
-            //
+            ~Binary() {};
+            void visit(Binary binary) override {};
+            void accecpt(Binary binary) override { binary.visit(this); };
         private:
             Expr left;
             Expr right;
             Token op;
+    };
+    class Unary: public virtual Expr {
+        public:
+            Unary() {};
+            ~Unary(){};
+            void visit(Unary unary) override {};
+            void accecpt(Unary unary) override { unary.vist(this); };  
+    };
+    class Grouping: public virtual Expr {
+        public:
+            Grouping() {};
+            ~Grouping() {};
+            void visit(Grouping group) override {};
+            void accept(Grouping group) override { group.visit(this); };
+    };
+    class Literal: public virtual Expr {
+        public:
+            Literal(){};
+            ~Literal(){};
+            void visit(Literal literal) override {};
+            void accept(Literal literal) override { literal.visit(this); };
     };
 };
 using ContextFreeGrammar;

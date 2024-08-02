@@ -25,9 +25,12 @@ Table ast::getTable() {
 }
 /*
  *
- *
+ * Arguments:
+    *  ...: Is a vardic argument which allows optional arguments 
 */
-void ast::defineAst() {
+void ast::defineAst(...) {
+    // pass in arguments if a file already does exist 
+    // Otherwise, create the ast tree for the file
     setTable(table);
     std::cout << "List of supported languages" << std::endl;
     for (const &it: table) { std::cout << it->fist << std::endl; }
@@ -37,9 +40,9 @@ void ast::defineAst() {
         std::getline(std::cin, user);
     }
     baseName += function_table.at(user); // referenced value is a function call that returns a const string
-
-    for (std::string type : types) {
-        // Print through the types and start processing the strings
+    for (int i = 0; i < basName.length(); i++ ) {
+        // use the ast_rules to craft a abstraction syntax tree 
+    
     }
 }
 /*

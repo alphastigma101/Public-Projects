@@ -1,4 +1,3 @@
-# Define all target
 all: exec_interpreter exec_generator exec_vm exec_new_parser_rules
 
 # This allows me to declare each header with angle brackets around them to avoid multiple collisions 
@@ -16,31 +15,36 @@ COMPILER =: -I compiler/
 VM =: -I vm/
 CATCH =: -I catch/
 
-token.o: token.cc $(TOKENS) $(LANGUAGES) $(INTERFACE)
-	echo "Attempting to compile token.cc into a object file"
+# Object files are linked, therefore -L command should not be needed if a .o or .obj file exists
+
+languages.o: $(LANGUAGES)
+	echo "Attempting to compile languages.cc"
+	g++ -std=c++17 $(LANGUAGES) -c languages/languages.cc -o languages.o
+
+token.o: token.cc languages.o $(TOKENS) $(INTERFACE)
+	echo "Attempting to compile token.cc"
 	g++ -std=c++17 $(TOKENS) $(INTERFACE) $(LANGUAGES) -c tokens/token.cc -o token.o 
 
-ast.o: token.o $(AST) $(CFG) $(CATCH) $(INTERFACE) $(LANGUAGES)
+ast.o: token.o languages.o $(AST) $(CFG) $(CATCH) $(INTERFACE)
 	echo "Attempting to compile abstraction_syntax_tree.cc into an object file"
-	g++ -std=c++17 $(AST) $(CFG) $(CATCH) -c ast/abstraction_syntax_tree.cc -o ast.o
+	g++ -std=c++17 languages.o token.o $(INTERFACE) $(AST) $(CFG) $(CATCH) -c ast/abstraction_syntax_tree.cc -o ast.o
 
-scanner.o: token.o $(TOKENS) $(SCANNER)
+scanner.o: token.o languages.o $(TOKENS) $(SCANNER)
 	echo "Attempting to compile scanner.cc file into an object file"
-	g++ -std=c++17 $(TOKENS) $(SCANNER) -c scanner/scanner.cc -o scanner.o
+	g++ -std=c++17 token.o languages.o $(TOKENS) $(SCANNER) -c scanner/scanner.cc -o scanner.o
 
-parser.o: ast.o token.o $(TOKENS) $(CFG) $(LANGUAGES)
-	g++ -std=c++17 $(TOKENS) $(CFG) $(LANGUAGES) -c parser/parser.cc -o parser.o
+parser.o: ast.o token.o languages.o $(TOKENS) $(CFG)
+	g++ -std=c++17 $(TOKENS) $(CFG) ast.o token.o languages.o -c parser/parser.cc -o parser.o
 
-interp.o: scanner.o token.o parser.o interpreter.cc
+interp.o: scanner.o token.o parser.o languages.o 
 	g++ -std=c++17 $(INTERPRETER) -c interpreter/interpreter.cc -o interp.o
 	
-# Compile main object file, depends on scanner.o
 main.o: main.cc scanner.o parser.o interp.o token.o ast.o
 	g++ -std=c++17 $(SCANNER) $(PARSER) -c main.cc -o main.o
 
 # Link object files to create executable 'exec_compiler', depends on scanner.o and main.o
-exec_interpreter: scanner.o parser.o interpreter.o main.o ast.o 
-	g++ -g -std=c++17 scanner.o main.o ast.o -o exec_interpreter
+exec_interpreter: scanner.o parser.o interp.o main.o ast.o 
+	g++ -g -std=c++17 $(CFG) $(INTERFACE) scanner.o main.o ast.o interp.o parser.o -o exec_interpreter
 
 compiler.o: ast.o $(AST) $(CFG) $(LANGUAGES) $(INTERFACE)
 	g++ -std=c++17 $(AST) -c copmiler/compiler.cc -o compiler.o

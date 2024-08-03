@@ -17,7 +17,7 @@
 
 
 namespace ContextFreeGrammar {
-    class Expr: public std::filesystem::path  {
+    class Expr: public std::filesystem::path, public Conversion  {
         /* 
          * A representation of an abstraction classs which is also considered as a disoriented object
          * ------------------------(Additional Info Below)-------------------------------------------
@@ -25,12 +25,14 @@ namespace ContextFreeGrammar {
          * Which allows it to not be associated with any type of behavior which usually methods/functions etc are what defined the behavior of an object
          */
         public:
-            Expr() {};
             virtual ~Expr() = default;
-            virtual void accept(Expr& expr) = 0;
+            void accept(Expr& expr); // let the derived classes overload this method
             final Expr right;
             final Expr left;
             final Token op;
+            char * toString override {
+                return '\0';
+            };
     };
     class Binary: public virtual Expr {
         /*
@@ -54,7 +56,7 @@ namespace ContextFreeGrammar {
                  expr.left->accept(*this);
                  expr.right->accept(*this);
             };
-            void accecpt(Binary& binary) override { binary.visit(*this); };
+            void accecpt(Binary& binary) { binary.visit(*this); };
         private:
             Expr* left;
             Expr* right;
@@ -68,7 +70,7 @@ namespace ContextFreeGrammar {
                 expr.left->accept(*this);
                 expr.right->accept(*this);
             };
-            void accecpt(Unary& unary) override {unary.vist(*this);};  
+            void accecpt(Unary& unary) {unary.vist(*this);};  
         private:
             Expr* right;
             Token op;
@@ -81,7 +83,7 @@ namespace ContextFreeGrammar {
                 expr.left->accept(*this);
                 expr.right->accept(*this);
             };
-            void accept(Grouping& group) override {group.visit(*this);};
+            void accept(Grouping& group) {group.visit(*this);};
     };
     class Literal: public virtual Expr {
         public:
@@ -91,7 +93,7 @@ namespace ContextFreeGrammar {
                 if (expr.value == NULL) return "nil";
                 return expr.value.toString();
             };
-            void accept(Literal& literal) override {literal.visit(*this);};
+            void accept(Literal& literal) {literal.visit(*this);};
     };
 };
 using ContextFreeGrammar;

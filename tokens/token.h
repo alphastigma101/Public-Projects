@@ -99,10 +99,9 @@ enum TokenType {
     SPREAD, AT, EXCLAMATION, BRACES, PARENS, END_OF_FILE
 };
 
-class Token {
+class Token: public Conversion {
     public:
         Token(TokenType type, std::string lexeme, const std::string literal, int line);
-        std::string toString();
         TokenType getType();
         std::string getLexeme();
         std::string getLiteral();
@@ -112,6 +111,7 @@ class Token {
         std::string lexeme;
         std::string literal; 
         int line;
+        char * toString() override { return type + " " + &lexeme[0] + " " + &literal[0];};
 };
 
 #endif

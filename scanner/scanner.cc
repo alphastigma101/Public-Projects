@@ -1,4 +1,4 @@
-#include <scanner/scanner.h>
+#include <scanner.h>
 
 /*
  * This is the default constructor which can be used to create an instance of the Scanner Class

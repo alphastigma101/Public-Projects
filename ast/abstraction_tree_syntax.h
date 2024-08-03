@@ -30,8 +30,6 @@ namespace AbstractionTreeSyntax {
         public:
             ast(std::string outputDir, std::string baseName);
             static void defineAst(...);
-            static void defineType(const std::vector<std::string> fields);
-            static void defineVisitor();
             static void setTable(const Table table);
             static Table getTable(); // Use this with the compiler 
             inline std::string getBaseName() { return baseName; };
@@ -39,12 +37,6 @@ namespace AbstractionTreeSyntax {
             Table table;
             static std::string outputDir = getOutPutDir();
             std::string baseName;
-            std::vector<std::string> ast_rules = {
-                "Binary   : Expr left, Token* operator, Expr* right",
-                "Grouping : Expr* expression",
-                "Literal  : Object value",
-                "Unary    : Token* operator, Expr* right"
-            };
     };
     class printAst: public ast {
         // This class will print the ast

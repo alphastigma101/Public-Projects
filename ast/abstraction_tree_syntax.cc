@@ -1,16 +1,19 @@
-#include <abstraction_tree_syntax.h>
-
+#include <scanner.h>
 /*
  *
- *
+ * Arguments:
+ * outputDir: Is the name of the file that will hold the ast structure 
+ * baseName: The name of the file code is getting written to 
 */
 ast::ast(std::string outputDir, std::string baseName): outputDir(this->outputDir) baseName(this->baseName) {
     ast::generateAst(outputDir);
-    // OPTIONAL: include a rich eco system based on the file extension the user chooses 
+    // OPTIONAL: include a rich eco system based on the file extension the user chooses and add it to baseName
 }
 
+ast::~ast() {}
+
 /*
- *
+ * 
  *
 */
 void ast::setTable(const Table table) {
@@ -20,9 +23,7 @@ void ast::setTable(const Table table) {
  *
  *
 */
-Table ast::getTable() {
-    return table;
-}
+Table ast::getTable() { return table; }
 /*
  *
  * Arguments:
@@ -35,29 +36,14 @@ void ast::defineAst(...) {
     std::cout << "List of supported languages" << std::endl;
     for (const &it: table) { std::cout << it->fist << std::endl; }
     std::string user;
+    // need to check and see if the user passed in a argument 
     while (!(table.find(user))) {
         std::cout << "> ";
         std::getline(std::cin, user);
     }
     baseName += function_table.at(user); // referenced value is a function call that returns a const string
-    for (int i = 0; i < basName.length(); i++ ) {
-        // use the ast_rules to craft a abstraction syntax tree 
-    
-    }
-}
-/*
- *
- *
-*/
-void ast::defineType(std::string baseName, std::vector<std::string> fields) {
-    // This method will define if there is a type of not
+    Scanner scanner = new Scanner(baseName);
+    std::vector<Token> tokens = scanner.ScanTokens();
+    Parser parser = new Parser(tokens);
 }
 
-/*
- *
- *
-*/
-void ast::defineVisitor(std::string baseName, std::vector<std::string> types) {
-
-
-}

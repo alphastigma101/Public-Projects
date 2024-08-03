@@ -1,5 +1,5 @@
-#ifndef INTERFACE_H
-#define INTERFACE_H
+#ifndef _INTERFACE_H_
+#define _INTERFACE_H_
 
 class Interface {
     // This class is used to declare all the method signatures 

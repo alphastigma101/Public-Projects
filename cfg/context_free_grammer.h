@@ -1,7 +1,6 @@
 #ifndef _CONTEXT_FREE_GRAMMAR_H_
 #define _CONTEXT_FREE_GRAMMAR_H_
 #include <token.h>
-#include <languages.h>
 #include <filesystem>
 
 /*
@@ -26,48 +25,73 @@ namespace ContextFreeGrammar {
          * Which allows it to not be associated with any type of behavior which usually methods/functions etc are what defined the behavior of an object
          */
         public:
-            /*
-             * The 'visiting design pattern' is crucial for the abstraction syntax tree to work as it will visit the nodes 
-            */
             Expr() {};
             virtual ~Expr() = default;
-            virtual void visit(Expr expr) = 0;
-            virtual void accept(Expr expr) = 0;
+            virtual void accept(Expr& expr) = 0;
+            final Expr right;
             final Expr left;
             final Token op;
-            final Expr right;
     };
     class Binary: public virtual Expr {
+        /*
+         * A class that represents a binary abstraction syntax tree
+         * ------------------------(Additional Info Below)-------------------------------------------
+         * The 'visiting design pattern' is crucial for the abstraction syntax tree to work as it will visit the nodes
+         * It relies on recrusion to visit every node in a graph or tree 
+         * ------------------------(Example of Ast Tree)---------------------------------------------
+                  *
+                 / \
+                /   \
+                -   ()
+               /      \
+              123      45.67
+         * Would print out this: (* (- 123) (group 45.67)) Note: Parathesis are always included 
+         */
         public:
-            Binary(Expr left, Token op, Expr right): left(this->left), right(this->right), op(this->op) {};
+            Binary(Expr* left, Token op, Expr* right): left(this->left), right(this->right), op(this->op) {};
             ~Binary() {};
-            void visit(Binary binary) override {};
-            void accecpt(Binary binary) override { binary.visit(this); };
+            void visit(Binary& expr) {
+                 expr.left->accept(*this);
+                 expr.right->accept(*this);
+            };
+            void accecpt(Binary& binary) override { binary.visit(*this); };
         private:
-            Expr left;
-            Expr right;
+            Expr* left;
+            Expr* right;
             Token op;
     };
     class Unary: public virtual Expr {
         public:
-            Unary() {};
+            Unary(Expr* right, Token op): right(this->right) op(this->op){};
             ~Unary(){};
-            void visit(Unary unary) override {};
-            void accecpt(Unary unary) override { unary.vist(this); };  
+            void visit(Unary& expr) {
+                expr.left->accept(*this);
+                expr.right->accept(*this);
+            };
+            void accecpt(Unary& unary) override {unary.vist(*this);};  
+        private:
+            Expr* right;
+            Token op;
     };
     class Grouping: public virtual Expr {
         public:
             Grouping() {};
             ~Grouping() {};
-            void visit(Grouping group) override {};
-            void accept(Grouping group) override { group.visit(this); };
+            void visit(Grouping& expr) {
+                expr.left->accept(*this);
+                expr.right->accept(*this);
+            };
+            void accept(Grouping& group) override {group.visit(*this);};
     };
     class Literal: public virtual Expr {
         public:
             Literal(){};
             ~Literal(){};
-            void visit(Literal literal) override {};
-            void accept(Literal literal) override { literal.visit(this); };
+            std::string visit(Literal& expr) {
+                if (expr.value == NULL) return "nil";
+                return expr.value.toString();
+            };
+            void accept(Literal& literal) override {literal.visit(*this);};
     };
 };
 using ContextFreeGrammar;

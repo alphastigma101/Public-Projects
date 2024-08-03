@@ -2,6 +2,7 @@
 #define _ABSTRACTION_TREE_SYNTAX_H_
 #include <context_free_grammar.h>
 #include <catcher.h>
+#include <memory>
 
 namespace AbstractionTreeSyntax {
     class generateAst: public virtual catcher {
@@ -31,7 +32,7 @@ namespace AbstractionTreeSyntax {
         public:
             ast(std::string outputDir, std::string baseName);
             static void defineAst();
-            ast::~ast(){};
+            ~ast(){};
             inline void ast::setTable(const Table table) {table = initTable();};
             inline Table ast::getTable() {return table;};
             inline std::string getBaseName() {return baseName;};
@@ -44,6 +45,12 @@ namespace AbstractionTreeSyntax {
     class printAst: public ast {
         // This class will print the ast
         public:
+            inline std::string parenthesize(const std::string& name, const Expr left, const Expr right) {
+                std::string result = "(" + name;
+                // TODO: This needs to be implemented correctly
+                // add it to the exprs object
+                return result;
+            };
             inline std::string visitBinaryExpr(Binary binary) { return parenthesize(binary::Expr::op::lexeme, binary::Expr::left, binary::Expr::right);};
             inline std::string visitGroupingExpr(Grouping grouping) { return parenthesize("group", grouping::Expr::expression);};
             inline std::string visitLiteralExpr(Literal literal) { 
@@ -51,6 +58,8 @@ namespace AbstractionTreeSyntax {
                 return literal::Expr::value::toString();
             };
             inline std::string visitUnaryExpr(Unary unary) { return parenthesize(unary::Exp::op::lexeme, unary::Expr::right);};
+        private:
+            std::vector<std::shared_ptr<Expr>> exprs;
     };
     class analyzeSemantics: public virtual catcher {
         // This class performs the semantic analysis 

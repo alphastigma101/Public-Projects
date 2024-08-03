@@ -17,12 +17,13 @@
 
 
 namespace ContextFreeGrammar {
-    class Expr: public std::filesystem::path, public Conversion  {
-        /* 
+    class Expr: public std::filesystem::path  {
+        /* ------------------------------------------------------------------------------------------
          * A representation of an abstraction classs which is also considered as a disoriented object
          * ------------------------(Additional Info Below)-------------------------------------------
          * By creating an abstraction class, and allowing a class to inherit it, you basically are allowing them to communicate with eachother
          * Which allows it to not be associated with any type of behavior which usually methods/functions etc are what defined the behavior of an object
+         * ------------------------------------------------------------------------------------------
          */
         public:
             virtual ~Expr() = default;
@@ -30,9 +31,6 @@ namespace ContextFreeGrammar {
             final Expr right;
             final Expr left;
             final Token op;
-            char * toString override {
-                return '\0';
-            };
     };
     class Binary: public virtual Expr {
         /*
@@ -77,23 +75,32 @@ namespace ContextFreeGrammar {
     };
     class Grouping: public virtual Expr {
         public:
-            Grouping() {};
+            Grouping(Expr expression): expression(this->expression) {};
             ~Grouping() {};
             void visit(Grouping& expr) {
                 expr.left->accept(*this);
                 expr.right->accept(*this);
             };
             void accept(Grouping& group) {group.visit(*this);};
+        private:
+            Expr expression;
     };
-    class Literal: public virtual Expr {
+    class Literal: public Conversion, public virtual Expr {
         public:
-            Literal(){};
+            template<class ClassType>
+            Literal(ClassType value): value(this->value){};
             ~Literal(){};
             std::string visit(Literal& expr) {
                 if (expr.value == NULL) return "nil";
                 return expr.value.toString();
             };
             void accept(Literal& literal) {literal.visit(*this);};
+            char * toString() override {
+                static std::string cast = static_cast<std::string>(value);
+                return &cast[0];
+            };
+        private:
+            ClassType value;
     };
 };
 using ContextFreeGrammar;

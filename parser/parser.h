@@ -44,7 +44,7 @@ class Parser {
             if (check(type)) return advance();
             throw error(peek(), message);
         };
-        auto error(Token token, String message) {
+        auto error(Token token, std::string message) {
             // Implement a catcher that will catch the syntax error
         };
 };

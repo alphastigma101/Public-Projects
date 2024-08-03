@@ -1,45 +1,6 @@
 #ifndef _SCANNER_H_
 #define _SCANNER_H_
 #include <token.h>
-class Peek {
-    public:
-        virtual ~Peek() = default;
-        virtual char peek() = 0;
-        virtual char peekNext() = 0;
-};
-
-class End {
-    public:
-        virtual ~End() = default;
-        virtual bool isAtEnd() = 0;
-};
-
-class Advance {
-    public:
-        virtual ~Advancable() = default;
-        virtual char advance() = 0;
-};
-
-class Parsable {
-    public:
-        virtual ~Parsable() = default;
-        virtual void String() = 0;
-        virtual void number() = 0;
-};
-
-class Check {
-    public:
-        virtual ~Check() = default;
-        virtual bool isAlpha(char c) = 0;
-        virtual bool isAlphaNumeric(char c) = 0;
-        virtual bool isDigit(char c) = 0;
-    };
-
-class Match {
-    public:
-        virtual bool match(char expected) = 0;
-
-};
 
 class Scanner: public Advance, public Peek, public End, public Check, public Parsable, public Match {
     public:
@@ -63,17 +24,16 @@ class Scanner: public Advance, public Peek, public End, public Check, public Par
             current++;
             return true;
         };
-        //bool consume(const char* literal) override;
-        bool isAtEnd() override { return current >= Source.length();}; 
-        char advance() override { return Source.at(current++); };    
-        bool isAlpha(char c) override { return (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || c == '_'; };
-        bool isAlphaNumeric(char c) override { return isAlpha(c) || isDigit(c); };
-        bool isDigit(char c) { return c >= '0' && c <= '9'; };
+        inline bool isAtEnd() override { return current >= Source.length();}; 
+        inline char advance() override { return Source.at(current++); };    
+        inline bool isAlpha(char c) override { return (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || c == '_'; };
+        inline bool isAlphaNumeric(char c) override { return isAlpha(c) || isDigit(c); };
+        inline bool isDigit(char c) { return c >= '0' && c <= '9'; };
         char peek() override {
             if (isAtEnd()) return '\0';
             return Source.at(current);
         };
-        void String() override {
+        inline void String() override {
             while (peek() != '"' && !isAtEnd()) {
                 if (peek() == '\n') line++;
                 advance();
@@ -89,7 +49,7 @@ class Scanner: public Advance, public Peek, public End, public Check, public Par
             std::string value = Source.substr(start + 1, current - 1);
             addToken(TokenType::STRING, value);
         };
-        void number() override {    
+        inline void number() override {    
             while (isDigit(peek())) advance();
             // Look for a fractional part.
             if (Scanner::peek() == '.' && isDigit(peekNext())) {
@@ -99,7 +59,7 @@ class Scanner: public Advance, public Peek, public End, public Check, public Par
             }
             addToken(TokenType::NUMBER,Source.substr(start, current));
         };
-        char peekNext() override {
+        inline char peekNext() override {
             if (current + 1 >= Source.length()) return '\0';
             return Source.at(current + 1);
         };

@@ -3,6 +3,7 @@
 #include <interface.h>
 #include <languages.h>
 #include <iostream>
+
 /*
  * This enum class object supports multiple languages
  * To add support for a custom programming language you would add the tokens here
@@ -99,6 +100,14 @@ enum TokenType {
     SPREAD, AT, EXCLAMATION, BRACES, PARENS, END_OF_FILE
 };
 
+struct data {
+    std::string code;
+    std::string getCode();
+    void setCode(std::string code);
+};
+
+typedef data d;
+
 class Token: public Conversion {
     public:
         Token(TokenType type, std::string lexeme, const std::string literal, int line);
@@ -113,5 +122,7 @@ class Token: public Conversion {
         int line;
         char * toString() override { return type + " " + &lexeme[0] + " " + &literal[0];};
 };
+
+extern d;
 
 #endif

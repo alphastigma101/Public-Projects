@@ -7,7 +7,7 @@ namespace AbstractionTreeSyntax {
     class generateAst: public virtual catcher {
         /* ------------------------------------------------------------------------------------------
          * class represents a generated abstraction syntax tree
-         * It will inherit from the base using the virtual keyword which makes it an abstraction class 
+         * It will inherit from the base class using the virtual keyword which makes it an disorienated object 
          * This will isolate the objects behavior 
          * -----------------------------------------------------------------------------------------
          */
@@ -22,6 +22,7 @@ namespace AbstractionTreeSyntax {
                 }
             };
             inline std::string getOutPutDir() { return outputDir; };
+            virtual ~generateAst() = default;
         private:
             std::string outputDir;
     };
@@ -29,12 +30,14 @@ namespace AbstractionTreeSyntax {
         // This class defines the tree for a specific programming language 
         public:
             ast(std::string outputDir, std::string baseName);
-            static void defineAst(...);
-            static void setTable(const Table table);
-            static Table getTable(); // Use this with the compiler 
-            inline std::string getBaseName() { return baseName; };
+            static void defineAst();
+            ast::~ast(){};
+            inline void ast::setTable(const Table table) {table = initTable();};
+            inline Table ast::getTable() {return table;};
+            inline std::string getBaseName() {return baseName;};
         private:
             Table table;
+            std::string code;
             static std::string outputDir = getOutPutDir();
             std::string baseName;
     };

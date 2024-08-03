@@ -1,5 +1,5 @@
 # Define all target
-all: exec_interpreter exec_generator exec_vm
+all: exec_interpreter exec_generator exec_vm exec_new_parser_rules
 
 # This allows me to declare each header with angle brackets around them to avoid multiple collisions 
 DATABASE =: -I database/
@@ -16,36 +16,33 @@ COMPILER =: -I compiler/
 VM =: -I vm/
 CATCH =: -I catch/
 
-token.o: token.cc $(TOKENS)
+token.o: token.cc $(TOKENS) $(LANGUAGES) $(INTERFACE)
 	echo "Attempting to compile token.cc into a object file"
 	g++ -std=c++17 $(TOKENS) $(INTERFACE) $(LANGUAGES) -c tokens/token.cc -o token.o 
 
-ast.o: token.o abstraction_syntax_tree.cc $(AST)
+ast.o: token.o $(AST) $(CFG) $(CATCH) $(INTERFACE) $(LANGUAGES)
 	echo "Attempting to compile abstraction_syntax_tree.cc into an object file"
 	g++ -std=c++17 $(AST) $(CFG) $(CATCH) -c ast/abstraction_syntax_tree.cc -o ast.o
 
-scanner.o: ast.o scanner.cc
+scanner.o: token.o $(TOKENS) $(SCANNER)
 	echo "Attempting to compile scanner.cc file into an object file"
 	g++ -std=c++17 $(TOKENS) $(SCANNER) -c scanner/scanner.cc -o scanner.o
 
-parser.o: scanner.o token.o parser.cc
-	g++ -std=c++17 -c parser/parser.cc -o parser.o
+parser.o: ast.o token.o $(TOKENS) $(CFG) $(LANGUAGES)
+	g++ -std=c++17 $(TOKENS) $(CFG) $(LANGUAGES) -c parser/parser.cc -o parser.o
 
-interpreter.o: scanner.o token.o parser.o interpreter.cc
+interp.o: scanner.o token.o parser.o interpreter.cc
 	g++ -std=c++17 $(INTERPRETER) -c interpreter/interpreter.cc -o interp.o
 	
 # Compile main object file, depends on scanner.o
-main.o: main.cc scanner.o
-	g++ -std=c++17 $(SCANNER) -c main.cc -o main.o
-
-interpreter.o: interpreter.cc 
-	g++ -std=c++17 -c interpreter/interpreter.cc -o interpreter.o 
+main.o: main.cc scanner.o parser.o interp.o token.o ast.o
+	g++ -std=c++17 $(SCANNER) $(PARSER) -c main.cc -o main.o
 
 # Link object files to create executable 'exec_compiler', depends on scanner.o and main.o
 exec_interpreter: scanner.o parser.o interpreter.o main.o ast.o 
 	g++ -g -std=c++17 scanner.o main.o ast.o -o exec_interpreter
 
-compiler.o: ast.o compiler.cc $(AST)
+compiler.o: ast.o $(AST) $(CFG) $(LANGUAGES) $(INTERFACE)
 	g++ -std=c++17 $(AST) -c copmiler/compiler.cc -o compiler.o
 
 generate_code.o: token.o ast.o parser.o generate_code.cc
@@ -59,6 +56,15 @@ config_virtual_machine.o: compiler.o ast.o token.o parser.o virtual_machine.cc v
 
 exec_vm: config_virtual_machine.o compiler.o parser.o ast.o token.o
 	g++ -g -std=c++17 config_vm.o compiler.o parser.o ast.o token.o -o exec_vm 
+
+rules.o: $(AST) $(PARSER)
+	echo "Modify the parser_rules.cc iniside tests folder to test the new rules then copy them into parser.cc if successful"
+	echo "Current rules will be generated in the form of a grammar and stored in a file called current_rules.txt"
+	#g++ -std=c++17 
+
+exec_new_parser_rules:
+	echo "Using (Google Test Frame Work) to test parser"
+	#g++ -std=c++17
 
 # Clean up object files
 clean:

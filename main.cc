@@ -1,4 +1,5 @@
-#include "scanner.h"
+#include <scanner.h> // includes token.h, languages.h 
+#include <parser.h> // includes abstraction_syntax_tree.h, context_free_grammar.h, token.h, languages.h
 #include <filesystem>
 #include <system_error>
 #include <fstream>
@@ -12,17 +13,16 @@ std::ostream& operator<<(std::ostream& os, Token& token) {
 }
 
 /*
- * This function calls in scanner class 
+ * (run): Is a standalone static void function that runs the user input 
+ * Parameters:
+ * source: is a file that contains data of possibly of a language 
  */
 static void run(const std::string source) {
     Scanner scanner(source); // Create a new scanner instance
+    d.setCode(source); // set the code 
     std::vector<Token> tokens = scanner.ScanTokens();
-
-    // For now, just print the tokens.
-    for (auto &token : tokens) {
-        std::cout << token << std::endl;
-    }
-  }
+    Parser parser = new Parser(tokens);
+}
 
 
 /* 

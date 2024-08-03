@@ -1,6 +1,6 @@
 #ifndef _PARSER_H_
 #define _PARSER_H_
-#include <context_free_grammar.h>
+#include <abstraction_syntax_tree.h> // includes context_free_grammar.h, token.h, languages.h
 class Parser {
     /* 
      * An object that represents a parser. 
@@ -48,5 +48,4 @@ class Parser {
             // Implement a catcher that will catch the syntax error
         };
 };
-
 #endif

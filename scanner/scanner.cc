@@ -1,20 +1,17 @@
 #include <scanner.h>
 
-/*
+/* ---------------------------------------------------------------------------------------------
  * This is the default constructor which can be used to create an instance of the Scanner Class
  * Params:
     *  std::string Source: the source line of code from a file or from the runprompt function
+ * --------------------------------------------------------------------------------------------  
  */
 Scanner::Scanner(std::string Source): Source(this->Source) {}
 
-/*
- * The deconstructor for the scanner class 
-*/
-Scanner::~Scanner() {};
-
-/*
+/* ----------------------------------------------------------------------------------
  * (keywords) is a dictionary that holds in various keywords of programming languages 
  * Using unordered_map type because I want O(n) at run time
+ * ----------------------------------------------------------------------------------
 */
 const std::unordered_map<std::string, TokenType> Scanner::keywords = {
     // Add all the Keywrods here
@@ -47,10 +44,11 @@ const std::unordered_map<std::string, TokenType> Scanner::keywords = {
     {"var", TokenType::VAR}
 };
 
-/*
+/* ------------------------------------------------------------------------------------------------------
  * (ScanTokens) is a method that is apart of the scanner class 
  * Instead of (scanToken) method, this method scans the whole file until it reaches the EOF, (End Of File)
- * Takes no paramaters and returns void 
+ * Takes no paramaters and returns void
+ * ------------------------------------------------------------------------------------------------------
  */
 std::vector<Token> Scanner::ScanTokens() {
     while (!isAtEnd()) {
@@ -62,17 +60,18 @@ std::vector<Token> Scanner::ScanTokens() {
     return tokens;
 
 }
-/*
+/* ---------------------------------------------------------------------------------------------------------
  * (scanToken) is a method that is apart of the (Scanner) class 
+ * Arguments:
+    * None
+ * ---------------------------------(Additional Info)-------------------------------------------------------
  * The purpose of (scanToken) is to perform a lexical analysis by gathering up lexemes 
  * lexemes are only the raw substrings of the source code.
     * Couple examples of lexemes would be 'v' 'a' 'r' group them together to make something useful out of them 
     * Lexeme is known as a string and so is a token
     * Note: grouping these bits of characters into lexemes are called its (lexical grammar). 
  * ------------------------------------------------------------------------------------------
- *  This method has no parameters and it returns nothing 
 */
-
 void Scanner::scanToken() {
     char c = advance();
     switch (c) {

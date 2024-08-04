@@ -1,9 +1,13 @@
-#include <languages.h>
+#pragma once
+#ifndef LANGUAGES_H
+#define LANGUAGES_H
+#include "macros.h" // has pargma once inside the file so the macros inside it cannot be called in other files
+#include <lookup_languages.h>
 
 //TODO: add argument support
 #define FINAL(CODE)  _Pragma(#CODE)
 
-std::string lang::replace(std::string &code, const std::string for_loops, const std::string while_loops, const std::string if_blocks, const std::string function) {
+inline std::string replace(std::string &code, const std::string for_loops, const std::string while_loops, const std::string if_blocks, const std::string function) {
     if (code.find("FUNCTION")) {
         std::size_t pos = code.find("FUNCTION");
         code.replace((int)pos, (int)pos, function);
@@ -21,41 +25,13 @@ std::string lang::replace(std::string &code, const std::string for_loops, const 
         code.replace((int)pos, (int)pos, if_blocks);
     }
     return code;
-}
+};
 
-const std::string lang::C() {
-    const std::string for_loop = "for (int i = 0; i < 10; i++) { // Fill in your code here!}";
-    const std::string while_loop = "while (true) {\n\t// Fill in your code here and replace true with something else!\n}";
-    const std::string if_blocks = "if (true){\n fill in your code here!\n}\nelse if (true) {\n\t//Fill in your code here!\n}";
-    const std::string function = "// You can call in function by providing their signatures inside certain fields like this field, but the function needs to be defined before you call it";
-    static std::string code = std::const_cast<static std::string>(C_CODE); // make a copy and modify the copy and not the origional
-    const std::string updated_code = replace(code, for_loops, while_loops, if_blocks, function);
-    return updated_code;
-}
+const std::string C();
+const std::string CPP(); 
+const std::string Java();
 
-const std::string lang::CPP() {
-    const std::string for_loop = "for (int i = 0; i < 10; i++) { // Fill in your code here!}"; 
-    const std::string while_loop = "while (true) {\n\t// Fill in your code here and replace true with something else!\n}";
-    const std::string if_blocks = "if (true){\n fill in your code here!\n}\nelse if (true) {\n\t//Fill in your code here!\n}";
-    const std::string function = "// You can call in function by providing their signatures inside certain fields";
-    static std::string code = std::const_cast<static std::string>(CPP_CODE);
-    const std::string updated_code = replace(code, for_loops, while_loops, if_blocks, function);
-    return updated_code
-
-}
-
-const std::string lang::Java() {
-    const std::string for_loop = "for (int i = 0; i < 10; i++) { // Fill in your code here!}";
-    const std::string while_loop = "while (true) {\n\t// Fill in your code here and replace true with something else!\n}";
-    const std::string if_blocks = "if (true){\n fill in your code here!\n}\nelse if (true) {\n\t//Fill in your code here!\n}";
-    const std::string function = "// You can call in function by providing their signatures inside certain fields";
-    static std::string code = std::const_cast<static std::string>(JAVA_CODE);
-    const std::string updated_code = replace(code, for_loops, while_loops, if_blocks, function);
-    return updated_code;
-
-}
-
-const std::string lang::Python() {
+const std::string Python() {
     const std::string for_loop = "for i in range(0, 10):\n\t # Fill in your code here!"; 
     const std::string while_loop = "while (True):\n\t# Fill in your code here and replace true with something else!\n";
     const std::string if_blocks = "if (true):\n\t#fill in your code here!\nelif (True): \n\t#Fill in your code here!\n";
@@ -64,9 +40,9 @@ const std::string lang::Python() {
     const std::string updated_code = replace(code, for_loops, while_loops, if_blocks, function);
     return updated_code;
 
-}
+};
 
-const std::string lang::JavaScript() {
+const std::string JavaScript() {
     const std::string for_loop = "for (var i in arr) { // Fill in your code here!}"; 
     const std::string while_loop = "while (true) {\n\t// Fill in your code here and replace true with something else!\n}";
     const std::string if_blocks = "if (true){\n fill in your code here!\n}\nelse if (true) {\n\t//Fill in your code here!\n}";
@@ -75,9 +51,9 @@ const std::string lang::JavaScript() {
     const std::string updated_code = replace(code, for_loops, while_loops, if_blocks, function);
     return updated_code;
 
-}
+};
 
-const std::string lang::Ruby() {
+const std::string Ruby() {
     const std::string notes = "// the yield keyword allows you to print things.\nAn example of a for loop is insde the Array class as you need to create your own instances"
     const std::string class_block = "class Array\ndef find\nfor i in 0...size\nvalue = self[i]\nreturn value if yield(value)\nend\nreturn nil\nend\nend\n"; // Each end needs to align 
     const std::string for_loops = "for i in 0...size\nvalue = self[i]\nreturn value if yield(value)";
@@ -90,9 +66,9 @@ const std::string lang::Ruby() {
     const std::string updated_code = replace(code, for_loops, while_loops, if_blocks, function);
     return updated_code;
 
-}
+};
 
-const std::string lang::Swift() {
+const std::string Swift() {
     const std::string for_loops = "for val in sequence{\n// statements\n}";
     const std::string while_loops = "while (condition){\n// body of loop\n}";
     const std::string if_blocks = "if (true){\n fill in your code here!\n}\nelse if (true) {\n\t//Fill in your code here!\n}";
@@ -101,9 +77,9 @@ const std::string lang::Swift() {
     const std::string updated_code = replace(code, for_loops, while_loops, if_blocks, function);
     return updated_code;
 
-}
+};
 
-const std::string lang::Go() {
+const std::string Go() {
     const std::string for_loop = "for i:=0; i < 3; i++ { // Fill in your code here!}"; 
     const std::string while_loop = "while true {\n\t// Fill in your code here and replace true with something else!\n}";
     const std::string if_blocks = "if true {\n\t//fill in your code here!\n}\nelse if true {\n\t//Fill in your code here!\n}";
@@ -112,9 +88,9 @@ const std::string lang::Go() {
     const std::string updated_code = replace(code, for_loops, while_loops, if_blocks, function);
     return updated_code;
 
-}
+};
 
-const std::string lang::Kotlin() {
+const std::string Kotlin() {
     const std::string notes = "// There are three ways to create arrays in Kotlin: /*\n\t1) arrayOf() Which is an array of types you can specify\n2)\sarrayOfNulls() this is self explainatory\n3)\semptyArray()\swhich is also self explainatory\n*/";
     const std::string for_loops = "for (item in items) {\nprintln(item)\n}";
     const std::string if_blocks = "if (true) {\n\t// FMI\n}\nelse {\n\t//FMI\n}";
@@ -127,18 +103,18 @@ const std::string lang::Kotlin() {
     static const std::string result = FINAL(code);
     // Call in the parser and parse the string literal even further. Hopefully it removes the \n \t
     return result; // return the final string literal 
-}
+};
 
-const std::string lang::Scala() {
+const std::string Scala() {
     const std::string for_loop = "val buffer = new ListBuffer[Int]()\n for i <- ints do\nbuffer += i * 2\sbuffer.toList"; // buffer.toList needs to be outside of the for loop and not inside of it 
     const std::string if_blocks = "if (true) {\n\s//FMI\n}\n else if (test2) {\n//FMI\n}\nelse{\n//FMI\n}\n";
     const std::string function = "// You can call in the function as long as it is defined inside a field, ex: some_function()";
     static std::string code = std::const_cast<static std::string>(SCALA_CODE);
     const std::string updated_code = replace(code, for_loops, while_loops, if_blocks, function);
     return updated_code;
-}
+};
 
-const std::string lang::TypeScript() {
+const std::string TypeScript() {
     const std::string for_loop = "for (var i in arr) { // Fill in your code here!}"; 
     const std::string while_loop = "while (true) {\n\t// Fill in your code here and replace true with something else!\n}";
     const std::string if_blocks = "if (true){\n\t//fill in your code here!\n}\nelse if (true) {\n\t//Fill in your code here!\n}";
@@ -147,9 +123,9 @@ const std::string lang::TypeScript() {
     const std::string updated_code = replace(code, for_loops, while_loops, if_blocks, function);
     return updated_code;
 
-}
+};
 
-const std::string lang::PHP() {
+const std::string PHP() {
     const std::string notes = "// This is how you create variables in php: /* $var = 'Bob';\n $Var = 'Joe';*/\n//As you can see it is similar to bash in a way. You can also reference an object like so:\n/* $foo = 'Bob';\n$bar = &$foo;*/\n// Now replace the variables that do not exist with existing variables\n";
     const std::string front_tag = "<?php\n";
     const std::string end_tag = "?>";
@@ -168,9 +144,9 @@ const std::string lang::PHP() {
     const std::string updated_code = replace(code, for_loops, while_loops, if_blocks, function);
     static const std::string result = FINAL(updated_code);
     return result;
-}
+};
 
-const std::string lang::Perl() {
+const std::string Perl() {
     const std::string front_tag = "";
     const std::string end_tag = "";
     const std::string for_loop = "";
@@ -181,9 +157,9 @@ const std::string lang::Perl() {
     const std::string updated_code = replace(code, for_loops, while_loops, if_blocks, function);
     return updated_code;
 
-}
+};
 
-const std::string lang::R() {
+const std::string R() {
     const std::string front_tag = "";
     const std::string end_tag = "";
     const std::string for_loop = "";
@@ -194,9 +170,9 @@ const std::string lang::R() {
     const std::string updated_code = replace(code, for_loops, while_loops, if_blocks, function);
     return updated_code;
 
-}
+};
 
-const std::string lang::ObjectiveC() {
+const std::string ObjectiveC() {
     const std::string front_tag = "";
     const std::string end_tag = "";
     const std::string for_loop = "";
@@ -207,9 +183,9 @@ const std::string lang::ObjectiveC() {
     const std::string updated_code = replace(code, for_loops, while_loops, if_blocks, function);
     return updated_code;
 
-}
+};
 
-const std::string lang::Haskell() {
+const std::string Haskell() {
     const std::string front_tag = "";
     const std::string end_tag = "";
     const std::string for_loop = "";
@@ -220,9 +196,9 @@ const std::string lang::Haskell() {
     const std::string updated_code = replace(code, for_loops, while_loops, if_blocks, function);
     return updated_code;
 
-}
+};
 
-const std::string lang::Rust() {
+const std::string Rust() {
     const std::string front_tag = "";
     const std::string end_tag = "";
     const std::string for_loop = "";
@@ -233,9 +209,9 @@ const std::string lang::Rust() {
     const std::string updated_code = replace(code, for_loops, while_loops, if_blocks, function);
     return updated_code;
 
-}
+};
 
-const std::string lang::Dart() {
+const std::string Dart() {
     const std::string front_tag = "";
     const std::string end_tag = "";
     const std::string for_loop = "";
@@ -246,9 +222,9 @@ const std::string lang::Dart() {
     const std::string updated_code = replace(code, for_loops, while_loops, if_blocks, function);
     return updated_code;
 
-}
+};
 
-const std::string lang::Lua() {
+const std::string Lua() {
     const std::string front_tag = "";
     const std::string end_tag = "";
     const std::string for_loop = "";
@@ -259,9 +235,9 @@ const std::string lang::Lua() {
     const std::string updated_code = replace(code, for_loops, while_loops, if_blocks, function);
     return updated_code;
 
-}
+};
 
-const std::string lang::Shell() {
+const std::string Shell() {
     const std::string front_tag = "";
     const std::string end_tag = "";
     const std::string for_loop = "";
@@ -272,9 +248,9 @@ const std::string lang::Shell() {
     const std::string updated_code = replace(code, for_loops, while_loops, if_blocks, function);
     return updated_code;
 
-}
+};
 
-const std::string lang::HTMLCSS() {
+const std::string HTMLCSS() {
     const std::string front_tag = "";
     const std::string end_tag = "";
     const std::string for_loop = "";
@@ -285,9 +261,9 @@ const std::string lang::HTMLCSS() {
     const std::string updated_code = replace(code, for_loops, while_loops, if_blocks, function);
     return updated_code;
 
-}
+};
 
-const std::string lang::SQL() {
+const std::string SQL() {
     const std::string front_tag = "";
     const std::string end_tag = "";
     const std::string for_loop = "";
@@ -298,9 +274,9 @@ const std::string lang::SQL() {
     const std::string updated_code = replace(code, for_loops, while_loops, if_blocks, function);
     return updated_code;
 
-}
+};
 
-const std::string lang::MATLAB() {
+const std::string MATLAB() {
     const std::string front_tag = "";
     const std::string end_tag = "";
     const std::string for_loop = "";
@@ -311,9 +287,9 @@ const std::string lang::MATLAB() {
     const std::string updated_code = replace(code, for_loops, while_loops, if_blocks, function);
     return updated_code;
 
-}
+};
 
-const std::string lang::VHDLVerilog() {
+const std::string VHDLVerilog() {
     const std::string front_tag = "";
     const std::string end_tag = "";
     const std::string for_loop = "";
@@ -324,9 +300,9 @@ const std::string lang::VHDLVerilog() {
     const std::string updated_code = replace(code, for_loops, while_loops, if_blocks, function);
     return updated_code;
 
-}
+};
 
-const std::string lang::FSharp() {
+const std::string FSharp() {
     const std::string front_tag = "";
     const std::string end_tag = "";
     const std::string for_loop = "";
@@ -337,9 +313,9 @@ const std::string lang::FSharp() {
     const std::string updated_code = replace(code, for_loops, while_loops, if_blocks, function);
     return updated_code;
 
-}
+};
 
-const std::string lang::CSharp() {
+const std::string CSharp() {
     const std::string front_tag = "";
     const std::string end_tag = "";
     const std::string for_loop = "";
@@ -350,9 +326,9 @@ const std::string lang::CSharp() {
     const std::string updated_code = replace(code, for_loops, while_loops, if_blocks, function);
     return updated_code;
 
-}
+};
 
-const std::string lang::VBA() {
+const std::string VBA() {
     const std::string front_tag = "";
     const std::string end_tag = "";
     const std::string for_loop = "";
@@ -363,9 +339,9 @@ const std::string lang::VBA() {
     const std::string updated_code = replace(code, for_loops, while_loops, if_blocks, function);
     return updated_code;
 
-}
+};
 
-const std::string lang::Fortran() {
+const std::string Fortran() {
     const std::string front_tag = "";
     const std::string end_tag = "";
     const std::string for_loop = "";
@@ -376,9 +352,9 @@ const std::string lang::Fortran() {
     const std::string updated_code = replace(code, for_loops, while_loops, if_blocks, function);
     return updated_code;
 
-}
+};
 
-const std::string lang::COBOL() {
+const std::string COBOL() {
     const std::string front_tag = "";
     const std::string end_tag = "";
     const std::string for_loop = "";
@@ -389,9 +365,9 @@ const std::string lang::COBOL() {
     const std::string updated_code = replace(code, for_loops, while_loops, if_blocks, function);
     return updated_code;
 
-}
+};
 
-const std::string lang::Pascal() {
+const std::string Pascal() {
     const std::string front_tag = "";
     const std::string end_tag = "";
     const std::string for_loop = "";
@@ -402,9 +378,9 @@ const std::string lang::Pascal() {
     const std::string updated_code = replace(code, for_loops, while_loops, if_blocks, function);
     return updated_code;
 
-}
+};
 
-const std::string lang::LISPScheme() {
+const std::string LISPScheme() {
     const std::string front_tag = "";
     const std::string end_tag = "";
     const std::string for_loop = "";
@@ -415,9 +391,9 @@ const std::string lang::LISPScheme() {
     const std::string updated_code = replace(code, for_loops, while_loops, if_blocks, function);
     return updated_code;
 
-}
+};
 
-const std::string lang::Groovy() {
+const std::string Groovy() {
     const std::string front_tag = "";
     const std::string end_tag = "";
     const std::string for_loop = "";
@@ -428,9 +404,9 @@ const std::string lang::Groovy() {
     const std::string updated_code = replace(code, for_loops, while_loops, if_blocks, function);
     return updated_code;
 
-}
+};
 
-const std::string lang::Erlang() {
+const std::string Erlang() {
     const std::string front_tag = "";
     const std::string end_tag = "";
     const std::string for_loop = "";
@@ -441,9 +417,9 @@ const std::string lang::Erlang() {
     const std::string updated_code = replace(code, for_loops, while_loops, if_blocks, function);
     return updated_code;
 
-}
+};
 
-const std::string lang::Clojure() {
+const std::string Clojure() {
     const std::string front_tag = "";
     const std::string end_tag = "";
     const std::string for_loop = "";
@@ -454,9 +430,9 @@ const std::string lang::Clojure() {
     const std::string updated_code = replace(code, for_loops, while_loops, if_blocks, function);
     return updated_code;
 
-}
+};
 
-const std::string lang::Prolog() {
+const std::string Prolog() {
     const std::string front_tag = "";
     const std::string end_tag = "";
     const std::string for_loop = "";
@@ -467,9 +443,9 @@ const std::string lang::Prolog() {
     const std::string updated_code = replace(code, for_loops, while_loops, if_blocks, function);
     return updated_code;
 
-}
+};
 
-const std::string lang::Ada() {
+const std::string Ada() {
     const std::string front_tag = "";
     const std::string end_tag = "";
     const std::string for_loop = "";
@@ -480,9 +456,9 @@ const std::string lang::Ada() {
     const std::string updated_code = replace(code, for_loops, while_loops, if_blocks, function);
     return updated_code;
 
-}
+};
 
-const std::string lang::AWK() {
+const std::string AWK() {
     const std::string front_tag = "";
     const std::string end_tag = "";
     const std::string for_loop = "";
@@ -493,9 +469,9 @@ const std::string lang::AWK() {
     const std::string updated_code = replace(code, for_loops, while_loops, if_blocks, function);
     return updated_code;
 
-}
+};
 
-const std::string lang::TCL() {
+const std::string TCL() {
     const std::string front_tag = "";
     const std::string end_tag = "";
     const std::string for_loop = "";
@@ -505,9 +481,9 @@ const std::string lang::TCL() {
     static std::string code = std::const_cast<static std::string>(TCL_CODE);
     const std::string updated_code = replace(code, for_loops, while_loops, if_blocks, function);
     return updated_code;
-}
+};
 
-const std::string lang::Dlang() {
+const std::string Dlang() {
     const std::string front_tag = "";
     const std::string end_tag = "";
     const std::string for_loop = "";
@@ -518,9 +494,9 @@ const std::string lang::Dlang() {
     const std::string updated_code = replace(code, for_loops, while_loops, if_blocks, function);
     return updated_code;
 
-}
+};
 
-const std::string lang::Julia() {
+const std::string Julia() {
     const std::string front_tag = "";
     const std::string end_tag = "";
     const std::string for_loop = "";
@@ -531,9 +507,9 @@ const std::string lang::Julia() {
     const std::string updated_code = replace(code, for_loops, while_loops, if_blocks, function);
     return updated_code;
 
-}
+};
 
-const std::string lang::VisualBasic() {
+const std::string VisualBasic() {
     const std::string front_tag = "";
     const std::string end_tag = "";
     const std::string for_loop = "";
@@ -544,9 +520,9 @@ const std::string lang::VisualBasic() {
     const std::string updated_code = replace(code, for_loops, while_loops, if_blocks, function);
     return updated_code;
 
-}
+};
 
-const std::string lang::PowerShell() {
+const std::string PowerShell() {
     const std::string front_tag = "";
     const std::string end_tag = "";
     const std::string for_loop = "";
@@ -559,7 +535,7 @@ const std::string lang::PowerShell() {
 
 }
 
-const std::string lang::Racket() {
+const std::string Racket() {
     const std::string front_tag = "";
     const std::string end_tag = "";
     const std::string for_loop = "";
@@ -570,9 +546,9 @@ const std::string lang::Racket() {
     const std::string updated_code = replace(code, for_loops, while_loops, if_blocks, function);
     return updated_code;
 
-}
+};
 
-const std::string lang::Elm() {
+const std::string Elm() {
     const std::string front_tag = "";
     const std::string end_tag = "";
     const std::string for_loop = "";
@@ -583,9 +559,9 @@ const std::string lang::Elm() {
     const std::string updated_code = replace(code, for_loops, while_loops, if_blocks, function);
     return updated_code;
 
-}
+};
 
-const std::string lang::Eiffel() {
+const std::string Eiffel() {
     const std::string front_tag = "";
     const std::string end_tag = "";
     const std::string for_loop = "";
@@ -596,9 +572,9 @@ const std::string lang::Eiffel() {
     const std::string updated_code = replace(code, for_loops, while_loops, if_blocks, function);
     return updated_code;
 
-}
+};
 
-const std::string lang::LabVIEW() {
+const std::string LabVIEW() {
     const std::string front_tag = "";
     const std::string end_tag = "";
     const std::string for_loop = "";
@@ -609,9 +585,9 @@ const std::string lang::LabVIEW() {
     const std::string updated_code = replace(code, for_loops, while_loops, if_blocks, function);
     return updated_code;
 
-}
+};
 
-const std::string lang::Smalltalk() {
+const std::string Smalltalk() {
     const std::string front_tag = "";
     const std::string end_tag = "";
     const std::string for_loop = "";
@@ -622,9 +598,9 @@ const std::string lang::Smalltalk() {
     const std::string updated_code = replace(code, for_loops, while_loops, if_blocks, function);
     return updated_code;
 
-}
+};
 
-const std::string lang::StandardML() {
+const std::string StandardML() {
     const std::string front_tag = "";
     const std::string end_tag = "";
     const std::string for_loop = "";
@@ -635,4 +611,5 @@ const std::string lang::StandardML() {
     const std::string updated_code = replace(code, for_loops, while_loops, if_blocks, function);
     return updated_code;
 
-}
+};
+

@@ -22,6 +22,8 @@ static void run(const std::string source) {
     d.setCode(source); // set the code 
     std::vector<Token> tokens = scanner.ScanTokens();
     Parser parser = new Parser(tokens);
+    Expr expression = parser.parse();
+    if (hadError) return;
 }
 
 

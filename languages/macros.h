@@ -178,7 +178,7 @@
     "}" 
 
 #define PERL_CODE_STR \
-        ....FMI
+        "Perl code goes here..."
 
 #define PERL_CODE _Pragma(#PERL_CODE_STR)
 

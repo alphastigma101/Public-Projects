@@ -1,66 +1,85 @@
 #pragma once
-#ifndef LANGUAGES_H
-#define LANGUAGES_H
-#include "macros.h" // has pargma once inside the file so the macros inside it cannot be called in other files
-#include <lookup_languages.h>
+#ifndef _LANGUAGES_H_
+#define _LANGUAGES_H_
+#include "macros.h"
+#include "lookup_languages.h"
 
-//TODO: add argument support
+//TODO: Add argument support to FINAL macro
 #define FINAL(CODE)  _Pragma(#CODE)
 
+// operations struct 
+// functions that operate on a string aka the code
+struct operations {
+    std::string replace(std::string &code, const std::string for_loops, const std::string while_loops, const std::string if_blocks, const std::string function); 
+};
+
+// Static languages struct
+struct static_languages: operations {
+    std::string C();
+    std::string CPP();
+    std::string Java();
+    std::string Go();
+    std::string Kotlin();
+    std::string Swift();
+    std::string Rust();
+    std::string Haskell();
+    std::string CSharp();
+    std::string FSharp();
+    std::string ObjectiveC();
+    std::string VHDLVerilog();
+    std::string Fortran();
+    std::string COBOL();
+    std::string Pascal();
+    std::string Ada();
+    std::string Scala();
+    std::string TypeScript();
+    std::string Dart();
+};
+
+// Dynamic languages struct
+struct dynamic_languages: operations {
+    std::string Python();
+    std::string JavaScript();
+    std::string Ruby();
+    std::string PHP();
+    std::string Perl();
+    std::string R();
+    std::string Lua();
+    std::string Shell();
+    std::string MATLAB();
+    std::string VBA();
+    std::string LISPScheme();
+    std::string Groovy();
+    std::string Erlang();
+    std::string Clojure();
+    std::string Prolog();
+    std::string AWK();
+    std::string TCL();
+    std::string Julia();
+    std::string PowerShell();
+    std::string Racket();
+    std::string Smalltalk();
+};
+
+// Other languages that don't fit neatly into static/dynamic categories
+struct other_languages: operations {
+    std::string HTMLCSS();
+    std::string SQL();
+    std::string LabVIEW();
+    std::string VisualBasic(); // Can be both static and dynamic
+    std::string Elm();
+    std::string Eiffel();
+    std::string StandardML();
+    std::string Dlang(); // Has both static and dynamic features
+};
+
+// Main languages struct
 struct languages {
-    std::string replace(std::string &code, const std::string for_loops, const std::string while_loops, const std::string if_blocks, const std::string function);
-    const std::string C();
-    const std::string CPP(); 
-    const std::string Java();
-    const std::string Python();
-    const std::string JavaScript();
-    const std::string Ruby();
-    const std::string Swift();
-    const std::string Go();
-    const std::string Kotlin();
-    const std::string Scala();
-    const std::string TypeScript();
-    const std::string PHP();    
-    const std::string Perl();
-    const std::string R();
-    const std::string ObjectiveC();
-    const std::string Haskell();
-    const std::string Rust();
-    const std::string Dart();
-    const std::string Lua();
-    const std::string Shell();
-    const std::string HTMLCSS();
-    const std::string SQL();
-    const std::string MATLAB();
-    const std::string VHDLVerilog();
-    const std::string FSharp();
-    const std::string CSharp();
-    const std::string VBA();
-    const std::string Fortran();
-    const std::string COBOL();
-    const std::string Pascal();
-    const std::string LISPScheme();
-    const std::string Groovy();
-    const std::string Erlang();
-    const std::string Clojure();
-    const std::string Prolog();
-    const std::string Ada();
-    const std::string AWK();
-    const std::string TCL();
-    const std::string Dlang();
-    const std::string Julia();
-    const std::string VisualBasic();
-    const std::string PowerShell();
-    const std::string Racket();
-    const std::string Elm();
-    const std::string Eiffel();
-    const std::string LabVIEW();
-    const std::string Smalltalk();
-    const std::string StandardML();
+    static_languages static_lang;
+    dynamic_languages dynamic_lang;
+    other_languages other_lang;
 };
 
 typedef languages lang;
 extern lang;
-
-#endif 
-
+#endif

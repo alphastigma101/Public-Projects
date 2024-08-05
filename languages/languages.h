@@ -1,8 +1,8 @@
 #pragma once
 #ifndef _LANGUAGES_H_
 #define _LANGUAGES_H_
-#include "macros.h"
-#include "languages_types.h"
+#include <macros.h>
+#include <languages_types.h>
 
 //TODO: Add argument support to FINAL macro
 #define FINAL(CODE)  _Pragma(#CODE)

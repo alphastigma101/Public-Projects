@@ -2,7 +2,6 @@
 #define _TOKEN_H_
 #include <interface.h>
 #include <languages.h>
-#include <iostream>
 
 /*
  * This enum class object supports multiple languages

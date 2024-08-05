@@ -1,10 +1,11 @@
 #pragma once
 #ifndef _LANGUAGE_TYPES_H_
 #define _LANGUAGE_TYPES_H_
-#include "lookup_languages.h" 
-#include <string>
+#include <lookup_languages.h>
 #include <any>
 #include <cstdint>
+#include <optional>
+#include <variant>
 
 namespace LanguageTypes {
     struct Python {
@@ -492,5 +493,5 @@ namespace LanguageTypes {
         template<typename K, typename V> using AssociativeArray = std::map<K, V>;
     };
 };
-
+using LanguageTypes
 #endif // LANGUAGE_TYPES_H

@@ -5,7 +5,7 @@
  * outputDir: Is the name of the file that will hold the ast structure 
  * baseName: The name of the file code is getting written to 
 */
-ast::ast(std::string outputDir, std::string baseName): outputDir(this->outputDir) baseName(this->baseName) {
+ast::ast(std::string& outputDir, std::string& baseName): outputDir(this->outputDir) baseName(this->baseName) {
     ast::generateAst(outputDir);
     // OPTIONAL: include a rich eco system based on the file extension the user chooses and add it to baseName
 }
@@ -25,7 +25,7 @@ void ast::defineAst() {
          */
         setTable(table);
         std::cout << "List of supported languages" << std::endl;
-        for (const &it: table) { std::cout << it->fist << std::endl; }
+        for (const &it: table) { std::cout << it->first << std::endl; }
         std::string user;
         // need to check and see if the user passed in a argument 
         while (!(table.find(user))) {

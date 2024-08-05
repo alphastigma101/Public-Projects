@@ -104,5 +104,5 @@ namespace ContextFreeGrammar {
             ClassType value;
     };
 };
-using ContextFreeGrammar;
+using namespace ContextFreeGrammar;
 #endif 

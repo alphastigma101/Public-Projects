@@ -99,10 +99,11 @@ enum TokenType {
     SPREAD, AT, EXCLAMATION, BRACES, PARENS, END_OF_FILE
 };
 
+
 struct data {
     std::string code;
     std::string getCode();
-    void setCode(std::string code);
+    void setCode(std::string& code);
 };
 
 typedef data d;

@@ -492,6 +492,9 @@ namespace LanguageTypes {
         template<typename T> using Array = std::vector<T>;
         template<typename K, typename V> using AssociativeArray = std::map<K, V>;
     };
+    struct Custom {
+        // Add basic support such as arrays, functions, loops, etc
+    };
 };
 using LanguageTypes
 #endif // LANGUAGE_TYPES_H

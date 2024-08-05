@@ -30,10 +30,10 @@ namespace AbstractionTreeSyntax {
     class ast: public virtual generateAst {
         // This class defines the tree for a specific programming language 
         public:
-            ast(std::string outputDir, std::string baseName);
+            ast(std::string& outputDir, std::string& baseName);
             static void defineAst();
             ~ast(){};
-            inline void ast::setTable(const Table table) {table = initTable();};
+            inline void ast::setTable(const Table& table) {table = initTable();};
             inline Table ast::getTable() {return table;};
             inline std::string getBaseName() {return baseName;};
         private:
@@ -45,19 +45,19 @@ namespace AbstractionTreeSyntax {
     class printAst: public ast {
         // This class will print the ast
         public:
-            inline std::string parenthesize(const std::string& name, const Expr left, const Expr right) {
+            inline std::string parenthesize(const std::string& name, const Expr& left, const Expr& right) {
                 std::string result = "(" + name;
                 // TODO: This needs to be implemented correctly
                 // add it to the exprs object
                 return result;
             };
-            inline std::string visitBinaryExpr(Binary binary) { return parenthesize(binary::Expr::op::lexeme, binary::Expr::left, binary::Expr::right);};
-            inline std::string visitGroupingExpr(Grouping grouping) { return parenthesize("group", grouping::Expr::expression);};
-            inline std::string visitLiteralExpr(Literal literal) { 
+            inline std::string visitBinaryExpr(Binary& binary) { return parenthesize(binary::Expr::op::lexeme, binary::Expr::left, binary::Expr::right);};
+            inline std::string visitGroupingExpr(Grouping& grouping) { return parenthesize("group", grouping::Expr::expression);};
+            inline std::string visitLiteralExpr(Literal& literal) { 
                 if (expr.value == NULL) return "nil";
                 return literal::Expr::value::toString();
             };
-            inline std::string visitUnaryExpr(Unary unary) { return parenthesize(unary::Exp::op::lexeme, unary::Expr::right);};
+            inline std::string visitUnaryExpr(Unary& unary) { return parenthesize(unary::Exp::op::lexeme, unary::Expr::right);};
         private:
             std::vector<std::shared_ptr<Expr>> exprs;
     };

@@ -2,7 +2,7 @@
 #define _SCANNER_H_
 #include <token.h>
 // define data's struct functions here 
-void d::setCode(std::string code) {this->code = code;};
+void d::setCode(std::string& code) {this->code = code;};
 std::string d::getCode() {return this->code;};
 
 class Scanner: public Advance, public Peek, public End, public Check, public Parsable, public Match {

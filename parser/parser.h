@@ -55,5 +55,5 @@ namespace Parser {
             static void synchronize();
     };
 };
-using Parser
+using namespace Parser
 #endif

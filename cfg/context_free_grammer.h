@@ -1,3 +1,4 @@
+#pragma once
 #ifndef _CONTEXT_FREE_GRAMMAR_H_
 #define _CONTEXT_FREE_GRAMMAR_H_
 #include <token.h>
@@ -28,9 +29,9 @@ namespace ContextFreeGrammar {
         public:
             virtual ~Expr() = default;
             void accept(Expr& expr); // let the derived classes overload this method
-            final Expr right;
-            final Expr left;
-            final Token op;
+            Expr* right;
+            Expr* left;
+            Token* op;
     };
     class Binary: public virtual Expr {
         /*
@@ -51,10 +52,10 @@ namespace ContextFreeGrammar {
             Binary(Expr* left, Token op, Expr* right): left(this->left), right(this->right), op(this->op) {};
             ~Binary() {};
             void visit(Binary& expr) {
-                 expr.left->accept(*this);
-                 expr.right->accept(*this);
+                 expr->left->accept(*this);
+                 expr->right->accept(*this);
             };
-            void accecpt(Binary& binary) { binary.visit(*this); };
+            void accecpt(Binary& binary) { binary.visit(*this);};
         private:
             Expr* left;
             Expr* right;
@@ -65,8 +66,8 @@ namespace ContextFreeGrammar {
             Unary(Expr* right, Token op): right(this->right) op(this->op){};
             ~Unary(){};
             void visit(Unary& expr) {
-                expr.left->accept(*this);
-                expr.right->accept(*this);
+                expr->left->accept(*this);
+                expr->right->accept(*this);
             };
             void accecpt(Unary& unary) {unary.vist(*this);};  
         private:
@@ -75,15 +76,15 @@ namespace ContextFreeGrammar {
     };
     class Grouping: public virtual Expr {
         public:
-            Grouping(Expr expression): expression(this->expression) {};
+            Grouping(Expr* expression): expression(this->expression) {};
             ~Grouping() {};
             void visit(Grouping& expr) {
-                expr.left->accept(*this);
-                expr.right->accept(*this);
+                expr->left->accept(*this);
+                expr->right->accept(*this);
             };
             void accept(Grouping& group) {group.visit(*this);};
         private:
-            Expr expression;
+            Expr* expression;
     };
     class Literal: public Conversion, public virtual Expr {
         public:

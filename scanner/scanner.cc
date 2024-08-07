@@ -117,7 +117,7 @@ void Scanner::scanToken() {
     }
 }
 
-void Scanner::addToken(TokenType type) { addToken(type, ""); }
+void Scanner::addToken(TokenType& type) { addToken(type, ""); }
 
 /*
  * (addToken) is a method that is apart of the Scanner class 
@@ -126,7 +126,7 @@ void Scanner::addToken(TokenType type) { addToken(type, ""); }
     * const std::string literal: A representation of a primitive instance type 
  * This method only pushes to a vector 
 */
-void Scanner::addToken(TokenType type, const std::string literal) {
+void Scanner::addToken(TokenType& type, const std::string& literal) {
     std::string text = Source.substr(start, current);
     tokens.push_back(Token(type, text, literal, line));
 }
@@ -151,4 +151,48 @@ void Scanner::identifier() {
     }
     addToken(type);
 }
+/*
+ *
+ *
+*/
+bool Scanner::match(char& expected) {
+    if (isAtEnd()) return false;
+    if (Source.at(current) != expected) return false;
+    current++;
+    return true;
+}
 
+/*
+ *
+ *
+*/
+void Scanner::String() {
+    while (peek() != '"' && !isAtEnd()) {
+        if (peek() == '\n') line++;
+        advance();
+    }
+    if (isAtEnd()) {
+        std::cout << line << "Unterminated string.";
+        return;
+    }
+    // The closing ".
+    advance();
+
+    // Trim the surrounding quotes.
+    std::string value = Source.substr(start + 1, current - 1);
+    addToken(TokenType::STRING, value);
+}
+/*
+ *
+ *
+*/
+void Scanner::number() {    
+    while (isDigit(peek())) advance();
+    // Look for a fractional part.
+    if (Scanner::peek() == '.' && isDigit(peekNext())) {
+        // Consume the "."
+        advance();
+        while (isDigit(peek())) advance();
+    }
+    addToken(TokenType::NUMBER,Source.substr(start, current));
+}

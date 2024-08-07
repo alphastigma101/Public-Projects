@@ -1,23 +1,26 @@
 #ifndef _INTERPRETER_H_
 #define _INTERPRETER_H_
 #include <token.h>
-
-template<class VistorType>
-class interpreter {
+#include <typeinfo>
+template<class Vistor>
+class interpreter: public Check, public NonMemberConv {
     // A class object that visits Binary, Unary, Grouping, or Literal.
     public:
-        interpreter(VistorType* expr, LanguageTypes& lang): expr(this->expr) currentLanguage(lang) {};
+        interpreter(Vistor* expr, LanguageTypes& lang): expr(this->expr) currentLanguage(lang) {};
         ~interpreter(){};
-        auto visitLiteralExpr(VisitorType* expr) {return expr->value;};
-        auto visitUnaryExpr(VisitorType* expr);
-        auto visitBinaryExpr(VisitorType* expr);
+        auto visitLiteralExpr(Visitor* expr) {return expr->value;};
+        auto visitUnaryExpr(Visitor* expr);
+        auto visitBinaryExpr(Visitor* expr);
     private:
         using Any = std::any; 
-        VistorType* expr;
-        bool isTruthy(VisitorType* object);
-        void checkNumberOperands(const Token& op, const Expr::left& left, const Expr::right& right);
+        Vistor* expr;
+        bool isTruthy(Visitor* object);
+        void checkNumberOperands(const Visitor& op, const Visitor& left, const Visitor& right);
+        void checkNumberOperand(const Visitor& op, const Visitor& right);
         LanguageTypes currentLanguage;
+        void evaluateBinaryTokens(LanguageTypes& currentLanguage, Visitor& expr, Visitor& left, Visitor& right);
     protected:
-        auto evaluate(VisitorType* expr) {return expr->accept(*this);};
+        auto evaluate(Visitor* expr) {return expr->accept(*this);};
+        inline bool isString(const Type& value) override { return value.type() == typeid(std::string);};
 };
 #endif

@@ -86,10 +86,10 @@ namespace ContextFreeGrammar {
         private:
             Expr* expression;
     };
-    class Literal: public Conversion, public virtual Expr {
+    class Literal: public MemberConv, public virtual Expr {
         public:
-            template<class ClassType>
-            Literal(ClassType value): value(this->value){};
+            template<class Type>
+            Literal(Type& value): value(this->value){};
             ~Literal(){};
             std::string visit(Literal& expr) {
                 if (expr.value == NULL) return "nil";
@@ -101,7 +101,7 @@ namespace ContextFreeGrammar {
                 return &cast[0];
             };
         private:
-            ClassType value;
+            Type value;
     };
 };
 using namespace ContextFreeGrammar;

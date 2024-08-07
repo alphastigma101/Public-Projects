@@ -19,20 +19,22 @@ class Advance {
         virtual char advance() = 0;
 };
 
-class Parsable {
+class NonMemberConv {
+    // An abstract class used for converting object types that are not a member object of the class 
     public:
-        virtual ~Parsable() = default;
-        virtual void String() = 0;
-        virtual void number() = 0;
+        virtual ~Convert() = default;
+        template<class Type>
+        virtual Type toNumeric(const Type& value) = 0;
+        virtual char* toString(const Type& left, const Type& right) = 0;
 };
 
 class Check {
     public:
+        template<class Type>
         virtual ~Check() = default;
-        virtual bool isAlpha(char c) = 0;
-        virtual bool isAlphaNumeric(char c) = 0;
-        virtual bool isDigit(char c) = 0;
-    };
+        virtual bool isNumeric(const Type& value) = 0; 
+        virtual bool isString(const Type& value) = 0;
+};
 
 class Match {
     public:
@@ -40,9 +42,10 @@ class Match {
 
 };
 
-class Conversion {
+class MemberConv {
+    // An abstract class is used to convert member types of a class object into a string 
     public:
-        virtual ~Conversion() = default;
-        virtual char* toString();
+        virtual ~MemberConv() = default;
+        virtual char* toString() = 0;
 };
 #endif 

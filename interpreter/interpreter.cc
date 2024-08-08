@@ -14,7 +14,6 @@ auto interpreter::visitUnaryExpr(Visitor* expr) -> Any {
         case TokenType::BANG:
             return !isTruthy(right);
         case TokenType::MINUS:
-            checkNumberOperand(expr->op, *right);
             switch(currentLanguage) {
                 case LanguageTypes::Python:
                     return u-Python(LanguageTypes::Python, right);
@@ -140,146 +139,148 @@ auto interpreter::visitBinaryExpr(Visitor* expr) -> Any {
     auto right = evaluate(expr->right);
     switch (currentLanguage) {
         case LanguageTypes::Python:
-            evaluateBinaryTokens(currentLanguage, expr, left, right);
+            if (arithmeticOperations(currentLanguage, expr, left, right) != NULL) {
+
+            }
             break;
         case LanguageTypes::JavaScript:
-            evaluateBinaryTokens(currentLanguage, expr, left, right);
+            arithmeticOperations(currentLanguage, expr, left, right);
             break;
         case LanguageTypes::Ruby:
-            evaluateBinaryTokens(currentLanguage, expr, left, right);
+            arithmeticOperations(currentLanguage, expr, left, right);
             break;
         case LanguageTypes::C:
-            evaluateBinaryTokens(currentLanguage, expr, left, right);
+            arithmeticOperations(currentLanguage, expr, left, right);
             break;
         case LanguageTypes::CPP:
-            evaluateBinaryTokens(currentLanguage, expr, left, right);
+            arithmeticOperations(currentLanguage, expr, left, right);
             break;
         case LanguageTypes::Java:
-            evaluateBinaryTokens(currentLanguage, expr, left, right);
+            arithmeticOperations(currentLanguage, expr, left, right);
             break;
         case LanguageTypes::Go:
-            evaluateBinaryTokens(currentLanguage, expr, left, right);
+            arithmeticOperations(currentLanguage, expr, left, right);
             break;
         case LanguageTypes::Kotlin:
-            evaluateBinaryTokens(currentLanguage, expr, left, right);
+            arithmeticOperations(currentLanguage, expr, left, right);
             break;
         case LanguageTypes::Swift:
-            evaluateBinaryTokens(currentLanguage, expr, left, right);
+            arithmeticOperations(currentLanguage, expr, left, right);
             break;
         case LanguageTypes::Rust:
-            evaluateBinaryTokens(currentLanguage, expr, left, right);
+            arithmeticOperations(currentLanguage, expr, left, right);
             break;
         case LanguageTypes::CSharp:
-            evaluateBinaryTokens(currentLanguage, expr, left, right);
+            arithmeticOperations(currentLanguage, expr, left, right);
             break;
         case LanguageTypes::FSharp:
-            evaluateBinaryTokens(currentLanguage, expr, left, right);
+            arithmeticOperations(currentLanguage, expr, left, right);
             break;
         case LanguageTypes::ObjectiveC:
-            evaluateBinaryTokens(currentLanguage, expr, left, right);
+            arithmeticOperations(currentLanguage, expr, left, right);
             break;
         case LanguageTypes::Scala:
-            evaluateBinaryTokens(currentLanguage, expr, left, right);
+            arithmeticOperations(currentLanguage, expr, left, right);
             break;
         case LanguageTypes::TypeScript:
-            evaluateBinaryTokens(currentLanguage, expr, left, right);
+            arithmeticOperations(currentLanguage, expr, left, right);
             break;
         case LanguageTypes::Dart:
-            evaluateBinaryTokens(currentLanguage, expr, left, right);
+            arithmeticOperations(currentLanguage, expr, left, right);
             break;
         case LanguageTypes::PHP:
-            evaluateBinaryTokens(currentLanguage, expr, left, right);
+            arithmeticOperations(currentLanguage, expr, left, right);
             break;
         case LanguageTypes::R:
-            evaluateBinaryTokens(currentLanguage, expr, left, right);
+            arithmeticOperations(currentLanguage, expr, left, right);
             break;
         case LanguageTypes::Lua:
-            evaluateBinaryTokens(currentLanguage, expr, left, right);
+            arithmeticOperations(currentLanguage, expr, left, right);
             break;
         case LanguageTypes::MATLAB:
-            evaluateBinaryTokens(currentLanguage, expr, left, right);
+            arithmeticOperations(currentLanguage, expr, left, right);
             break;
         case LanguageTypes::VBA:
-            evaluateBinaryTokens(currentLanguage, expr, left, right);
+            arithmeticOperations(currentLanguage, expr, left, right);
             break;
         case LanguageTypes::Julia:
-            evaluateBinaryTokens(currentLanguage, expr, left, right);
+            arithmeticOperations(currentLanguage, expr, left, right);
             break;
         case LanguageTypes::PowerShell:
-            evaluateBinaryTokens(currentLanguage, expr, left, right);
+            arithmeticOperations(currentLanguage, expr, left, right);
             break;
         case LanguageTypes::VisualBasic:
-            evaluateBinaryTokens(currentLanguage, expr, left, right);
+            arithmeticOperations(currentLanguage, expr, left, right);
             break;
         case LanguageTypes::Dlang:
-            evaluateBinaryTokens(currentLanguage, expr, left, right);
+            arithmeticOperations(currentLanguage, expr, left, right);
             break;
         case LanguageTypes::Haskell:
-            evaluateBinaryTokens(currentLanguage, expr, left, right);
+            arithmeticOperations(currentLanguage, expr, left, right);
             break;
         case LanguageTypes::Erlang:
-            evaluateBinaryTokens(currentLanguage, expr, left, right);
+            arithmeticOperations(currentLanguage, expr, left, right);
             break;
         case LanguageTypes::Clojure:
-            evaluateBinaryTokens(currentLanguage, expr, left, right);
+            arithmeticOperations(currentLanguage, expr, left, right);
             break;
         case LanguageTypes::StandardML:
-            evaluateBinaryTokens(currentLanguage, expr, left, right);
+            arithmeticOperations(currentLanguage, expr, left, right);
             break;
         case LanguageTypes::Elm:
-            evaluateBinaryTokens(currentLanguage, expr, left, right);
+            arithmeticOperations(currentLanguage, expr, left, right);
             break;
         case LanguageTypes::VHDLVerilog:
-            evaluateBinaryTokens(currentLanguage, expr, left, right);
+            arithmeticOperations(currentLanguage, expr, left, right);
             break;
         case LanguageTypes::Fortran:
-            evaluateBinaryTokens(currentLanguage, expr, left, right);
+            arithmeticOperations(currentLanguage, expr, left, right);
             break;
         case LanguageTypes::COBOL:
-            evaluateBinaryTokens(currentLanguage, expr, left, right);
+            arithmeticOperations(currentLanguage, expr, left, right);
             break;
         case LanguageTypes::Pascal:
-            evaluateBinaryTokens(currentLanguage, expr, left, right);
+            arithmeticOperations(currentLanguage, expr, left, right);
             break;
         case LanguageTypes::Ada:
-            evaluateBinaryTokens(currentLanguage, expr, left, right);
+            arithmeticOperations(currentLanguage, expr, left, right);
             break;
         case LanguageTypes::Perl:
-            evaluateBinaryTokens(currentLanguage, expr, left, right);
+            arithmeticOperations(currentLanguage, expr, left, right);
             break;
         case LanguageTypes::AWK:
-            evaluateBinaryTokens(currentLanguage, expr, left, right);
+            arithmeticOperations(currentLanguage, expr, left, right);
             //TODO: Add support for AWK
             break;
         case LanguageTypes::TCL:
-            evaluateBinaryTokens(currentLanguage, expr, left, right);
+            arithmeticOperations(currentLanguage, expr, left, right);
             break;
         case LanguageTypes::Shell:
             throw std::runtime_error("Unary minus not supported in Shell");
         case LanguageTypes::LISPScheme:
-            evaluateBinaryTokens(currentLanguage, expr, left, right);
+            arithmeticOperations(currentLanguage, expr, left, right);
             break;
         case LanguageTypes::Racket:
-            evaluateBinaryTokens(currentLanguage, expr, left, right);
+            arithmeticOperations(currentLanguage, expr, left, right);
             break;
         case LanguageTypes::Prolog:
             throw std::runtime_error("Unary minus not supported in this context in Prolog");
         case LanguageTypes::Smalltalk:
-            evaluateBinaryTokens(currentLanguage, expr, left, right);
+            arithmeticOperations(currentLanguage, expr, left, right);
             break;
         case LanguageTypes::HTMLCSS:
            evaluateBinaryTokens(currentLanguage, expr, left, right);
             break;
         case LanguageTypes::SQL:
-            evaluateBinaryTokens(currentLanguage, expr, left, right);
+            arithmeticOperations(currentLanguage, expr, left, right);
             break;
         case LanguageTypes::LabVIEW:
             throw std::runtime_error("Unary minus not applicable in this context");
         case LanguageTypes::Eiffel:
-            evaluateBinaryTokens(currentLanguage, expr, left, right);
+            arithmeticOperations(currentLanguage, expr, left, right);
             break;
         case LanguageTypes::Custom:
-            evaluateBinaryTokens(currentLanguage, expr, left, right);
+            arithmeticOperations(currentLanguage, expr, left, right);
             // TODO: This needs to be redone
             // This should be defined as a struct using templates for the objects to add flexibility 
             break;
@@ -314,137 +315,4 @@ bool interpreter::isTruthy(const Type& object) {
     }
     return true;
 }
-/* -----------------------------------------------------------------------------------------------------------------------------------------------
- * isEqual Description: 
-    Is a method that checks to see if one object equals the other
- * Arguments:
-    * Visitor a: Is a generic type that must have a concrete type during run time, and will visit the binary abstract syntax tree left side (lh)
-    * Visitor b: Is a generic type that must have a concrete type during run time, and will visit the binary abstract syntax tree right side (rh)
- * Returns:
-    True if a and b are equal
-    Otherwise, return false 
- * -----------------------------------------------------------------------------------------------------------------------------------------------
-*/
-bool interpreter::isEqual(Visitor& a, Visitor& b) {
-    if (a == NULL && b == NULL) return true;
-    if (a == NULL) return false;
-    return a.equals(b);
-}
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------
- * checkNumberOperand Description: 
-    Is a method that calls in isNumeric, the helper function
- * Arguments:
-    * Visitor expr: It is an object that represents the abstraction syntax, (ast) that is currently being used. In this case, it would be the Unary ast
-    * Visitor right: Is a generic type that must have a concrete type during run time, and will visit the unary abstract syntax tree right side (rh)
- * Returns:
-    True if a and b are equal
-    Otherwise, return false 
- * ----------------------------------------------------------------------------------------------------------------------------------------------------
-*/
-void interpreter::checkNumberOperand(Visitor& expr, Visitor& right) {
-    if (isNumeric(right) == true) return;
-    throw new RuntimeError(expr.op, "Operand must be numeric.");
 
-}
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------
- * checkNumberOperands Description: 
-    Is a method that calls in isNumeric, the helper function
- * Arguments:
-    * Visitor expr: It is an object that represents the abstraction syntax, (ast) that is currently being used. In this case, it would be the Binary ast
-    * Visitor left: Is a generic type that must have a concrete type during run time, and will visit the binary abstract syntax tree left side (lh)
-    * Visitor right: Is a generic type that must have a concrete type during run time, and will visit the binary abstract syntax tree right side (rh)
- * Returns:
-    True if a and b are equal
-    Otherwise, return false 
- * ----------------------------------------------------------------------------------------------------------------------------------------------------
-*/
-void interpreter::checkNumberOperands(Visitor& expr, Vistor& left, Visitor& right) {
-    if ((isNumeric(left) == true) && (isNumeric(right) == true)) return;
-    throw new RuntimeError(expr.op, "Operands must be numbers.");
-}
-/* -----------------------------------------------------------------------------
- * isNumeric Description: 
-    Is a helper function for (checkNumberOperands) and (checkNumberOperands)
- * Arguments:
-    * Type: Is a generic type that must have a concrete type during run time 
- * Returns:
-    True if the object at runtime is type: int, int64_t, float, double, etc.
-    Otherwise, return false 
- * ----------------------------------------------------------------------------
-*/
-bool interpreter::isNumeric(const Type& value) override {
-    // TODO: Need to add more supported types here. refer to languages_types.h 
-    return value.type() == typeid(int) ||
-           value.type() == typeid(int64_t) ||
-           value.type() == typeid(float) ||
-           value.type() == typeid(double);
-}
-/* ----------------------------
- *
- *
- *
- * ---------------------------
-*/
-Type interpreter::toNumeric(const Type& value) override {
-    if (value.type() == typeid(int)) return std::any_cast<int>(value);
-    if (value.type() == typeid(int64_t)) return std::any_cast<int64_t>(value);
-    if (value.type() == typeid(float)) return std::any_cast<float>(value);
-    if (value.type() == typeid(double)) return std::any_cast<double>(value);
-    throw std::runtime_error("Invalid numeric type");
-}
-/* ---------------------------
- *
- *
- * ---------------------------
-*/
-auto interpreter::evaluateBinaryTokens(LanguageTypes& currentLanguage, Visitor* expr, Visitor& left, Visitor& right) -> Any {
-    switch (expr->op->getType()) {
-        case TokenType::PLUS:
-            try {
-                if ((isNumeric(left) == true) && (isNumeric(right) == true)) { return toNumeric(left) + toNumeric(right); }
-                if ((isString(left) == true) && (isString(right) == true)) { return (std::string)left + (std::string)right; }
-            } 
-            catch() {}
-            break;
-        case TokenType::MINUS:
-            try {if ((isNumeric(left) == true) && (isNumeric(right) == true)) { return toNumeric(left) - toNumeric(right); }} 
-            catch() {}
-            break;
-        case TokenType::SLASH:
-            try {if ((isNumeric(left) == true) && (isNumeric(right) == true)) { return toNumeric(left) / toNumeric(right); }}
-            catch() {}
-            break;
-        case TokenType::STAR:
-            try { if ((isNumeric(left) == true) && (isNumeric(right) == true)) { return toNumeric(left) * toNumeric(right); }}
-            catch() {}
-            break;
-        case TokenType::GREATER:
-            try {
-                checkNumberOperands(expr->op, left, right);
-                if ((isNumeric(left) == true) && (isNumeric(right) == true)) { return toNumeric(left) > toNumeric(right); }
-            } 
-            catch() {}
-            break;
-        case TokenType::GREATER_EQUAL:
-            try {
-                checkNumberOperands(expr->op, left, right);
-                if ((isNumeric(left) == true) && (isNumeric(right) == true)) { return toNumeric(left) >= toNumeric(right); }
-            } catch() {}
-        case TokenType::LESS:
-            try {
-                checkNumberOperands(expr->op, left, right);
-                if ((isNumeric(left) == true) && (isNumeric(right) == true)) { return toNumeric(left) < toNumeric(right); }
-            } catch() {}
-            break;
-        case TokenType::LESS_EQUAL:
-            try {
-                checkNumberOperands(expr->op, left, right);
-                if ((isNumeric(left) == true) && (isNumeric(right) == true)) { return toNumeric(left) <= toNumeric(right); }
-            }
-            catch() {}
-            break;
-        case TokenType::BANG_EQUAL: return !isEqual(left, right);
-        case TokenType::EQUAL_EQUAL: return isEqual(left, right);
-        default: throw std::runtime_error("Operand must be a number."); 
-    }
-}

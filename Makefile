@@ -21,7 +21,7 @@ languages.o: $(LANGUAGES)
 	echo "Attempting to compile languages.cc"
 	g++ -std=c++17 $(LANGUAGES) -c languages/languages.cc -o languages.o
 
-token.o: token.cc languages.o $(TOKENS) $(INTERFACE)
+token.o: languages.o $(TOKENS) $(INTERFACE)
 	echo "Attempting to compile token.cc"
 	g++ -std=c++17 $(TOKENS) $(INTERFACE) $(LANGUAGES) -c tokens/token.cc -o token.o 
 
@@ -36,10 +36,16 @@ scanner.o: token.o languages.o $(TOKENS) $(SCANNER)
 parser.o: ast.o token.o languages.o $(TOKENS) $(CFG)
 	g++ -std=c++17 $(TOKENS) $(CFG) ast.o token.o languages.o -c parser/parser.cc -o parser.o
 
+binary.o: token.o $(INTERPRETER)
+	g++ -std=c++17 token.o -c interpreter/language_specific_binary_operations.cc -o binary.o
+
 unary.o: token.o $(INTERPRETER)
 	g++ -std=c++17 $(INTERPRETER) token.o -c interpreter/language_specific_unary_operations.cc -o unary.o
 
-interp.o: token.o languages.o unary.o
+truthy.o: token.o $(INTERPRETER)
+	g++ -std=c++17 token.o -c interpreter/language_specific_truthy_operations.cc -o truthy.o
+
+interp.o: token.o languages.o unary.o truthy.o binary.o
 	g++ -std=c++17 $(INTERPRETER) token.o languages.o unary.o -c interpreter/interpreter.cc -o interp.o
 	
 main.o: main.cc scanner.o parser.o interp.o token.o ast.o

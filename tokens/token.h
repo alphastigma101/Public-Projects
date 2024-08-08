@@ -108,9 +108,9 @@ struct data {
 
 typedef data d;
 
-class Token: public Conversion {
+class Token: public MemberConv  {
     public:
-        Token(TokenType type, std::string lexeme, const std::string literal, int line);
+        Token(TokenType& type, std::string& lexeme, const std::string& literal, int& line);
         TokenType getType();
         std::string getLexeme();
         std::string getLiteral();

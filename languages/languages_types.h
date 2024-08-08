@@ -2,7 +2,6 @@
 #ifndef _LANGUAGE_TYPES_H_
 #define _LANGUAGE_TYPES_H_
 #include <lookup_languages.h>
-#include <any>
 #include <cstdint>
 #include <optional>
 #include <variant>
@@ -493,7 +492,15 @@ namespace LanguageTypes {
         template<typename K, typename V> using AssociativeArray = std::map<K, V>;
     };
     struct Custom {
-        // Add basic support such as arrays, functions, loops, etc
+        // alias templates
+        template<typename... Type> Object;
+        using obj_types = Object<class, struct>;
+        template<typename... Args> Numbers;
+        using numeric_types = Numbers<int, double, float>;
+        template<typename... Args> Tokens;
+        using token_types = Tokens<char, std::string>;
+        template<typename... Args> Pointers;
+        template<typename... Args> References;
     };
 };
 using LanguageTypes

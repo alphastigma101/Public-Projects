@@ -1,9 +1,9 @@
 #ifndef _LANGUAGE_SPECIFIC_UNARY_OPERATIONS_H_
 #define _LANGUAGE_SPECIFIC_UNARY_OPERATIONS_H_ 
 #include <token.h>
-#include <stdexcept> // runtime_error can be used
+#include <typeinfo>
 template<class Visitor>
-class unaryOperations {
+class unaryOperations: public Check {
     public:
         Vistor u-Python(LanguageTypes& lang, Vistor& right); 
         Visitor u-JavaScript(LanguageTypes& lang, Visitor& right); 
@@ -53,5 +53,9 @@ class unaryOperations {
         Visitor u-LabVIEW(LanguageTypes& lang, Visitor& right); 
         Visitor u-Eiffel(LanguageTypes& lang, Visitor& right); 
         Visitor u-Custom(LanguageTypes& lang, Visitor& right);
+    private:
+        bool checkNumberOperand(auto& expr, auto& right);
+    protected:
+        inline bool isString(const Type& value) override { return value.type() == typeid(std::string);};
 };
 #endif

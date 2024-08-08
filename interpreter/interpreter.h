@@ -1,7 +1,8 @@
 #ifndef _INTERPRETER_H_
 #define _INTERPRETER_H_
-#include <token.h>
 #include <language_specific_unary_operations.h> // declares the Vistor template
+#include <language_specific_binary_operations.h>
+#include <language_specific_truthy_operations.h> // declares the Vistor template
 #include <typeinfo>
 class interpreter: public Check, public NonMemberConv, public unaryOperations {
     // A class object that visits Binary, Unary, Grouping, or Literal.

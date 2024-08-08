@@ -1,5 +1,4 @@
 #include <interpreter.h>
-#include <stdexcept> // runtime_error can be used 
 /* -------------------------------------------------------------------------------------------------------------------------
  * visitUnaryExpr Description: 
     Is a method that visits the unary abstract syntax tree
@@ -18,312 +17,105 @@ auto interpreter::visitUnaryExpr(Visitor* expr) -> Any {
             checkNumberOperand(expr->op, *right);
             switch(currentLanguage) {
                 case LanguageTypes::Python:
-                    if (auto val = std::any_cast<LanguageTypes::Python::Int>(&right))
-                        return -(*val);
-                    if (auto val = std::any_cast<LanguageTypes::Python::Float>(&right))
-                        return -(*val);
-                    break;
+                    return u-Python(LanguageTypes::Python, right);
                 case LanguageTypes::JavaScript:
-                    if (austo val = std::any_cast<LanguageTypes::JavaScript::Number>(&right))
-                        return -(*val);
-                    break;
+                    return u-JavaScript(LanguageTypes::JavaScript, right);
                 case LanguageTypes::Ruby:
-                    if (auto val = std::any_cast<LanguageTypes::Ruby::Integer>(&right))
-                        return -(*val);
-                    if (auto val = std::any_cast<LanguageTypes::Ruby::Float>(&right))
-                        return -(*val);
-                     break;
+                    return u-Ruby(LanguageTypes::Ruby, right);
                 case LanguageTypes::C:
+                    return u-C(LanguageTypes::C, right);
                 case LanguageTypes::CPP:
-                    if (auto val = std::any_cast<LanguageTypes::CPP::Int>(&right))
-                        return -(*val);
-                    if (auto val = std::any_cast<LanguageTypes::CPP::Double>(&right))
-                        return -(*val);
-                    break;
+                    return u-CPP(LanguageTypes::CPP, right);
                 case LanguageTypes::Java:
-                    if (auto val = std::any_cast<LanguageTypes::Java::Integer>(&right))
-                        return -(*val);
-                    if (auto val = std::any_cast<LanguageTypes::Java::Double>(&right))
-                        return -(*val);
-                    break;
+                    return u-Java(LanguageTypes::Java, right);
                 case LanguageTypes::Go:
-                    if (auto val = std::any_cast<LanguageTypes::Go::Int>(&right))
-                        return -(*val);
-                    if (auto val = std::any_cast<LanguageTypes::Go::Float64>(&right))
-                        return -(*val);
-                    break;
+                    return u-Go(LanguageTypes::Go, right);
                 case LanguageTypes::Kotlin:
-                    if (auto val = std::any_cast<LanguageTypes::Kotlin::Int>(&right))
-                        return -(*val);
-                    if (auto val = std::any_cast<LanguagesTypes::Kotlin::Long)((&right))
-                        return -(*val);
-                    if (auto val = std::any_cast<LanguageTypes::Kotlin::Double>(&right))
-                        return -(*val);
-                    break;
+                    return u-Kotlin(LanguageTypes::Kotlin, right);
                 case LanguageTypes::Swift:
-                    if (auto val = std::any_cast<LanguageTypes::Swift::Int>(&right))
-                        return -(*val);
-                    if (auto val = std::any_cast<LanguageTypes::Kotlin::Double>(&right))
-                        return -(*val);
-                    break;
+                    return u-Swift(LanguageTypes::Swift, right);
                 case LanguageTypes::Rust:
-                    if (auto val = std::any_cast<LanguageTypes::Rust::i8>(&right))
-                        return -(*val);
-                    if (auto val = std::any_cast<LanguagesTypes::Rust::i16)((&right))
-                        return -(*val);
-                    if (auto val = std::any_cast<LanguageTypes::Rust::i32>(&right))
-                        return -(*val);
-                    if (auto val = std::any_cast<LanguageTypes::Rust::i64>(&right))
-                        return -(*val);
-                    if (auto val = std::any_cast<LanguageTypes::Rust::u8>(&right))
-                        return -(*val);
-                    if (auto val = std::any_cast<LanguageTypes::Rust::u16>(&right))
-                        return -(*val);
-                    if (auto val = std::any_cast<LanguageTypes::Rust::u32>(&right))
-                        return -(*val);
-                    if (auto val = std::any_cast<LanguageTypes::Rust::u64>(&right))
-                        return -(*val);
-                    if (auto val = std::any_cast<LanguageTypes::Rust::f32>(&right))
-                        return -(*val);
-                    if (auto val = std::any_cast<LanguageTypes::Rust::f64>(&right))
-                        return -(*val);
-                    break;
+                    return u-Rust(LanguageTypes::Rust, right);
                 case LanguageTypes::CSharp:
-                    if (auto val = std::any_cast<LanguageTypes::CSharp::byte>(&right))
-                        return -(*val);
-                    if (auto val = std::any_cast<LanguagesTypes::CSharp::sbyte)((&right))
-                        return -(*val);
-                    if (auto val = std::any_cast<LanguageTypes::CSharp::short_>(&right))
-                        return -(*val);
-                    if (auto val = std::any_cast<LanguageTypes::CSharp::ushort>(&right))
-                        return -(*val);
-                    if (auto val = std::any_cast<LanguagesTypes::CSharp::int_)((&right))
-                        return -(*val);
-                    if (auto val = std::any_cast<LanguageTypes::CSharp::uint>(&right))
-                        return -(*val);
-                    if (auto val = std::any_cast<LanguageTypes::CSharp::long_>(&right))
-                        return -(*val);
-                    if (auto val = std::any_cast<LanguagesTypes::CSharp::ulong)((&right))
-                        return -(*val);
-                    if (auto val = std::any_cast<LanguageTypes::CSharp::float_>(&right))
-                        return -(*val);
-                    if (auto val = std::any_cast<LanguageTypes::CSharp::double_>(&right))
-                        return -(*val);
-                    if (auto val = std::any_cast<LanguagesTypes::CSharp::decimal)((&right))
-                        return -(*val);
-                    break;
+                    return u-CSharp(LanguagesTypes::CSharp, right);
                 case LanguageTypes::FSharp:
-                    if (auto val = std::any_cast<LanguageTypes::FSharp::int_>(&right))
-                        return -(*val);
-                    if (auto val = std::any_cast<LanguagesTypes::FSharp::float_)((&right))
-                        return -(*val);
-                    if (auto val = std::any_cast<LanguageTypes::FSharp::double_>(&right))
-                        return -(*val);
-                    break;
+                    return u-FSharp(LanguageTypes::FSharp, right);
                 case LanguageTypes::ObjectiveC:
-                    if (auto val = std::any_cast<LanguageTypes::ObjectiveC::NSInteger>(&right))
-                        return -(*val);
-                    if (auto val = std::any_cast<LanguagesTypes::ObjectiveC::NSUInteger)((&right))
-                        return -(*val);
-                    if (auto val = std::any_cast<LanguageTypes::ObjectiveC::CGFloat>(&right))
-                        return -(*val);
-                    break;
+                    return u-ObjectiveC(LanguageTypes::ObjectiveC, right);
                 case LanguageTypes::Scala:
-                    if (auto val = std::any_cast<LanguageTypes::Scala::Int>(&right))
-                        return -(*val);
-                    if (auto val = std::any_cast<LanguagesTypes::Scala::Long)((&right))
-                        return -(*val);
-                    if (auto val = std::any_cast<LanguageTypes::Scala::Float>(&right))
-                        return -(*val);
-                    if (auto val = std::any_cast<LanguagesTypes::Scala::Double)((&right))
-                        return -(*val);
-                    break;
+                    return u-Scala(LanguageTypes::Scala, right);
                 case LanguageTypes::TypeScript:
-                    // Need to add more support for typescript
-                    if (auto val = std::any_cast<LanguageTypes::TypeScript::number>(&right))
-                        return -(*val);
-                    break;
+                    return u-TypeScript(LanguageTypes::TypeScript, right);
                 case LanguageTypes::Dart:
-                    if (auto val = std::any_cast<LanguageTypes::Dart::int_>(&right))
-                        return -(*val);
-                    if (auto val = std::any_cast<LanguagesTypes::Dart::double_)((&right))
-                        return -(*val);
-                    break;
+                    return u-Dart(LanguageTypes::Dart, right);
                 case LanguageTypes::PHP:
-                    if (auto val = std::any_cast<LanguageTypes::PHP::Int>(&right))
-                        return -(*val);
-                    if (auto val = std::any_cast<LanguagesTypes::PHP::Float)((&right))
-                        return -(*val);
-                    break;
+                    return u-PHP(LanguageTypes::PHP, right);
                 case LanguageTypes::R:
-                    if (auto val = std::any_cast<LanguageTypes::R::Integer>(&right))
-                        return -(*val);
-                    if (auto val = std::any_cast<LanguageTypes::R::Double>(&right))
-                        return -(*val);
-                    break;
+                    return u-R(LanguageTypes::R, right);
                 case LanguageTypes::Lua:
-                    if (auto val = std::any_cast<LanguageTypes::Lua::Number>(&right))
-                        return -(*val);
-                    break;
+                    return u-Lua(LanguageTypes::Lua, right);
                 case LanguageTypes::MATLAB:
-                   // TODO: Add more support  
-                    if (auto val = std::any_cast<LanguageTypes::MATLAB::Double>(&right))
-                        return -(*val);
-                    break;
+                    return u-MATLAB(LanguageTypes::MATLAB, right);
                 case LanguageTypes::VBA:
-                    if (auto val = std::any_cast<LanguageTypes::VBA::Byte>(&right))
-                        return -(*val);
-                    if (auto val = std::any_cast<LanguagesTypes::VBA::Integer)((&right))
-                        return -(*val);
-                    if (auto val = std::any_cast<LanguageTypes::VBA::Long>(&right))
-                        return -(*val);
-                    if (auto val = std::any_cast<LanguageTypes::VBA::Single>(&right))
-                        return -(*val);
-                    if (auto val = std::any_cast<LanguagesTypes::VBA::Double)((&right))
-                        return -(*val);
-                    break;
+                    return u-VBA(LanguageTypes::VBA, right);
                 case LanguageTypes::Groovy: 
-                    if (auto val = std::any_cast<LanguageTypes::Groovy::Integer>(&right))
-                        return -(*val);
-                    if (auto val = std::any_cast<LanguagesTypes::Groovy::Long)((&right))
-                        return -(*val);
-                    if (auto val = std::any_cast<LanguageTypes::Groovy::Double>(&right))
-                        return -(*val);
-                    if (auto val = std::any_cast<LanguageTypes::Groovy::Float>(&right))
-                        return -(*val);
-                    break;
+                    return u-Groovy(LanguageTypes::Groovy, right);
                 case LanguageTypes::Julia:
-                    if (auto val = std::any_cast<LanguageTypes::Julia::Int64>(&right))
-                        return -(*val);
-                    if (auto val = std::any_cast<LanguagesTypes::Julia::Float64)((&right))
-                        return -(*val);
-                    break;
+                    return u-Julia(LanguageTypes::Julia, right);
                 case LanguageTypes::PowerShell:
-                    if (auto val = std::any_cast<LanguageTypes::PowerShell::Int>(&right))
-                        return -(*val);
-                    break;
+                    return u-PowerShell(LanguageTypes::PowerShell, right);
                 case LanguageTypes::VisualBasic:
-                    // TODO: This needs to be redone
-                    if (auto val = std::any_cast<LanguageTypes::VisualBasic::Int>(&right))
-                        return -(*val);
-                    if (auto val = std::any_cast<LanguagesTypes::VisualBasic::Long)((&right))
-                        return -(*val);
-                    if (auto val = std::any_cast<LanguageTypes::VisualBasic::Double>(&right))
-                        return -(*val);
-                    break;
+                    return u-VisualBasic(LanguageTypes::VisualBasic, right);
                 case LanguageTypes::Dlang:
-                    if (auto val = std::any_cast<double>(&right))
-                        return -(*val);
-                    break;
+                    return u-Dlang(LanguageTypes::Dlang, right);
                 case LanguageTypes::Haskell:
-                    if (auto val = std::any_cast<LanguageTypes::Haskell::Int>(&right))
-                        return -(*val);
-                    if (auto val = std::any_cast<LanguageTypes::Haskell::Double>(&right))
-                        return -(*val);
-                    break;
+                    return u-Haskell(LanguageTypes::Haskell, right);
                 case LanguageTypes::Erlang:
-                    if (auto val = std::any_cast<LanguageTypes::Erlang::Number>(&right))
-                        return -(*val);
-                    break;
+                    return u-Erlang(LanguageTypes::Erlang, right);
                 case LanguageTypes::Clojure:
-                    if (auto val = std::any_cast<LanguageTypes::Clojure::Number>(&right))
-                        return -(*val);
-                    break;
+                    return u-Clojure(LanguageTypes::Clojure, right);
                 case LanguageTypes::StandardML:
-                    // TODO: This needs to be redone
-                    if (auto val = std::any_cast<LanguageTypes::StandardML::Int>(&right))
-                        return -(*val);
-                    if (auto val = std::any_cast<LanguagesTypes::StandardML::Long)((&right))
-                        return -(*val);
-                    if (auto val = std::any_cast<LanguageTypes::StandardML::Double>(&right))
-                        return -(*val);
-                    break;
+                    return u-StandardML(LanguageTypes::StandardML, right);
                 case LanguageTypes::Elm:
-                    if (auto val = std::any_cast<double>(&right))
-                        return -(*val);
-                    break;
+                    return u-Elm(LanguageTypes::Elm, right);
                 case LanguageTypes::VHDLVerilog:
-                    // TODO: This needs to be redone
-                    if (auto val = std::any_cast<LanguageTypes::VHDLVerilog::Int>(&right))
-                        return -(*val);
-                    if (auto val = std::any_cast<LanguagesTypes::VHDLVerilog::Long)((&right))
-                        return -(*val);
-                    if (auto val = std::any_cast<LanguageTypes::VHDLVerilog::Double>(&right))
-                        return -(*val);
-                    break;
+                    return u-VHDLVerilog(LanguageTypes::VHDLVerilog, right);
                 case LanguageTypes::Fortran:
-                    if (auto val = std::any_cast<LanguageTypes::Fortran::interger>(&right))
-                        return -(*val);
-                    if (auto val = std::any_cast<LanguagesTypes::Fortran::real)((&right))
-                        return -(*val);
-                    break;
+                    return u-Fortran(LanguageTypes::Fortran, right);
                 case LanguageTypes::COBOL:
-                    if (auto val = std::any_cast<LanguageTypes::COBOL::numeric>(&right))
-                        return -(*val);
-                    break;
+                    return u-COBOL(LanguageTypes::COBOL, right);
                 case LanguageTypes::Pascal:
-                    if (auto val = std::any_cast<LanguageTypes::Pascal::integer>(&right))
-                        return -(*val);
-                    if (auto val = std::any_cast<LanguagesTypes::Pascal::real)((&right))
-                        return -(*val);
-                    break;
+                    return u-Pascal(LanguageTypes::Pascal, right);
                 case LanguageTypes::Ada:
-                    if (auto val = std::any_cast<LanguageTypes::Ada::integer>(&right))
-                        return -(*val);
-                    if (auto val = std::any_cast<LanguagesTypes::Ada::Float)((&right))
-                        return -(*val);
-                    break;
+                    return u-Ada(LanguageTypes::Ada, right);
                 case LanguageTypes::Perl:
-                    // TODO: This needs to be redone
-                    if (auto val = std::any_cast<LanguageTypes::Perl::Int>(&right))
-                        return -(*val);
-                    if (auto val = std::any_cast<LanguagesTypes::Perl::Long)((&right))
-                        return -(*val);
-                    if (auto val = std::any_cast<LanguageTypes::Perl::Double>(&right))
-                        return -(*val);
-                    break;
+                    return u-Perl(LanguageTypes::Perl, right);
                 case LanguageTypes::AWK:
-                    //TODO: Add support for AWK
+                    return u-AWK(LanguageTypes::AWK, right);
                 case LanguageTypes::TCL:
-                    if (auto val = std::any_cast<double>(&right))
-                        return -(*val);
-                    break;
+                    return u-TCL(LanguageTypes::TCL, right);
                 case LanguageTypes::Shell:
-                    throw std::runtime_error("Unary minus not supported in Shell");
+                    return u-Shell(LanguageTypes::Shell, right);
                 case LanguageTypes::LISPScheme:
-                    if (auto val = std::any_cast<LanguageTypes::LISPScheme::Double>(&right))
-                        return -(*val);
+                    return u-LISPScheme(LanguageTypes::LISPScheme, right);
                 case LanguageTypes::Racket:
-                    if (auto val = std::any_cast<double>(&right))
-                        return -(*val);
-                    break;
+                    return u-Racket(LanguageTypes::Racket, right);
                 case LanguageTypes::Prolog:
-                    throw std::runtime_error("Unary minus not supported in this context in Prolog");
+                    return u-Prolog(LanguageTypes::Prolog, right);
                 case LanguageTypes::Smalltalk:
-                    if (auto val = std::any_cast<double>(&right))
-                        return -(*val);
-                    break;
+                    return u-SmallTalk(LanguageTypes::SmallTalk, right);
                 case LanguageTypes::HTMLCSS:
-                    if (auto val = std::any_cast<LanguageTypes::HTMLCSS::Number>(&right))
-                        return -(*val);
-                    break;
+                    return u-HTMLCSS(LanguageTypes::HTMLCSS, right);
                 case LanguageTypes::SQL:
-                    if (auto val = std::any_cast<LanguageTypes::SQL::Integer>(&right))
-                        return -(*val);
-                    if (auto val = std::any_cast<LanguagesTypes::SQL::Decimal)((&right))
-                        return -(*val);
-                    if (auto val = std::any_cast<LanguageTypes::SQL::Float>(&right))
-                        return -(*val);
-                    break;
+                    return u-SQL(LanguageTypes::SQL, right);
                 case LanguageTypes::LabVIEW:
-                    throw std::runtime_error("Unary minus not applicable in this context");
+                    return u-LabVIEW(LanguageTypes::LabVIEW, right);
                 case LanguageTypes::Eiffel:
-                    if (auto val = std::any_cast<double>(&right))
-                        return -(*val);
-                    break;
+                    return u-Eiffel(LanguageTypes::Eiffel, right);
                 case LanguageTypes::Custom:
                     // TODO: This needs to be redone
                     // This should be defined as a struct using templates for the objects to add flexibility 
+                    return u-Custom(LanguageTypes::Custom, right);
                 default:
                     throw std::runtime_error("Operand must be a number.");           
             }

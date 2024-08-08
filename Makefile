@@ -36,8 +36,11 @@ scanner.o: token.o languages.o $(TOKENS) $(SCANNER)
 parser.o: ast.o token.o languages.o $(TOKENS) $(CFG)
 	g++ -std=c++17 $(TOKENS) $(CFG) ast.o token.o languages.o -c parser/parser.cc -o parser.o
 
-interp.o: scanner.o token.o parser.o languages.o 
-	g++ -std=c++17 $(INTERPRETER) -c interpreter/interpreter.cc -o interp.o
+unary.o: token.o $(INTERPRETER)
+	g++ -std=c++17 $(INTERPRETER) token.o -c interpreter/language_specific_unary_operations.cc -o unary.o
+
+interp.o: token.o languages.o unary.o
+	g++ -std=c++17 $(INTERPRETER) token.o languages.o unary.o -c interpreter/interpreter.cc -o interp.o
 	
 main.o: main.cc scanner.o parser.o interp.o token.o ast.o
 	g++ -std=c++17 $(SCANNER) $(PARSER) -c main.cc -o main.o
